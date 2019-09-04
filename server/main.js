@@ -3,6 +3,7 @@ import './../imports/api/users.js';
 import { Links } from './../imports/api/links.js';
 import './../imports/startup/simple-schema-configuration';
 import { WebApp } from 'meteor/webapp';
+import { bServicesContainer } from './../imports/api/bservices.js';
 
 Meteor.startup(() => {
   // code to run on server at startup
