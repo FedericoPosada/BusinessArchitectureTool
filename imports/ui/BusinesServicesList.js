@@ -1,6 +1,6 @@
 import React from 'react';
-import {bServicesContainer} from './api/bservices';
-import BusinessService from './BusinessService.jsx';
+import {bServicesContainer} from './../api/bservices';
+import BusinessService from './BusinessService.js';
 export default class BusinessServicesList extends React.Component {
     constructor(props){
         super(props);

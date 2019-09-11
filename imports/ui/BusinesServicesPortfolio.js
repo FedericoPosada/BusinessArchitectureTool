@@ -1,5 +1,5 @@
 import React from 'react';
-import {bServicesContainer} from './api/bservices';
+import {bServicesContainer} from './../api/bservices';
 import BusinessServicesList from './BusinessServicesList';
 
 export default class BusinessServicesPortfolio extends React.Component {

@@ -7,6 +7,7 @@ import Login from './../ui/Login';
 import Settings from './../ui/Settings';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
+
 const history = createBrowserHistory();
 
 const unauthenticatedPages = ['/', '/signup'];
@@ -34,6 +35,7 @@ export const routes = (
           <Route path="/signup" component={Signup}/>
           <Route path="/links" component={Link}/>
           <Route path="/settings" component={Settings}/>
+
           <Route path="*" component={NotFound}/>
         </Switch>
     </Router>

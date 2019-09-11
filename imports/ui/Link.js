@@ -6,6 +6,14 @@ import PrivateLoggedHeader from './PrivateLoggedHeader';
 import AddLink from './AddLink';
 import LinksListFilters from './LinksListFilters';
 import { Session } from 'meteor/session';
+import ModalCapacidadesDeNegocio from "./ModalCapacidadesDeNegocio";
+import ModalModeloDeInformacion from "./ModalModeloDeInformacion";
+import ModalModeloDeNegocio from "./ModalModeloDeNegocio";
+import ModalModeloDeRecursos from "./ModalModeloDeRecursos";
+import ModalModeloEstrategico from "./ModalModeloEstrategico";
+import ModalModeloFinanciero from "./ModalModeloFinanciero";
+import ModalModeloOrganizacional from "./ModalModeloOrganizacional";
+
 
 class Link extends React.Component {
 	 constructor() {
@@ -28,7 +36,6 @@ render() {
 			<PrivateLoggedHeader/>
 			<div className="row">
 				<div class="row">
-
 		        <div class="col m9">
 		          <div class="card" style={containerStyle}>
 			          <div class="center-align">
@@ -36,43 +43,13 @@ render() {
 			              <span class="card-title">Modelo de Intención</span>
 			              <p></p>
 			              <div class="col m4">
-							  <a class="waves-effect waves-light btn modal-trigger" href="#modalModeloDeNegocio">Modelo de Negocio</a>
-
-							  <div id="modalModeloDeNegocio" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+							  <ModalModeloDeNegocio />
 			              </div>
 			              <div class="col m4">
-			              		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modelo Financiero</a>
-
-							  <div id="modal1" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+			              		<ModalModeloFinanciero />
 			              </div>
 			              <div class="col m4">
-			              		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modelo Estratégico</a>
-
-							  <div id="modal1" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+			              		<ModalModeloEstrategico />
 			              </div>
 			              <p></p>
 			            </div>
@@ -84,17 +61,7 @@ render() {
 			              <span class="card-title">Mapa de Capacidades</span>
 			              <p></p>
 			              <div class="col m4 offset-m4">
-			              		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Capacidades de Negocio</a>
-
-							  <div id="modal1" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+			              		<ModalCapacidadesDeNegocio />
 			              </div>
 			              <p></p>
 			            </div>
@@ -106,43 +73,13 @@ render() {
 			              <span class="card-title">Modelo Operativo</span>
 			              <p></p>
 			              <div class="col m4">
-			              		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modelo Organizacional</a>
-
-							  <div id="modal1" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+			              		<ModalModeloOrganizacional />
 			              </div>
 			              <div class="col m4">
-			              		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Procesos de Negocio</a>
-
-							  <div id="modal1" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+			              		
 			              </div>
 			              <div class="col m4">
-			              		<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modelos de recursos</a>
-
-							  <div id="modal1" class="modal">
-							    <div class="modal-content">
-							      <h4>Modal Header</h4>
-							      <p>A bunch of text</p>
-							    </div>
-							    <div class="modal-footer">
-							      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-							    </div>
-							  </div>
+			              		<ModalModeloDeRecursos />
 			              </div>
 			              <p></p>
 			            </div>
@@ -152,7 +89,13 @@ render() {
 		        <div class="col m3">
 			        <div class="card" style={containerStyle}>
 			        <div class="center-align">
-			        	<span class="card-title">Modelo de Información</span>
+			        	<div class="card-content white-text">
+			              <span class="card-title">Modelo de Informacion</span>
+			              <p></p>
+			              <div class="col m12">
+			              		<ModalModeloDeInformacion />
+			              </div>
+			            </div>
 			        </div>
 		        </div>
 		        </div>

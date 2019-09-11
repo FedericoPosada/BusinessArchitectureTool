@@ -1,5 +1,5 @@
 import React from 'react';
-import {bServicesContainer} from './api/bservices';
+import {bServicesContainer} from './../api/bservices';
 
 export default class BusinessService extends React.Component {
     deleteService(){
