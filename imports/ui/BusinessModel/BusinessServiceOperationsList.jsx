@@ -11,7 +11,8 @@ export default class BusinessServicesOperationsList extends React.Component {
     }
     componentWillMount(){
         Tracker.autorun(()=>{
-            let bServiceOperations = bServicesOperationsContainer.find({bservicecustomid:this.props.bservicecustomid}).fetch();
+            Meteor.subscribe('bservoperations');
+            let bServiceOperations = bServicesOperationsContainer.find({bserviceid:this.props.bserviceid}).fetch();
             this.setState({list: bServiceOperations});
         })
     }
@@ -30,7 +31,7 @@ export default class BusinessServicesOperationsList extends React.Component {
                         <BusinessServiceOperation
                             id={val._id}
                             customid={val.customid}
-                            bservicecustomid={this.props.bservicecustomid}
+                            bservicecustomid={this.props.bserviceid}
                             name={val.name}
                             key={val.customid}
                         />

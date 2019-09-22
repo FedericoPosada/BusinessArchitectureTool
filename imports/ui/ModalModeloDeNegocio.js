@@ -32,6 +32,11 @@ class ModalModeloDeNegocio extends Component {
     // instance.destroy();
   }
 
+  handlePortfolioClick()
+  {
+      history.push('/BusinessServicesPortfolio');
+  }
+
   render() {
     return (
       <div>
@@ -56,7 +61,7 @@ class ModalModeloDeNegocio extends Component {
           <div className="modal-content">
             <font color="black"><h4>Modelo de Negocio</h4></font>
                     <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Portafolio de Servicios</a>
+                        <a class="waves-effect waves-light btn-large" href="/BusinessServicesPortfolio">Portafolio de Servicios</a>
                     </div>
                     <div class="col m4">
                         <a class="waves-effect waves-light btn-large">Modelo ontologico</a>

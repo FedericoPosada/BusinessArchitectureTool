@@ -1,7 +1,6 @@
 import React from 'react';
 import {bServicesOperationsContainer} from '../../api/bservoperations';
 import BusinessServiceOperationsList from './BusinessServiceOperationsList.jsx';
-import {bServicesContainer} from "../../api/bservices";
 
 export default class BusinessServiceOperationsManager extends React.Component {
     constructor(props){
@@ -23,11 +22,11 @@ export default class BusinessServiceOperationsManager extends React.Component {
                 serviceCustomIdNumber += this.props.bservicecustomid.charAt(i);
             }
             let bserviceopcustomid;
-            if (bServicesOperationsContainer.find({bservicecustomid: this.props.bservicecustomid}).count() === 0) {
+            if (bServicesOperationsContainer.find({bserviceid:this.props.bserviceid,bservicecustomid: this.props.bservicecustomid}).count() === 0) {
                 bserviceopcustomid = "O" + serviceCustomIdNumber + ".1.";
             } else {
                 let customIdLastNumber = "";
-                let lastOperation = bServicesOperationsContainer.find({bservicecustomid: this.props.bservicecustomid}).fetch();
+                let lastOperation = bServicesOperationsContainer.find({bserviceid:this.props.bserviceid, bservicecustomid: this.props.bservicecustomid}).fetch();
                 let customIdLast = lastOperation[lastOperation.length - 1].customid;
                 let arrayOpID= customIdLast.split(".");
                 for (let i = 0; i < arrayOpID[1].length; i++) {
@@ -42,10 +41,12 @@ export default class BusinessServiceOperationsManager extends React.Component {
             let bserviceop = {
                 customid: bserviceopcustomid,
                 name: bserviceopname,
+                bserviceid: this.props.bserviceid,
                 bservicecustomid: this.props.bservicecustomid
             };
             bServicesOperationsContainer.insert(bserviceop, (err, done) => {
-                console.log(err + " id = " + done)
+                if(err)
+                    Materialize.toast("Hubo un error",3000);
             });
             this.refs.bserviceopname.value = "";
         }
@@ -53,7 +54,7 @@ export default class BusinessServiceOperationsManager extends React.Component {
     render(){
         return(
         <div>
-            <BusinessServiceOperationsList bservicecustomid={this.props.bservicecustomid}/>
+            <BusinessServiceOperationsList bserviceid={this.props.bserviceid}/>
             <div className="row">
                 <div className="input-field col s1">
                 </div>

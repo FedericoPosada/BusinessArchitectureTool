@@ -10,9 +10,11 @@ export default class BusinessServicesPortfolio extends React.Component {
         this.state={
             clients:[]
         }
+
     }
     componentWillMount() {
         Tracker.autorun(()=>{
+            Meteor.subscribe('clients')
             let clients = clientsContainer.find({}).fetch();
             this.setState({clients: clients});
         })
@@ -28,11 +30,11 @@ export default class BusinessServicesPortfolio extends React.Component {
     handleClick(){
         if(this.checkFields()) {
             let servicecustomid;
-            if (bServicesContainer.find({}).count() === 0) {
+            if (bServicesContainer.find({owner:Meteor.userId()}).count() === 0) {
                 servicecustomid = 'S1';
             } else {
                 let customIdLastNumber = '';
-                let lastService = bServicesContainer.find().fetch();
+                let lastService = bServicesContainer.find({owner:Meteor.userId()}).fetch();
                 let customIdLast = lastService[lastService.length - 1].customid;
                 for (let i = 1; i < customIdLast.length; i++) {
                     customIdLastNumber += customIdLast.charAt(i);
@@ -48,9 +50,11 @@ export default class BusinessServicesPortfolio extends React.Component {
                 customid: servicecustomid,
                 name: servicename,
                 object: serviceobject,
-                client: serviceclient
+                client: serviceclient,
+                owner: Meteor.userId()
             };
             bServicesContainer.insert(bservice, (err, done) => {
+                if(err)
                 Materialize.toast("Ha ocurrido un error al crear el servicio. Inténtelo de nuevo.",3000);
             });
             this.refs.servicename.value = "";

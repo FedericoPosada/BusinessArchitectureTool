@@ -30,10 +30,11 @@ export default class BusinessService extends React.Component {
     }
     updateService(){
         let newServiceValues = {
-                customid: this.props.customid,
+            $set: {
                 name: this.state.name,
                 object: this.state.object,
                 client: this.state.client
+            }
             };
             let query = {_id: this.props.id};
             bServicesContainer.update(query, newServiceValues, (err, done) => {
@@ -92,7 +93,7 @@ export default class BusinessService extends React.Component {
                         className="material-icons">chevron_right</i></a>}
                 </td>
                     { this.state.opMode &&
-                        <BusinessServiceOperationsManager bservicecustomid={this.props.customid}/>
+                        <BusinessServiceOperationsManager bservicecustomid={this.props.customid} bserviceid={this.props._id}/>
                     }
             </>
         )
@@ -130,7 +131,7 @@ export default class BusinessService extends React.Component {
                         className="material-icons">chevron_right</i></a>}
                 </td>
                     { this.state.opMode &&
-                    <BusinessServiceOperationsManager bservicecustomid={this.props.customid}/>
+                    <BusinessServiceOperationsManager bservicecustomid={this.props.customid} bserviceid={this.props._id}/>
                     }
             </>
         )

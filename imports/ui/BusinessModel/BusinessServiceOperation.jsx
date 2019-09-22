@@ -11,9 +11,9 @@ export default class BusinessServiceOperation extends React.Component {
     }
     updateServiceOperation(){
         let newServiceValues = {
-            customid: this.props.customid,
-            name: this.state.name,
-            bservicecustomid: this.props.bservicecustomid
+            $set: {
+                name: this.state.name
+            }
         };
         let query = { _id:this.props.id };
         bServicesOperationsContainer.update(query, newServiceValues,(err,done)=>{
