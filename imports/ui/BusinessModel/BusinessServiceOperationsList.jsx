@@ -1,7 +1,8 @@
 import React from 'react';
-import {bServicesContainer} from './../api/bservices';
-import BusinessService from './BusinessService.js';
-export default class BusinessServicesList extends React.Component {
+import {bServicesOperationsContainer} from '../../api/bservoperations';
+import BusinessServiceOperation from './BusinessServiceOperation.jsx';
+
+export default class BusinessServicesOperationsList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -10,39 +11,34 @@ export default class BusinessServicesList extends React.Component {
     }
     componentWillMount(){
         Tracker.autorun(()=>{
-            var bServices = bServicesContainer.find({}).fetch();
-            this.setState({list: bServices});
+            let bServiceOperations = bServicesOperationsContainer.find({bservicecustomid:this.props.bservicecustomid}).fetch();
+            this.setState({list: bServiceOperations});
         })
     }
     render(){
         return (
-            <div>
-                <table className="striped">
+                <table className="bordered">
                     <tbody>
                     <tr>
                         <th>ID</th>
-                        <th>Servicio de negocio</th>
-                        <th>Objeto de negocio</th>
-                        <th>Tipo de cliente</th>
-                        <th>Acciones</th>
+                        <th>Operación</th>
+                        <th></th>
                     </tr>
                 { this.state.list.map((val, index)=>{
                     return(
                         <tr key={index}>
-                        <BusinessService
+                        <BusinessServiceOperation
                             id={val._id}
                             customid={val.customid}
+                            bservicecustomid={this.props.bservicecustomid}
                             name={val.name}
                             key={val.customid}
-                            object={val.object}
-                            client={val.client}
                         />
                         </tr>
                     )
                 }) }
                     </tbody>
                 </table>
-            </div>
         )
     }
 }
