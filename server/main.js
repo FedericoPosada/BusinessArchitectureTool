@@ -3,9 +3,30 @@ import './../imports/api/users.js';
 import { Links } from './../imports/api/links.js';
 import './../imports/startup/simple-schema-configuration';
 import { WebApp } from 'meteor/webapp';
-import {bServicesContainer} from "../imports/api/bservices";
+import {bServicesContainer} from '../imports/api/bservices'
+import {bServicesOperationsContainer} from '../imports/api/bservoperations'
 import {clientsContainer} from "../imports/api/clients";
-import {bServicesOperationsContainer} from "../imports/api/bservoperations";
+import {resourcesContainer} from "../imports/api/resources";
+import {resServicesContainer} from "../imports/api/resservices";
+import {tiResourcesContainer} from "../imports/api/tiresources";
+import {componentsContainer} from "../imports/api/components";
+import {bStrategiesContainer} from "../imports/api/bstrategies";
+import {motivCompContainer} from "../imports/api/motivcomp";
+import {opIndicatorsContainer} from "../imports/api/opindicators";
+import {exIndicatorsContainer} from "../imports/api/exindicators";
+import {stIndicatorsContainer} from "../imports/api/stindicators";
+import {labelsContainer} from "../imports/api/labels";
+import {capacitiesContainer} from "../imports/api/capacities";
+import {opItemsContainer} from "../imports/api/opitems";
+import {positionsContainer} from "../imports/api/positions";
+import {applicationsContainer} from "../imports/api/applications";
+import {processesContainer} from "../imports/api/processes";
+import {objectivesContainer} from "../imports/api/objectives";
+import {goalsContainer} from "../imports/api/goals";
+import {strategiesContainer} from "../imports/api/strategies";
+import {tacticsContainer} from "../imports/api/tactics";
+import {achIndicatorsContainer} from "../imports/api/achindicators";
+import {supActivitiesContainer} from "../imports/api/supactivities";
 
 Meteor.startup(() => {
   // code to run on server at startup
