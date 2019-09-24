@@ -1,6 +1,6 @@
 import React from 'react';
-import StrategyCreator from "./StrategyCreator";
-import TacticCreator from "./TacticCreator";
+import StrategyCreator from "../StrategicModel/StrategyCreator";
+import TacticCreator from "../StrategicModel/TacticCreator";
 import SupportActivityCreator from "./SupportActivityCreator";
 
 export default class SupportActivities extends React.Component {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
 
 class ModalModeloDeInformacion extends Component {
   componentDidMount() {
@@ -55,17 +54,18 @@ class ModalModeloDeInformacion extends Component {
                         modal-fixed-footer to the "modal" div*/}
           <div className="modal-content">
            <font color="black"><h4>Modelo de Informacion</h4></font>
+                     <div className="col m3">
+                         <a className="waves-effect waves-light btn-large" href="/LabelsCreator">Etiquetas</a>
+                     </div>
                     <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Indicadores estrategicos y tacticos</a>
+                        <a class="waves-effect waves-light btn-large" href="/StrategicIndicatorsList">Indicadores estratégicos</a>
+                    </div>
+
+                    <div class="col m3">
+                        <a class="waves-effect waves-light btn-large" href="/OperativeIndicatorsList">Indicadores operativos</a>
                     </div>
                     <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Modelo ontologico</a>
-                    </div>
-                    <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Indicadores operativos</a>
-                    </div>
-                    <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Indicadores externos</a>
+                        <a class="waves-effect waves-light btn-large" href="/ExternalIndicatorsList">Indicadores externos</a>
                     </div>
           </div>
           <div className="modal-footer">

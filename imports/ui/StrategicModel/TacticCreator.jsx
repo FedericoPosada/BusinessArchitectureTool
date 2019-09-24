@@ -68,9 +68,7 @@ export default class TacticCreator extends React.Component {
                 <h4>Tácticas:</h4>
                 <TacticList/>
                 <div className="row">
-                    <div className="input-field col s2" style={{"marginLeft":20}}>
-                    </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col s4">
                         <input  ref="tacNameCreate" type="text" className="validate"/>
                             <label htmlFor="tacNameCreate">Nombre</label>
                     </div>

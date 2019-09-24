@@ -51,9 +51,7 @@ export default class ObjectiveCreator extends React.Component {
                 <h4>Objetivos:</h4>
                 <ObjectiveList/>
                 <div className="row">
-                    <div className="input-field col s2" style={{"marginLeft":"1"}}>
-                    </div>
-                    <div className="input-field col s3">
+                    <div className="input-field col s6">
                         <input  ref="objectivename" type="text" className="validate"/>
                             <label htmlFor="objectivename">Nombre</label>
                     </div>

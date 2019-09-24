@@ -34,17 +34,17 @@ export default class GoalCreator extends React.Component {
             let objective = this.refs.objectiveSelectCreate.value.toString();
             let objnumber = objective.substring(1,objective.length);
             if (goalsContainer.find({"objective": objective,owner:Meteor.userId()}).count() === 0) {
-                goalcustomid = 'M.'+objnumber+".1.";
+                goalcustomid = 'M'+objnumber+".1.";
             } else {
                 let customIdLastNumber = '';
                 let lastGoal = goalsContainer.find({"objective": objective,owner:Meteor.userId()}).fetch();
                 let customIdLast = lastGoal[lastGoal.length - 1].customid;
-                for (let i = 3+objnumber.length; i < customIdLast.length-1; i++) {
+                for (let i = 2+objnumber.length; i < customIdLast.length-1; i++) {
                     customIdLastNumber += customIdLast.charAt(i);
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                goalcustomid = "M."+objnumber+"."+lastnumber+".";
+                goalcustomid = "M"+objnumber+"."+lastnumber+".";
             }
             let goalname = this.refs.goalNameCreate.value.toString();
             let deadline = this.refs.deadlineCreate.value.toString();
@@ -70,9 +70,7 @@ export default class GoalCreator extends React.Component {
                 <h4>Metas:</h4>
                 <GoalList/>
                 <div className="row">
-                    <div className="input-field col s2" >
-                    </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col s5">
                         <input  ref="goalNameCreate" type="text" className="validate"/>
                             <label htmlFor="goalname">Nombre</label>
                     </div>

@@ -38,9 +38,9 @@ export default class StrategicPlan extends React.Component {
             <div>
                 <div className="col s12">
                     <ul className="tabs">
-                        <li className="tab col s3"><a onClick={this.changePurposeMode.bind(this)}>Fines</a></li>
-                        <li className="tab col s3"><a onClick={this.changeMeansode.bind(this)}>Medios</a></li>
-                        <li className="tab col s3"><a onClick={this.changeIndMode.bind(this)}>Indicadores de logro</a></li>
+                        <li className="tab col s4"><a onClick={this.changePurposeMode.bind(this)}>Fines</a></li>
+                        <li className="tab col s4"><a onClick={this.changeMeansode.bind(this)}>Medios</a></li>
+                        <li className="tab col s4"><a onClick={this.changeIndMode.bind(this)}>Indicadores de logro</a></li>
                     </ul>
                 </div>
                 <div className="row">

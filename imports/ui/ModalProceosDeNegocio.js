@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
 
 class ModalProcesosDeNegocio extends Component {
   componentDidMount() {

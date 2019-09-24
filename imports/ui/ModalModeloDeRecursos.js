@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
 
 class ModalModeloDeRecursos extends Component {
   componentDidMount() {
@@ -55,15 +54,21 @@ class ModalModeloDeRecursos extends Component {
                         modal-fixed-footer to the "modal" div*/}
           <div className="modal-content">
             <font color="black"><h4>Modelo de Recursos</h4></font>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                    <div class="col m2">
+                        <a class="waves-effect waves-light btn-large" href="/ResourcesModel">Modelo de recursos</a>
                     </div>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                    <div class="col m2">
+                        <a class="waves-effect waves-light btn-large" href="/TIResourcesModel">Modelo de recursos TI</a>
                     </div>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                    <div class="col m2">
+                        <a class="waves-effect waves-light btn-large" href="/ApplicationCatalog">Catálogo de aplicaciones</a>
                     </div>
+              <div className="col m2">
+                  <a className="waves-effect waves-light btn-large" href="/ComponentsCatalog">Catálogo de componentes</a>
+              </div>
+              <div className="col m2">
+                  <a className="waves-effect waves-light btn-large" href="/OperativeModel">Modelo operativo</a>
+              </div>
           </div>
           <div className="modal-footer">
             <a className="modal-close waves-effect waves-red btn-flat">

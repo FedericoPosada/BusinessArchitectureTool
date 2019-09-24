@@ -100,6 +100,7 @@ export default class BusinessStrategiesCatalog extends React.Component {
                 owner: Meteor.userId()
             };
             bStrategiesContainer.insert(bservice, (err, done) => {
+                if(err)
                 Materialize.toast("Ha ocurrido un error al crear la estrategia. Inténtelo de nuevo.",3000);
             });
             this.refs.strategyname.value = "";

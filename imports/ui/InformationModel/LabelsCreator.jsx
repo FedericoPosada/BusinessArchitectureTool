@@ -19,6 +19,7 @@ export default class ComponentsCatalog extends React.Component {
                 owner:Meteor.userId()
             };
             labelsContainer.insert(label, (err, done) => {
+                if(err)
                 Materialize.toast("Ha ocurrido un error al crear la etiqueta. Inténtelo de nuevo.",3000);
             });
         }

@@ -40,7 +40,7 @@ export default class AchievementIndicatorCreator extends React.Component {
                 let lastTac = achIndicatorsContainer.find({"goal": goal,owner:Meteor.userId()}).fetch();
                 let customIdLast = lastTac[lastTac.length - 1].customid;
                 let arrayIdLast=customIdLast.split(".");
-                let lastnumbers=arrayIdLast[3];
+                let lastnumbers=arrayIdLast[2];
                 for (let i = 0; i < lastnumbers.length; i++) {
                     customIdLastNumber += lastnumbers.charAt(i);
                 }
@@ -72,9 +72,7 @@ export default class AchievementIndicatorCreator extends React.Component {
                 <h4>Indicadores de logro:</h4>
                 <AchievementIndicatorList/>
                 <div className="row">
-                    <div className="input-field col s1" style={{"marginLeft":10}}>
-                    </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col s4">
                         <input  ref="achDescCreate" type="text" className="validate"/>
                             <label htmlFor="achDescCreate">Nombre</label>
                     </div>

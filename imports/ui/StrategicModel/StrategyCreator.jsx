@@ -66,9 +66,7 @@ export default class StrategyCreator extends React.Component {
                 <h4>Estrategias:</h4>
                 <StrategyList/>
                 <div className="row">
-                    <div className="input-field col s2" style={{"marginLeft":10}}>
-                    </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col s4">
                         <input  ref="stratNameCreate" type="text" className="validate"/>
                             <label htmlFor="stratNameCreate">Nombre</label>
                     </div>
