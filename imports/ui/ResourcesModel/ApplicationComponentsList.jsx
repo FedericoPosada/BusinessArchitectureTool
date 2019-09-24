@@ -29,10 +29,14 @@ export default class ApplicationComponentsList extends React.Component {
 
     render(){
         return (
+            <div>
+                <div className="input-field col s4">
+                    <label>Componentes tecnológicos relacionados:</label>
+                </div>
             <table className="bordered">
                 <tbody>
                 <tr>
-                    <th>Componentes tecnológicos relacionados:</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 { this.state.list.map((val, index)=>{
@@ -49,6 +53,7 @@ export default class ApplicationComponentsList extends React.Component {
                 }) }
                 </tbody>
             </table>
+            </div>
         )
     }
 }

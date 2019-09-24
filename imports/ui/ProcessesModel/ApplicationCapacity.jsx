@@ -22,6 +22,7 @@ export default class ApplicationCapacity extends React.Component {
         }
         capacities.splice(indexItem,1);
         applicationsContainer.update({_id:this.props.applicationid},{$set:{"capacities":capacities}});
+        Materialize.toast("Se ha borrado la capacidad, verá los cambios al volver a esta aplicación.",3000);
     }
     render(){
         return(

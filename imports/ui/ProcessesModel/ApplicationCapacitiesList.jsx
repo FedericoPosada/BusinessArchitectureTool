@@ -30,14 +30,10 @@ export default class ApplicationCapacitiesList extends React.Component {
 
     render(){
         return (
-            <div>
-            <div className="input-field col s4">
-                <label>Capacidades implementadas:</label>
-            </div>
             <table className="bordered">
                 <tbody>
                 <tr>
-                    <th></th>
+                    <th>Implementa:</th>
                     <th></th>
                 </tr>
                 { this.state.list.map((val, index)=>{
@@ -54,7 +50,6 @@ export default class ApplicationCapacitiesList extends React.Component {
                 }) }
                 </tbody>
             </table>
-        </div>
         )
     }
 }

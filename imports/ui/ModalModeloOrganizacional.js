@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import PositionCatalog from "./OrganizationalStructure/PositionCatalog";
 
 class ModalModeloOrganizacional extends Component {
   componentDidMount() {
@@ -55,7 +56,7 @@ class ModalModeloOrganizacional extends Component {
           <div className="modal-content">
             <font color="black"><h4>Modelo Organizacional</h4></font>
                     <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                        <a class="waves-effect waves-light btn" href="/PositionCatalog">Catálogo de cargos</a>
                     </div>
                     <div class="col m4">
                         <a class="waves-effect waves-light btn-large">Descargar PDF</a>

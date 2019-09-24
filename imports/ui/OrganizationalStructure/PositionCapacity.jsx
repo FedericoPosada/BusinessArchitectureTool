@@ -1,14 +1,13 @@
 import React from 'react';
-import {opItemsContainer} from "../../api/opitems";
-import {applicationsContainer} from "../../api/applications";
+import {positionsContainer} from "../../api/positions";
 
-export default class ApplicationCapacity extends React.Component {
+export default class PositionCapacity extends React.Component {
     constructor(props)
     {
         super(props);
     }
-    deleteApplicationCapacity(){
-        let opItem = applicationsContainer.findOne({_id:this.props.applicationid});
+    deletePositionCapacity(){
+        let opItem = positionsContainer.findOne({_id:this.props.positionid});
         let capacities=opItem.capacities;
         let currentRes={
             customid:this.props.customid,
@@ -21,14 +20,14 @@ export default class ApplicationCapacity extends React.Component {
                 indexItem=i;
         }
         capacities.splice(indexItem,1);
-        applicationsContainer.update({_id:this.props.applicationid},{$set:{"capacities":capacities}});
+        positionsContainer.update({_id:this.props.positionid},{$set:{"capacities":capacities}});
     }
     render(){
         return(
             <>
                 <td style={{width:"10%"}}>{this.props.customid}</td>
                 <td>{this.props.name}</td>
-                <td style={{width:"20%"}}><a onClick={this.deleteApplicationCapacity.bind(this)} className="waves-effect waves-light btn red"><i
+                <td style={{width:"20%"}}><a onClick={this.deletePositionCapacity.bind(this)} className="waves-effect waves-light btn red"><i
                     className="material-icons">delete</i></a>
                 </td>
             </>

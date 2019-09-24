@@ -21,6 +21,7 @@ import BusinessStrategiesCatalog from "../ui/StrategicModel/BusinessStrategiesCa
 import ExternalIndicatorsList from "../ui/InformationModel/ExternalIndicatorsList";
 import StrategicIndicatorsList from "../ui/InformationModel/StrategicIndicatorsList";
 import OperativeIndicatorsList from "../ui/InformationModel/OperativeIndicatorsList";
+import PositionCatalog from "../ui/OrganizationalStructure/PositionCatalog";
 
 const history = createBrowserHistory();
 
@@ -63,7 +64,7 @@ export const routes = (
 			<Route path="/ResourcesModel" component={ResourcesModel}/>
 			<Route path="/ComponentsCatalog" component={ComponentsCatalog}/>
 			<Route path="/BusinessStrategiesCatalog" component={BusinessStrategiesCatalog}/>
-
+			<Route path="/PositionCatalog" component={PositionCatalog}/>
 
 
 

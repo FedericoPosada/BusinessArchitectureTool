@@ -7,11 +7,11 @@ export default class ApplicationCreator extends React.Component{
     createApplication(){
         if(this.checkFields()) {
             let applicationcustomid;
-            if (applicationsContainer.find({owner:Meteor.userId()}).count() === 0) {
+            if (applicationsContainer.find({}).count() === 0) {
                 applicationcustomid = "A1";
             } else {
                 let customIdLastNumber = '';
-                let lastApplications = applicationsContainer.find({owner:Meteor.userId()}).fetch();
+                let lastApplications = applicationsContainer.find({}).fetch();
                 let customIdLast = lastApplications[lastApplications.length - 1].customid;
                 for (let i = 1; i < customIdLast.length; i++) {
                     customIdLastNumber += customIdLast.charAt(i);
@@ -23,7 +23,7 @@ export default class ApplicationCreator extends React.Component{
             let createObj = {
                 customid: applicationcustomid,
                 name: this.refs.nameEdit.value,
-                cost:  this.refs.costEdit.value,
+                cost:  this.refs.costEdit.value.length,
                 capacities:[],
                 components:[],
                 owner:Meteor.userId()

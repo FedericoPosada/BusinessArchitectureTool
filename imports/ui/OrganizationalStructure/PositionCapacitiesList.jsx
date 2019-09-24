@@ -1,14 +1,14 @@
 import React from 'react';
-import {applicationsContainer} from "../../api/applications";
-import ApplicationCapacity from "./ApplicationCapacity";
+import {positionsContainer} from "../../api/positions";
+import PositionCapacity from "./PositionCapacity";
 
 
-export default class ApplicationCapacitiesList extends React.Component {
+export default class PositionCapacitiesList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             list: this.props.capacitieslist,
-            applicationid:this.props.applicationid,
+            positionid:this.props.positionid,
             capacitieslist:this.props.capacitieslist
         }
     }
@@ -16,8 +16,8 @@ export default class ApplicationCapacitiesList extends React.Component {
         Tracker.autorun(()=>{
             Meteor.subscribe('applications');
             let capacities;
-            if(typeof this.state.applicationid !== "undefined")
-            {let app = applicationsContainer.findOne({owner:Meteor.userId(),_id:this.state.applicationid});
+            if(typeof this.state.positionid !== "undefined")
+            {let app = positionsContainer.findOne({owner:Meteor.userId(),_id:this.state.positionid});
              capacities=app.capacities;}
             else
                 capacities=this.state.capacitieslist;
@@ -31,9 +31,9 @@ export default class ApplicationCapacitiesList extends React.Component {
     render(){
         return (
             <div>
-            <div className="input-field col s4">
-                <label>Capacidades implementadas:</label>
-            </div>
+                <div className="input-field col s4">
+                    <label>Capacidades implementadas:</label>
+                </div>
             <table className="bordered">
                 <tbody>
                 <tr>
@@ -43,18 +43,18 @@ export default class ApplicationCapacitiesList extends React.Component {
                 { this.state.list.map((val, index)=>{
                     return(
                         <tr key={"Filapos"+index}>
-                            <ApplicationCapacity
-                                applicationid={this.props.applicationid}
+                            <PositionCapacity
+                                positionid={this.props.positionid}
                                 customid={val.customid}
                                 name={val.name}
-                                key={"appcap"+this.props.applicationid+" "+index}
+                                key={"appcap"+this.props.positionid+" "+index}
                             />
                         </tr>
                     )
                 }) }
                 </tbody>
             </table>
-        </div>
+            </div>
         )
     }
 }
