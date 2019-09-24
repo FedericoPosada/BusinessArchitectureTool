@@ -36,7 +36,7 @@ class ModalModeloEstrategico extends Component {
     return (
       <div>
         <a
-          className="waves-effect waves-light btn modal-trigger"
+          className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalModeloEstrategico"
         >
           Modelo Estrategico
@@ -53,26 +53,55 @@ class ModalModeloEstrategico extends Component {
                         bottom-sheet class to the "modal" div
                         If you want Fixed Footer Modal then add
                         modal-fixed-footer to the "modal" div*/}
+          <div className="row">
           <div className="modal-content">
             <font color="black"><h4>Modelo Estrategico</h4></font>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Componente moivacional</a>
+                    <div class="col m2">
                     </div>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Componente de ejecucion</a>
+                     <div className="col m4">
+                          <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/editorPlanEstrategico.PNG"></img>
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title activator grey-text text-darken-4">Plan Estratégico</span>
+                              <p><a href="#">Llevame allí!</a></p>
+                            </div>
+                            <div class="card-reveal">
+                              <span class="card-title grey-text text-darken-4">Plan Estratégico<i class="material-icons right">X</i></span>
+                              <p>Define la estructura de tu estratégia</p>
+                            </div>
+                          </div>
                     </div>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Componente de medicion, seguimiento y gobierno</a>
+                    
+                     <div className="col m4">
+
+                          <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/visualizadorPlanEstrategico.PNG"></img>
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title activator grey-text text-darken-4"> Visualizador Plan</span>
+                              <p><a href="#">Llevame allí!</a></p>
+                            </div>
+                            <div class="card-reveal">
+                              <span class="card-title grey-text text-darken-4">Visualizador Plan<i class="material-icons right">X</i></span>
+                              <p>Observa graficamente la estructura de tu estratégia</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col m2">
                     </div>
           </div>
+          </div>
+          
           <div className="modal-footer">
-            <a className="modal-close waves-effect waves-red btn-flat">
-              Disagree
-            </a>
+            
             <a className="modal-close waves-effect waves-green btn-flat">
-              Agree
+              Volver
             </a>
           </div>
+          
         </div>
       </div>
     );

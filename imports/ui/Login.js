@@ -50,7 +50,13 @@ export default class Login extends React.Component {
 			<div>
 			<PrivateHeader/>
 			<div className="row">
-				<h4 className="text-center">Login</h4>
+				<div className="col m4">
+				</div>
+				<div className="col m4">
+				<h4 className="center-align">Login</h4>
+				</div>
+				<div className="col m4">
+				</div>
 				<form onSubmit={this.onSubmit} className="col offset-s4 s4">
 					<div className="row">
 						<div className="input-field col s12">
@@ -65,7 +71,7 @@ export default class Login extends React.Component {
 						</div>
 					</div>
 					<div className="row">
-						<button className="waves-effect waves-light btn btn-block">Submit</button>
+						<button className="waves-effect waves-light btn light-blue darken-4 btn-block">Submit</button>
 					</div>
 				</form>
 			</div>

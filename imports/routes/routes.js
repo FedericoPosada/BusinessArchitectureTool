@@ -11,7 +11,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 const history = createBrowserHistory();
 
 const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/links','/settings'];
+const authenticatedPages = ['/links','/settings','/businessModelEditor'];
 
 export const onAuthChange = (isAuthenticated) => {
 	console.log('isAuthenticated', isAuthenticated);

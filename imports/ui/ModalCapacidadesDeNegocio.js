@@ -36,7 +36,7 @@ class ModalCapacidadesDeNegocio extends Component {
     return (
       <div>
         <a
-          className="waves-effect waves-light btn modal-trigger"
+          className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalCapacidadesDeNegocio"
         >
           Capacidades de Negocio
@@ -53,26 +53,38 @@ class ModalCapacidadesDeNegocio extends Component {
                         bottom-sheet class to the "modal" div
                         If you want Fixed Footer Modal then add
                         modal-fixed-footer to the "modal" div*/}
-          <div className="modal-content">
+        <div className="row">
+          <div className="modal-content col m12">
             <font color="black"><h4>Capacidades de Negocio</h4></font>
                     <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                        
                     </div>
+                     <div className="col m4">
+                         <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/mapaDeCapacidades.PNG"></img>
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title activator grey-text text-darken-4">Mapa de Capacidades</span>
+                              <p><a href="#">Llevame allí!</a></p>
+                            </div>
+                            <div class="card-reveal">
+                              <span class="card-title grey-text text-darken-4">Mapa de Capacidades<i class="material-icons right">X</i></span>
+                              <p>Identifica las capacidades de tu negocio.</p>
+                            </div>
+                          </div>
                     <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
-                    </div>
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                        
                     </div>
           </div>
-          <div className="modal-footer">
-            <a className="modal-close waves-effect waves-red btn-flat">
-              Disagree
-            </a>
+        </div>
+          <div className="modal-footer col m12">
+            
             <a className="modal-close waves-effect waves-green btn-flat">
-              Agree
+              Volver
             </a>
           </div>
+        </div>
         </div>
       </div>
     );

@@ -13,6 +13,7 @@ import ModalModeloDeRecursos from "./ModalModeloDeRecursos";
 import ModalModeloEstrategico from "./ModalModeloEstrategico";
 import ModalModeloFinanciero from "./ModalModeloFinanciero";
 import ModalModeloOrganizacional from "./ModalModeloOrganizacional";
+import ModalProcesosDeNegocio from "./ModalProcesosDeNegocio";
 
 
 class Link extends React.Component {
@@ -23,7 +24,7 @@ class Link extends React.Component {
 
 render() {
 		var containerStyle= {
-	      backgroundColor: "#2589BD"
+	      backgroundColor: "#FFFFFF"
 	    };
 	    var cardStyle= {
 	      backgroundColor: "#468C98"
@@ -31,99 +32,120 @@ render() {
 	    var optionsStyle= {
 	    	backgroundColor: "#A3B4A2"
 	    };
-		return (
+	    var pageStyle= {
+		      backgroundColor: "#E1E8F0",
+		      paddingLeft:"12px"
+		    };
+		return (			
 			<div>
 			<PrivateLoggedHeader/>
-			<div className="row">
-				<div class="row">
-		        <div class="col m9">
-		          <div class="card" style={containerStyle}>
-			          <div class="center-align">
-			          	<div class="card-content white-text">		            
-			              <span class="card-title">Modelo de Intención</span>
-			              <p></p>
-			              <div class="col m4">
+			<div className="row" style = {pageStyle}>
+		        <div className="col m9">
+		          <div className="card" style={containerStyle}>
+			          <div className="center-align">
+			          	<div className="card-content black-text">
+			          	 <div className="row">	            
+			              <span className="card-title black-text">Modelo de Intención</span>
+			              <div className="divider"></div>
+			              </div>
+			              <div className="row">
+			              
+			              <div className="col m4">
 							  <ModalModeloDeNegocio />
 			              </div>
-			              <div class="col m4">
+			              <div className="col m4">
 			              		<ModalModeloFinanciero />
 			              </div>
-			              <div class="col m4">
+			              <div className="col m4">
 			              		<ModalModeloEstrategico />
 			              </div>
-			              <p></p>
+			              
+			            </div>
 			            </div>
 			          </div>		            
 		          </div>
-		          <div class="card" style={containerStyle}>
-		          	<div class="center-align">
-			            <div class="card-content white-text">
-			              <span class="card-title">Mapa de Capacidades</span>
-			              <p></p>
-			              <div class="col m4 offset-m4">
-			              		<ModalCapacidadesDeNegocio />
-			              </div>
-			              <p></p>
+		           
+		          <div className="card" style={containerStyle}>
+		          	<div className="center-align">
+			            <div className="card-content black-text">
+				            <div className="row">	            
+				              <span className="card-title black-text">Mapa de Capacidades</span>
+				              <div className="divider"></div>
+				            </div>
+				            <div className="row">
+				              <div className="col m4 offset-m4">
+				              		<ModalCapacidadesDeNegocio />
+				              </div>		             
+			             	</div>
 			            </div>
 		            </div>
 		          </div>
-		          <div class="card" style={containerStyle}>
-		          	<div class="center-align">
-			            <div class="card-content white-text">
-			              <span class="card-title">Modelo Operativo</span>
-			              <p></p>
-			              <div class="col m4">
+		          
+		           
+		          <div className="card" style={containerStyle}>
+		          	<div className="center-align">
+			            <div className="card-content black-text">
+			            <div className="row">	
+			              <span className="card-title black-text">Modelo Operativo</span>
+			              <div className="divider"></div>
+				        </div>
+			            <div className="row">
+			              <div className="col m4">
 			              		<ModalModeloOrganizacional />
 			              </div>
-			              <div class="col m4">
-			              		
+			              <div className="col m4">
+			              		<ModalProcesosDeNegocio />
 			              </div>
-			              <div class="col m4">
+			              <div className="col m4">
 			              		<ModalModeloDeRecursos />
 			              </div>
-			              <p></p>
+			            </div>
 			            </div>
 			          </div>
 			        </div>  
+			        
 		        </div>
-		        <div class="col m3">
-			        <div class="card" style={containerStyle}>
-			        <div class="center-align">
-			        	<div class="card-content white-text">
-			              <span class="card-title">Modelo de Informacion</span>
-			              <p></p>
-			              <div class="col m12">
-			              		<ModalModeloDeInformacion />
+		        <div className="col m3">
+		        <p></p>
+		        <p></p>
+			        <div className="card large" style={containerStyle}>
+				        <div className="center-align">
+				        	<div className="card-content black-text">
+				        	<div className="row">	
+				              <span className="card-title black-text">Modelo de Informacion</span>
+				              <div className="divider"></div>
+			              	</div>
+			              	<div className="row">
+				              <div className="col m12">
+				              		<ModalModeloDeInformacion />
+				              </div>
+				             </div>
+				            </div>
+				        </div>
+		        	</div>
+		        </div>
+		      <div className="footer-copyright">
+		      	<div className="center-align">
+			            <div className="card-content black-text">
+			            <div className="col m12">
+			            <div className="row">
+			              <div className="col m3">
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Descargar PDF</a>
+			              </div>
+			              <div className="col m3">
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 2</a>
+			              </div>
+			              <div className="col m3">
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 3</a>
+			              </div>
+			              <div className="col m3">
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 4</a>
 			              </div>
 			            </div>
-			        </div>
-		        </div>
-		        </div>
-		      </div>
-		      <div class="row">
-			      <div class="col m12">
-			      	<div class="card" style={optionsStyle}>
-			      	<div class="center-align">
-			            <div class="card-content white-text">
-			              <span class="card-title">Card Title</span>
-			              <p></p>
-			              <div class="col m3">
-			              	<a class="waves-effect waves-light btn-large">Descargar PDF</a>
-			              </div>
-			              <div class="col m3">
-			              	<a class="waves-effect waves-light btn-large">Funcionalidad 2</a>
-			              </div>
-			              <div class="col m3">
-			              	<a class="waves-effect waves-light btn-large">Funcionalidad 3</a>
-			              </div>
-			              <div class="col m3">
-			              	<a class="waves-effect waves-light btn-large">Funcionalidad 4</a>
-			              </div>
 			            </div>
-		            </div>
-		          </div>
-			      </div>
-		      </div>
+			            </div>
+		        </div>
+		      </div>		     
 			</div>
 			</div>
 		);

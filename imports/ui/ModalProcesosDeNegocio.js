@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
-class ModalModeloFinanciero extends Component {
+class ModalProcesosDeNegocio extends Component {
   componentDidMount() {
     const options = {
       onOpenStart: () => {
@@ -37,16 +37,16 @@ class ModalModeloFinanciero extends Component {
       <div>
         <a
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
-          data-target="modalModeloFinanciero"
+          data-target="modalProcesosDeNegocio"
         >
-          Modelo Financiero
+          Procesos de Negocio
         </a>
 
         <div
           ref={Modal => {
             this.Modal = Modal;
           }}
-          id="modalModeloFinanciero"
+          id="modalProcesosDeNegocio"
           className="modal"
         >
           {/* If you want Bottom Sheet Modal then add 
@@ -55,50 +55,46 @@ class ModalModeloFinanciero extends Component {
                         modal-fixed-footer to the "modal" div*/}
         <div className="row">
           <div className="modal-content">
-            <font color="black"><h4>Modelo Financiero</h4></font>
+            <font color="black"><h4>Procesos de Negocio</h4></font>
                     <div class="col m2">
                         
                     </div>
                      <div className="col m4">
-
-                         <div class="card">
+                          <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/estadosFinancieros.PNG"></img>
+                              <img class="activator" height="125" src="http://172.24.101.248/images/catalogoDeProcesos.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Estados Financieros</span>
+                              <span class="card-title activator grey-text text-darken-4">Catalogo de Procesos</span>
                               <p><a href="#">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Estados Financieros<i class="material-icons right">X</i></span>
-                              <p>Expon los estados financieros de tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Catalogo de Procesos<i class="material-icons right">X</i></span>
+                              <p>Guarda y accede a los procesos de tu negocio facilmente en un solo lugar</p>
                             </div>
                           </div>
-
                     </div>
                     
                      <div className="col m4">
-                         <div class="card">
+                          <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/indicadoresFinancieros.PNG"></img>
+                              <img class="activator" height="125" src="http://172.24.101.248/images/cadenaDeValor.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Indicadores Financieros</span>
+                              <span class="card-title activator grey-text text-darken-4">Cadena de Valor</span>
                               <p><a href="#">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">>Indicadores Financieros<i class="material-icons right">X</i></span>
-                              <p>Identifica los indicadores financieros que mueven a tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Cadena de Valor<i class="material-icons right">X</i></span>
+                              <p>Define la Cadena de valor del negocio</p>
                             </div>
                           </div>
-
-                         
                     </div>
                     <div class="col m2">
                         
                     </div>
           </div>
-        </div>
+          </div>
           <div className="modal-footer">
             
             <a className="modal-close waves-effect waves-green btn-flat">
@@ -111,4 +107,4 @@ class ModalModeloFinanciero extends Component {
   }
 }
 
-export default ModalModeloFinanciero;
+export default ModalProcesosDeNegocio;

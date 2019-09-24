@@ -24,7 +24,7 @@ logout(){
 	
   render() {
   	var navStyle= {
-      backgroundColor: "#3f51b5",
+      backgroundColor: "#283E49",
       paddingLeft:"12px"
     };
      return(

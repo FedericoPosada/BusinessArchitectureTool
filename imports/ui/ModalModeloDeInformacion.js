@@ -36,7 +36,7 @@ class ModalModeloDeInformacion extends Component {
     return (
       <div>
         <a
-          className="waves-effect waves-light btn modal-trigger"
+          className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalModeloDeInformacion"
         >
           Modelo de Informacion
@@ -53,27 +53,52 @@ class ModalModeloDeInformacion extends Component {
                         bottom-sheet class to the "modal" div
                         If you want Fixed Footer Modal then add
                         modal-fixed-footer to the "modal" div*/}
+        <div className="row">
           <div className="modal-content">
            <font color="black"><h4>Modelo de Informacion</h4></font>
-                    <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Indicadores estrategicos y tacticos</a>
+                    <div className="col m2">
+                         
                     </div>
-                    <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Modelo ontologico</a>
+                     <div className="col m4">
+                           <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/modeloOntologico.PNG"></img>
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title activator grey-text text-darken-4">Modelo Ontológico</span>
+                              <p><a href="#">Llevame allí!</a></p>
+                            </div>
+                            <div class="card-reveal">
+                              <span class="card-title grey-text text-darken-4">Modelo Ontológico<i class="material-icons right">X</i></span>
+                              <p>Define la estructura de tu modelo ontológico</p>
+                            </div>
+                          </div>
                     </div>
-                    <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Indicadores operativos</a>
+                     
+                     <div className="col m4">
+                          <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/indicadoresEstrategicos.PNG"></img>
+                            </div>
+                            <div class="card-content">
+                              <span class="card-title activator grey-text text-darken-4">Indicadores Estratégicos</span>
+                              <p><a href="#">Llevame allí!</a></p>
+                            </div>
+                            <div class="card-reveal">
+                              <span class="card-title grey-text text-darken-4">Indicadores Estratégicos<i class="material-icons right">X</i></span>
+                              <p>Identifica los indicadores para apoyar tu estratégia de negocio</p>
+                            </div>
+                          </div>
                     </div>
-                    <div class="col m3">
-                        <a class="waves-effect waves-light btn-large">Indicadores externos</a>
+                    <div className="col m2">
+                         
                     </div>
           </div>
+        </div>
           <div className="modal-footer">
-            <a className="modal-close waves-effect waves-red btn-flat">
-              Disagree
-            </a>
+            
             <a className="modal-close waves-effect waves-green btn-flat">
-              Agree
+              Volver
             </a>
           </div>
         </div>
