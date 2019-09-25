@@ -38,7 +38,8 @@ export default class PrimaryActivityCreator extends React.Component {
                 customid: primactcustomid,
                 name: primactname,
                 category:this.props.category,
-                owner:Meteor.userId()
+                owner:Meteor.userId(),
+                activities:[]
             };
             processesContainer.insert(bprimact, (err, done) => {
                 if(err)

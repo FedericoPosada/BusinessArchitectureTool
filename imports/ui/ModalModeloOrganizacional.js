@@ -59,10 +59,10 @@ class ModalModeloOrganizacional extends Component {
                         <a class="waves-effect waves-light btn" href="/PositionCatalog">Catálogo de cargos</a>
                     </div>
                     <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                        <a class="waves-effect waves-light btn" href="/ValueChain">Cadena de valor</a>
                     </div>
                     <div class="col m4">
-                        <a class="waves-effect waves-light btn-large">Descargar PDF</a>
+                        <a class="waves-effect waves-light btn" href="/ProcessCatalog">Catálogo de procesos</a>
                     </div>
           </div>
           <div className="modal-footer">

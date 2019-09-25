@@ -23,7 +23,7 @@ export default class PositionCreator extends React.Component{
             let createObj = {
                 customid: applicationcustomid,
                 name: this.refs.nameEdit.value,
-                salary:  this.refs.salaryEdit.value.length,
+                salary:  this.refs.salaryEdit.value,
                 number: this.refs.numberEdit.value,
                 capacities:[],
                 dependents:[],
