@@ -21,7 +21,7 @@ export default class OperativeIndicatorProcess extends React.Component {
                 indexItem=i;
         }
         processes.splice(indexItem,1);
-        opIndicatorsContainer.update({owner:Meteor.userId(),_id:this.props.indicatorid},{$set:{"processes":processes}});
+        opIndicatorsContainer.update({_id:this.props.indicatorid},{$set:{"processes":processes}});
     }
     render(){
         return(

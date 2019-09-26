@@ -24,6 +24,7 @@ import OperativeIndicatorsList from "../ui/InformationModel/OperativeIndicatorsL
 import PositionCatalog from "../ui/OrganizationalStructure/PositionCatalog";
 import ProcessCatalog from "../ui/ProcessesModel/ProcessCatalog";
 import TransformationActionList from "../ui/StrategicModel/TransformationActionList";
+import ProjectsList from "../ui/StrategicModel/ProjectsList";
 
 const history = createBrowserHistory();
 
@@ -70,6 +71,7 @@ export const routes = (
 			<Route path="/ValueChain" component={ValueChain}/>
 			<Route path="/ProcessCatalog" component={ProcessCatalog}/>
 			<Route path="/TransformationActionList" component={TransformationActionList}/>
+			<Route path="/ProjectsList" component={ProjectsList}/>
 
 
 

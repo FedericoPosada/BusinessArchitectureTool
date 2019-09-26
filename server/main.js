@@ -28,6 +28,7 @@ import {tacticsContainer} from "../imports/api/tactics";
 import {achIndicatorsContainer} from "../imports/api/achindicators";
 import {supActivitiesContainer} from "../imports/api/supactivities";
 import {transfActionsContainer} from "../imports/api/transfactions";
+import {projectsContainer} from "../imports/api/projects";
 
 Meteor.startup(() => {
   // code to run on server at startup

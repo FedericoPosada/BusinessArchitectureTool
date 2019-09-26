@@ -43,7 +43,7 @@ export default class OperativeIndicatorProcessManager extends React.Component {
             }
             if(indexItem === -1){
                 posList.push(posItem);
-                opIndicatorsContainer.update({owner:Meteor.userId(),_id:this.props.indicatorid},{$set:{"processes":posList}});
+                opIndicatorsContainer.update({_id:this.props.indicatorid},{$set:{"processes":posList}});
             }
             else{
                 Materialize.toast("El cargo ya fue asignado",3000);

@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import {positionsContainer} from "../../api/positions";
 import {opIndicatorsContainer} from "../../api/opindicators";
 import OperativeIndicatorPositionsList from "./OperativeIndicatorPositionsList";
@@ -44,7 +44,7 @@ export default class OperativeIndicatorPositionManager extends React.Component {
             }
             if(indexItem === -1){
                 posList.push(posItem);
-                opIndicatorsContainer.update({owner:Meteor.userId(),_id:this.props.indicatorid},{$set:{"positions":posList}});
+                opIndicatorsContainer.update({_id:this.props.indicatorid},{$set:{"positions":posList}});
             }
             else{
                 Materialize.toast("El cargo ya fue asignado",3000);

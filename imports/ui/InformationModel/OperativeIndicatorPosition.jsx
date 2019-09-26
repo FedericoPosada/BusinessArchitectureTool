@@ -21,7 +21,7 @@ export default class OperativeIndicatorPosition extends React.Component {
                 indexItem=i;
         }
         positions.splice(indexItem,1);
-        opIndicatorsContainer.update({owner:Meteor.userId(),_id:this.props.indicatorid},{$set:{"positions":positions}});
+        opIndicatorsContainer.update({_id:this.props.indicatorid},{$set:{"positions":positions}});
     }
     render(){
         return(
