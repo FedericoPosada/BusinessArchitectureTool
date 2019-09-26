@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
 
 
 class ModalModeloDeNegocio extends Component {
@@ -32,11 +33,6 @@ class ModalModeloDeNegocio extends Component {
     // instance.destroy();
   }
 
-  handlePortfolioClick()
-  {
-      history.push('/BusinessServicesPortfolio');
-  }
-
   render() {
 
     return (
@@ -62,7 +58,6 @@ class ModalModeloDeNegocio extends Component {
         <div className="row">
           <div className="modal-content">
             <font color="black"><h4>Modelo de Negocio</h4></font>
-<<<<<<< HEAD
                     <div className="col m4">
 
                         <div class="card">
@@ -78,10 +73,6 @@ class ModalModeloDeNegocio extends Component {
                               <p>Descubre los servicios de tu negocio</p>
                             </div>
                           </div>
-=======
-                    <div class="col m4">
-                        <a class="waves-effect waves-light btn-large" href="/BusinessServicesPortfolio">Portafolio de Servicios</a>
->>>>>>> 31572df22de100e3b0d2a57112b6b049036739ab
                     </div>
                     <div className="col m4">
                           <div class="card">
