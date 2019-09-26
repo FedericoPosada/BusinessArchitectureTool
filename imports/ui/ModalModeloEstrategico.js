@@ -64,6 +64,9 @@ class ModalModeloEstrategico extends Component {
                     <div class="col m4">
                         <a class="waves-effect waves-light btn-large" href="/BusinessStrategiesCatalog">Estrategias de negocio</a>
                     </div>
+                <div className="col m4">
+                  <a className="waves-effect waves-light btn-large" href="/TransformationActionList">Acciones de transformación</a>
+              </div>
           </div>
           <div className="modal-footer">
             <a className="modal-close waves-effect waves-red btn-flat">
