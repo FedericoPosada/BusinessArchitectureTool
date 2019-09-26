@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
 
 class ModalModeloDeInformacion extends Component {
   componentDidMount() {
@@ -56,6 +55,7 @@ class ModalModeloDeInformacion extends Component {
         <div className="row">
           <div className="modal-content">
            <font color="black"><h4>Modelo de Informacion</h4></font>
+<<<<<<< HEAD
                     <div className="col m2">
                          
                     </div>
@@ -92,6 +92,20 @@ class ModalModeloDeInformacion extends Component {
                     </div>
                     <div className="col m2">
                          
+=======
+                     <div className="col m3">
+                         <a className="waves-effect waves-light btn-large" href="/LabelsCreator">Etiquetas</a>
+                     </div>
+                    <div class="col m3">
+                        <a class="waves-effect waves-light btn-large" href="/StrategicIndicatorsList">Indicadores estratégicos</a>
+                    </div>
+
+                    <div class="col m3">
+                        <a class="waves-effect waves-light btn-large" href="/OperativeIndicatorsList">Indicadores operativos</a>
+                    </div>
+                    <div class="col m3">
+                        <a class="waves-effect waves-light btn-large" href="/ExternalIndicatorsList">Indicadores externos</a>
+>>>>>>> 31572df22de100e3b0d2a57112b6b049036739ab
                     </div>
           </div>
         </div>

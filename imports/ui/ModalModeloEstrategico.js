@@ -56,6 +56,7 @@ class ModalModeloEstrategico extends Component {
           <div className="row">
           <div className="modal-content">
             <font color="black"><h4>Modelo Estrategico</h4></font>
+<<<<<<< HEAD
                     <div class="col m2">
                     </div>
                      <div className="col m4">
@@ -91,7 +92,23 @@ class ModalModeloEstrategico extends Component {
                           </div>
                     </div>
                     <div class="col m2">
+=======
+                    <div class="col m4">
+                        <a class="waves-effect waves-light btn-large" href="/MotivationalComponent">Componente moivacional</a>
                     </div>
+                    <div class="col m4">
+                        <a class="waves-effect waves-light btn-large" href="/StrategicPlan">Plan estratégico</a>
+                    </div>
+                    <div class="col m4">
+                        <a class="waves-effect waves-light btn-large" href="/BusinessStrategiesCatalog">Estrategias de negocio</a>
+>>>>>>> 31572df22de100e3b0d2a57112b6b049036739ab
+                    </div>
+                <div className="col m4">
+                  <a className="waves-effect waves-light btn-large" href="/TransformationActionList">Acciones de transformación</a>
+              </div>
+              <div className="col m4">
+                  <a className="waves-effect waves-light btn-large" href="/ProjectsList">Catálogo de proyectos</a>
+              </div>
           </div>
           </div>
           

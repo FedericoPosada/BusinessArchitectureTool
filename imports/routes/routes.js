@@ -7,6 +7,24 @@ import Login from './../ui/Login';
 import Settings from './../ui/Settings';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
+import BusinessServicesPortfolio from "../ui/BusinessModel/BusinessServicesPortfolio";
+import StrategicPlan from "../ui/StrategicModel/StrategicPlan";
+import LabelsCreator from "../ui/InformationModel/LabelsCreator";
+import ValueChain from "../ui/ProcessesModel/ValueChain";
+import MotivationalComponent from "../ui/StrategicModel/MotivationalComponent";
+import ApplicationCatalog from "../ui/ResourcesModel/ApplicationCatalog";
+import OperativeModel from "../ui/ResourcesModel/OperativeModel";
+import TIResourcesModel from "../ui/ResourcesModel/TIResourcesModel";
+import ResourcesModel from "../ui/ResourcesModel/ResourcesModel";
+import ComponentsCatalog from "../ui/ResourcesModel/ComponentsCatalog";
+import BusinessStrategiesCatalog from "../ui/StrategicModel/BusinessStrategiesCatalog";
+import ExternalIndicatorsList from "../ui/InformationModel/ExternalIndicatorsList";
+import StrategicIndicatorsList from "../ui/InformationModel/StrategicIndicatorsList";
+import OperativeIndicatorsList from "../ui/InformationModel/OperativeIndicatorsList";
+import PositionCatalog from "../ui/OrganizationalStructure/PositionCatalog";
+import ProcessCatalog from "../ui/ProcessesModel/ProcessCatalog";
+import TransformationActionList from "../ui/StrategicModel/TransformationActionList";
+import ProjectsList from "../ui/StrategicModel/ProjectsList";
 
 const history = createBrowserHistory();
 
@@ -35,8 +53,30 @@ export const routes = (
           <Route path="/signup" component={Signup}/>
           <Route path="/links" component={Link}/>
           <Route path="/settings" component={Settings}/>
+          <Route path="/BusinessServicesPortfolio" component={BusinessServicesPortfolio}/>
+          <Route path="/StrategicPlan" component={StrategicPlan}/>
+          <Route path="/LabelsCreator" component={LabelsCreator}/>
+          <Route path="/ValueChain" component={ValueChain}/>
+          <Route path="/MotivationalComponent" component={MotivationalComponent}/>
+			<Route path="/ExternalIndicatorsList" component={ExternalIndicatorsList}/>
+			<Route path="/StrategicIndicatorsList" component={StrategicIndicatorsList}/>
+			<Route path="/OperativeIndicatorsList" component={OperativeIndicatorsList}/>
+			<Route path="/ApplicationCatalog" component={ApplicationCatalog}/>
+			<Route path="/OperativeModel" component={OperativeModel}/>
+			<Route path="/TIResourcesModel" component={TIResourcesModel}/>
+			<Route path="/ResourcesModel" component={ResourcesModel}/>
+			<Route path="/ComponentsCatalog" component={ComponentsCatalog}/>
+			<Route path="/BusinessStrategiesCatalog" component={BusinessStrategiesCatalog}/>
+			<Route path="/PositionCatalog" component={PositionCatalog}/>
+			<Route path="/ValueChain" component={ValueChain}/>
+			<Route path="/ProcessCatalog" component={ProcessCatalog}/>
+			<Route path="/TransformationActionList" component={TransformationActionList}/>
+			<Route path="/ProjectsList" component={ProjectsList}/>
 
-          <Route path="*" component={NotFound}/>
+
+
+
+			<Route path="*" component={NotFound}/>
         </Switch>
     </Router>
 );

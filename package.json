@@ -5,8 +5,12 @@
     "start": "meteor run"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@babel/runtime": "^7.6.0",
     "@material-ui/icons": "^4.4.1",
+=======
+    "@babel/runtime": "^7.6.2",
+>>>>>>> 31572df22de100e3b0d2a57112b6b049036739ab
     "babel-runtime": "^6.20.0",
     "bcrypt": "^3.0.6",
     "clipboard": "^1.7.1",
