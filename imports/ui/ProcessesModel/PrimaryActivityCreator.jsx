@@ -54,6 +54,8 @@ export default class PrimaryActivityCreator extends React.Component {
                 <h5>{this.props.category}</h5>
                 <PrimaryActivityList category={this.props.category}/>
                 <div className="row">
+                    <div className="input-field col s1">
+                    </div>
                     <div className="input-field col s6">
                         <input  ref="primactname" type="text" className="validate"/>
                             <label htmlFor="primactname">Nombre</label>

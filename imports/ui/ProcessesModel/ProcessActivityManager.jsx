@@ -80,7 +80,6 @@ export default class ProcessActivityManager extends React.Component {
                 <div className="row">
                     <div className="input-field col s3">
                         <input ref="activityname" type="text" className="validate"/>
-                        <label htmlFor="activityname">Actividad</label>
                     </div>
                     <div className="input-field col s5">
                         <td>

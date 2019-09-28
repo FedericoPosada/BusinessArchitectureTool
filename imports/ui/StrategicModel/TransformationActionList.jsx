@@ -40,7 +40,7 @@ export default class TransformationActionList extends React.Component {
                             {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{marginBottom:20}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons">cancel</i></a>}
                             {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20}}
-                            onClick={this.changeCreateMode.bind(this)}><i className="material-icons right">add</i>Nuevo indicador</a>}
+                            onClick={this.changeCreateMode.bind(this)}><i className="material-icons right">add</i>Nueva acción</a>}
                         <table className="striped" >
                     <tbody>
                     <tr>
