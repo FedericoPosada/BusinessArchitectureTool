@@ -47,7 +47,13 @@ export default class StrategicIndicator extends React.Component{
 
     updateIndicator(){
         let query = {_id:this.props._id};
-        let arrayAId=this.refs.associatedIdEdit.value.split("-");
+        let assvalue="";
+        if(this.refs.typeEdit.value === "Global")
+            assvalue=""
+        else {
+            let arrayAId = this.refs.associatedIdEdit.value.split("-");
+            assvalue=arrayAId[0];
+        }
         let updateObj= {
             $set:{
                 description:this.refs.descEdit.value,
@@ -55,7 +61,7 @@ export default class StrategicIndicator extends React.Component{
                 calcfrequency:this.refs.calcfreqEdit.value,
                 dimensions:this.refs.dimensionsEdit.value,
                 type: this.refs.typeEdit.value,
-                associatedId:arrayAId[0]
+                associatedId:assvalue
             }
         }
         stIndicatorsContainer.update(query,updateObj);

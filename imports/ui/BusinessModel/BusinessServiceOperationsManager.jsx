@@ -42,7 +42,8 @@ export default class BusinessServiceOperationsManager extends React.Component {
                 customid: bserviceopcustomid,
                 name: bserviceopname,
                 bserviceid: this.props.bserviceid,
-                bservicecustomid: this.props.bservicecustomid
+                bservicecustomid: this.props.bservicecustomid,
+                owner:Meteor.userId()
             };
             bServicesOperationsContainer.insert(bserviceop, (err, done) => {
                 if(err)
