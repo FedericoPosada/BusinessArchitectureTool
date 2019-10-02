@@ -26,6 +26,8 @@ import ProcessCatalog from "../ui/ProcessesModel/ProcessCatalog";
 import TransformationActionList from "../ui/StrategicModel/TransformationActionList";
 import ProjectsList from "../ui/StrategicModel/ProjectsList";
 import CapacitiesList from "../ui/CapacitiesMap/CapacitiesList";
+import CapacityCreator from "../ui/CapacitiesMap/CapacityCreator";
+import MapEditor from "../ui/CapacitiesMap/MapEditor";
 
 const history = createBrowserHistory();
 
@@ -73,7 +75,7 @@ export const routes = (
 			<Route path="/ProcessCatalog" component={ProcessCatalog}/>
 			<Route path="/TransformationActionList" component={TransformationActionList}/>
 			<Route path="/ProjectsList" component={ProjectsList}/>
-			<Route path="/CapacitiesList" component={CapacitiesList}/>
+			<Route path="/MapEditor" component={MapEditor}/>
 
 
 

@@ -6,20 +6,32 @@ export default class CapacitiesList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            list: []
+            list: [],
+            subpackageSelected:this.props.subpackageSelected
         }
     }
+    componentWillReceiveProps(nextProps, nextContext) {
+        if( nextProps.subpackageSelected === "") {
+            let caps = capacitiesContainer.find({owner: Meteor.userId()}, {sort: {customid: 1}}).fetch();
+            this.setState({subpackageSelected: nextProps.subpackageSelected, list: caps});
+        }
+        else {
+            console.log(nextProps.subpackageSelected);
+            let caps = capacitiesContainer.find({owner: Meteor.userId(), "customid": new RegExp(nextProps.subpackageSelected)}, {sort: {customid: 1}}).fetch();
+            this.setState({subpackageSelected: nextProps.subpackageSelected, list: caps});
+        }
+    }
+
     componentWillMount(){
         Tracker.autorun(()=>{
             Meteor.subscribe('capacities');
-            let caps = capacitiesContainer.find({owner:Meteor.userId(),bserviceid:this.props.bserviceid}).fetch();
+            let caps = capacitiesContainer.find({owner:Meteor.userId()}, {sort:{customid:1}}).fetch();
             this.setState({list: caps});
-            console.log(Meteor.userId());
         })
     }
     render(){
         return (
-                <table className="bordered" style={{'height': '300px', 'width':'50%', 'overflow':'scroll', 'display': 'block'}}>
+                <table className="bordered" style={{'height': '400px', 'width':'100%','overflow-y':'scroll', 'overflow-x':'hidden', 'display': 'block'}}>
                     <tbody>
                 { this.state.list.map((val, index)=>{
                     return(
@@ -27,6 +39,7 @@ export default class CapacitiesList extends React.Component {
                         <Capacity
                             id={val._id}
                             customid={val.customid}
+                            category={val.category}
                             name={val.name}
                             key={val.customid}
                         />
