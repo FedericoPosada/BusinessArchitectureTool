@@ -66,7 +66,7 @@ class ModalCapacidadesDeNegocio extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4" >Mapa de Capacidades</span>
-                              <p><a href="/MapEditor">Llevame allí!</a></p>
+                              <p><a href="/CapacitiesMap">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Mapa de Capacidades<i class="material-icons right">X</i></span>

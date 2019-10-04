@@ -31,6 +31,8 @@ import {transfActionsContainer} from "../imports/api/transfactions";
 import {projectsContainer} from "../imports/api/projects";
 import {packagesContainer} from "../imports/api/packages";
 import {subpackagesContainer} from "../imports/api/subpackages";
+import {pCapacitiesContainer} from "../imports/api/pcapacities";
+import {pSubpackagesContainer} from "../imports/api/psubpackages";
 
 Meteor.startup(() => {
   // code to run on server at startup
