@@ -1,33 +1,98 @@
 import React from 'react';
 import ProcessActivityManager from "./ProcessActivityManager";
 import {processesContainer} from "../../api/processes";
-
+import { FilesCollection } from 'meteor/ostrio:files';
+import ProcessesImages from "../../api/ProcessesImagesCol";
 
 export default class Process extends React.Component{
 
     constructor(props){
         super(props);
+        let cursor=ProcessesImages.collection;
+        let q=cursor.findOne({_id:this.props.imageid});
         this.state={
             isInEditMode:false,
-            activitieslist:this.props.activitieslist
-
+            activitieslist:this.props.activitieslist,
+            imageid:this.props.imageid
         }
-        console.log(this.props._id);
+        Meteor.subscribe('processesimages');
+        this.uploadIt=this.uploadIt.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
         if (nextProps._id !== this.props._id) {
             this.setState({
                 isInEditMode: false,
-                activitieslist:nextProps.activitieslist
+                activitieslist:nextProps.activitieslist,
+                imageid:nextProps.imageid
             })
         }
+    }
+    uploadIt(e) {
+        e.preventDefault();
+        let self = this;
+        if (e.currentTarget.files && e.currentTarget.files[0]) {
+            var file = e.currentTarget.files[0];
+            if (file) {
+                let uploadInstance = ProcessesImages.insert({
+                    file: file,
+                    streams: 'dynamic',
+                    chunkSize: 'dynamic',
+                    allowWebWorkers: true // If you see issues with uploads, change this to false
+                }, false);
+
+                // These are the event functions, don't need most of them, it shows where we are in the process
+                uploadInstance.on('start', function () {
+                    console.log('Starting');
+                })
+
+                uploadInstance.on('end', function (error, fileObj) {
+                    console.log('On end File Object: ', fileObj);
+                })
+
+                uploadInstance.on('uploaded', function (error, fileObj) {
+                    console.log('uploaded: ', fileObj);
+                    // Reset our state for the next file
+                    self.setState({
+                        imageid:fileObj._id
+                    });
+                    self.updateImage();
+                })
+                uploadInstance.start(); // Must manually start the upload
+            }
+        }
+    }
+    updateImage(){
+        let query = {_id:this.props._id};
+        let updateObj= {
+            $set:{
+                imageid:this.state.imageid
+            }
+        }
+        processesContainer.update(query,updateObj);
+    }
+    removeFile(){
+        this.setState({
+            imageid:""
+        });
+        let query = {_id:this.props._id};
+        let updateObj= {
+            $set:{
+                imageid:""
+            }
+        }
+        processesContainer.update(query,updateObj);
+        Meteor.call('RemoveFile', this.props.imageid, function (err, res) {
+            if (err)
+                Materialize.toast("Ha ocurrido un error.",3000);
+        })
     }
     updateProcess(){
         let query = {_id:this.props._id};
         let updateObj= {
             $set:{
-                name:this.refs.nameEdit.value
+                name:this.refs.nameEdit.value,
+                imageid:this.state.imageid
             }
         }
         processesContainer.update(query,updateObj);
@@ -64,6 +129,12 @@ export default class Process extends React.Component{
     }
 
     renderEdit() {
+        let query=ProcessesImages.findOne({_id:this.state.imageid});
+        let cursor;
+        if(typeof query !== "undefined")
+            cursor=query.link();
+        else
+            cursor="";
         return(
             <div>
                 <div className="row">
@@ -103,6 +174,23 @@ export default class Process extends React.Component{
                             </div>
                         </div>
                         <div className="row">
+                            <div className="input-field col s2">
+                                <label>Imagen:</label>
+                            </div>
+                            { this.state.imageid.length !== 0 &&
+                            <div className="input-field col s10">
+                                <img src={cursor}/>
+                                <a className="waves-effect waves-light btn red" onClick={this.removeFile.bind(this)} style={{"marginLeft":"14px"}}><i className="material-icons">delete</i></a>
+                            </div>
+                            }
+                            { this.state.imageid.length === 0 &&
+                            <div className="input-field col s8">
+                                <input placeholder="" ref="imageCreate" type="file"  onChange={this.uploadIt} />
+                            </div>
+                            }
+
+                        </div>
+                        <div className="row">
                         <ProcessActivityManager
                             processid={this.props._id}
                             processcustomid={this.props.customid}
@@ -115,6 +203,12 @@ export default class Process extends React.Component{
     }
 
     renderDefault() {
+        let query=ProcessesImages.findOne({_id:this.state.imageid});
+        let cursor;
+        if(typeof query !== "undefined")
+            cursor=query.link();
+        else
+            cursor="";
         return(
             <div>
                 <div className="row">
@@ -154,6 +248,14 @@ export default class Process extends React.Component{
                                     this.props.category
                                 }
                             </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s2">
+                                <label>Imagen:</label>
+                            </div>
+                                <div className="input-field col s10">
+                                    <img src={cursor}/>
+                                </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s3">

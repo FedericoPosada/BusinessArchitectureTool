@@ -33,15 +33,15 @@ export default class ProcessCatalog extends React.Component {
     render(){
         return (
             <div>
-                <h3>Catálogo de procesos</h3>
+                <h3 style={{"marginLeft":"20px"}}>Catálogo de procesos</h3>
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s4">
-                            {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{marginBottom:20}}
+                            {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{"marginLeft":"20px",marginBottom:20}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons">cancel</i></a>}
                             {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20}}
-                            onClick={this.changeCreateMode.bind(this)}><i className="material-icons right">add</i>Nuevo proceso</a>}
-                        <table className="striped" >
+                            onClick={this.changeCreateMode.bind(this)} style={{"marginLeft":"20px","marginBottom":"14px"}}><i className="material-icons right" >add</i>Nuevo proceso</a>}
+                        <table className="striped" style={{"marginLeft":"14px"}} >
                     <tbody>
                     <tr>
                         <th>ID</th>
@@ -61,7 +61,8 @@ export default class ProcessCatalog extends React.Component {
                                 name:val.name,
                                 category:val.category,
                                 customid:val.customid,
-                                activitieslist:val.activities
+                                activitieslist:val.activities,
+                                imageid:val.imageid
                             })
                             )
                             }><i className="material-icons">keyboard_arrow_right</i></a></td>
@@ -85,6 +86,7 @@ export default class ProcessCatalog extends React.Component {
                                     name={this.state.name}
                                     category={this.state.category}
                                     activitieslist={this.state.activitieslist}
+                                    imageid={this.state.imageid}
                                 />
                             }
                         </div>
