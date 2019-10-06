@@ -3,19 +3,18 @@ import ProcessActivityManager from "./ProcessActivityManager";
 import {processesContainer} from "../../api/processes";
 import { FilesCollection } from 'meteor/ostrio:files';
 import ProcessesImages from "../../api/ProcessesImagesCol";
+import OntologicModels from "../../api/OntologicModelsCol";
+import {Meteor} from "meteor/meteor";
 
 export default class Process extends React.Component{
 
     constructor(props){
         super(props);
-        let cursor=ProcessesImages.collection;
-        let q=cursor.findOne({_id:this.props.imageid});
         this.state={
             isInEditMode:false,
             activitieslist:this.props.activitieslist,
             imageid:this.props.imageid
         }
-        Meteor.subscribe('processesimages');
         this.uploadIt=this.uploadIt.bind(this);
     }
 
@@ -27,6 +26,10 @@ export default class Process extends React.Component{
                 imageid:nextProps.imageid
             })
         }
+        let query=OntologicModels.collection.find({}).fetch();
+        let query2=ProcessesImages.collection.find({}).fetch();
+        console.log(query)
+        console.log(query2)
     }
     uploadIt(e) {
         e.preventDefault();

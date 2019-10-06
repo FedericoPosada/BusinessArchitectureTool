@@ -34,6 +34,7 @@ import {subpackagesContainer} from "../imports/api/subpackages";
 import {pCapacitiesContainer} from "../imports/api/pcapacities";
 import {pSubpackagesContainer} from "../imports/api/psubpackages";
 import '../imports/api/pimages';
+import '../imports/api/ontologicmodels'
 
 Meteor.startup(() => {
   // code to run on server at startup

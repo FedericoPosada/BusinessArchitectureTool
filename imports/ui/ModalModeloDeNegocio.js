@@ -81,7 +81,7 @@ class ModalModeloDeNegocio extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Modelo Ontologico</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <p><a href="/OntologicModelCreator">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Modelo Ontologico<i class="material-icons right">X</i></span>

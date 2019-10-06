@@ -29,6 +29,7 @@ import CapacitiesList from "../ui/CapacitiesMap/CapacitiesList";
 import CapacityCreator from "../ui/CapacitiesMap/CapacityCreator";
 import MapEditor from "../ui/CapacitiesMap/MapEditor";
 import CapacitiesMap from "../ui/CapacitiesMap/CapacitiesMap";
+import OntologicModelCreator from "../ui/BusinessModel/OntologicModelCreator";
 
 const history = createBrowserHistory();
 
@@ -77,7 +78,7 @@ export const routes = (
 			<Route path="/TransformationActionList" component={TransformationActionList}/>
 			<Route path="/ProjectsList" component={ProjectsList}/>
 			<Route path="/CapacitiesMap" component={CapacitiesMap}/>
-
+			<Route path="/OntologicModelCreator" component={OntologicModelCreator}/>
 
 
 			<Route path="*" component={NotFound}/>
