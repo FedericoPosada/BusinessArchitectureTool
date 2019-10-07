@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
+import OrgChartCreator from "./OrganizationalStructure/OrgChartCreator";
 
 class ModalModeloOrganizacional extends Component {
   componentDidMount() {
@@ -84,7 +85,7 @@ class ModalModeloOrganizacional extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Organigrama</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <p><a href="/OrgChartCreator">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4"><br></br>Organigrama<i class="material-icons right">X</i></span>

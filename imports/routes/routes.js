@@ -30,6 +30,7 @@ import CapacityCreator from "../ui/CapacitiesMap/CapacityCreator";
 import MapEditor from "../ui/CapacitiesMap/MapEditor";
 import CapacitiesMap from "../ui/CapacitiesMap/CapacitiesMap";
 import OntologicModelCreator from "../ui/BusinessModel/OntologicModelCreator";
+import OrgChartCreator from "../ui/OrganizationalStructure/OrgChartCreator";
 
 const history = createBrowserHistory();
 
@@ -79,7 +80,7 @@ export const routes = (
 			<Route path="/ProjectsList" component={ProjectsList}/>
 			<Route path="/CapacitiesMap" component={CapacitiesMap}/>
 			<Route path="/OntologicModelCreator" component={OntologicModelCreator}/>
-
+			<Route path="/OrgChartCreator" component={OrgChartCreator}/>
 
 			<Route path="*" component={NotFound}/>
         </Switch>
