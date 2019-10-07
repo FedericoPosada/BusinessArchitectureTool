@@ -34,9 +34,9 @@ export default class MotivationalComponentValueManager extends React.Component {
             <div>
                 <div className="row">
                     <div className="input-field col s2">
-                        <input placeholder="Valor" ref="valuename" type="text" className="validate"/>
+                        <input style={{"marginLeft":"10px"}} placeholder="Valor" ref="valuename" type="text" className="validate"/>
                     </div>
-                    <a onClick={this.handleClick.bind(this)}   className="waves-effect waves-light btn light-green" style={{marginTop: 14, marginLeft:14}}><i
+                    <a onClick={this.handleClick.bind(this)}   className="waves-effect waves-light btn light-green" style={{marginTop: 14, marginLeft:"10px"}}><i
                         className="material-icons left">add</i>Agregar</a>
                 </div>
             </div>

@@ -58,6 +58,7 @@ class ModalModeloEstrategico extends Component {
             <font color="black"><h4>Modelo Estrategico</h4></font>
                     <div class="col m2">
                     </div>
+
                      <div className="col m4">
                           <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
@@ -73,6 +74,23 @@ class ModalModeloEstrategico extends Component {
                             </div>
                           </div>
                     </div>
+
+              <div className="col m4">
+                  <div className="card">
+                      <div className="card-image waves-effect waves-block waves-light">
+                          <img className="activator" height="125"
+                               src="http://172.24.101.248/images/editorPlanEstrategico.PNG"></img>
+                      </div>
+                      <div className="card-content">
+                          <span className="card-title activator grey-text text-darken-4">Componente motivacional</span>
+                          <p><a href="/MotivationalComponent">Llevame allí!</a></p>
+                      </div>
+                      <div className="card-reveal">
+                          <span className="card-title grey-text text-darken-4">Componente motivacional<i
+                              className="material-icons right">X</i></span>
+                      </div>
+                  </div>
+              </div>
                     
                      <div className="col m4">
 
