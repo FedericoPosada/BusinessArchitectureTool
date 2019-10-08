@@ -33,6 +33,7 @@ import {packagesContainer} from "../imports/api/packages";
 import {subpackagesContainer} from "../imports/api/subpackages";
 import {pCapacitiesContainer} from "../imports/api/pcapacities";
 import {pSubpackagesContainer} from "../imports/api/psubpackages";
+import {bSheetsContainer} from "../imports/api/bsheets";
 import '../imports/api/pimages';
 import '../imports/api/ontologicmodels';
 import '../imports/api/orgcharts';

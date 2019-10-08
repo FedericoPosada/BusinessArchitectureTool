@@ -14,7 +14,25 @@ export default class MotivationalComponent extends React.Component{
             superiorpurpose:"",
             challengingobjective:"",
             vision:"",
-            mision:""
+            mision:"",
+            isInEditMode:false
+        }
+    }
+
+    changeEditMode(){
+        if(this.state.isInEditMode)
+        {
+            if(this.checkFields()) {
+                this.updateMotivationalComponent();
+                this.setState({
+                    isInEditMode: !this.state.isInEditMode
+                })
+            }
+        }
+        else {
+            this.setState({
+                isInEditMode: !this.state.isInEditMode
+            })
         }
     }
 
@@ -48,7 +66,7 @@ export default class MotivationalComponent extends React.Component{
         })
     }
 
-    handleClick(){
+    updateMotivationalComponent(){
         if(this.checkFields())
         {
             motivCompContainer.update({_id:this.state._id},
@@ -78,12 +96,17 @@ export default class MotivationalComponent extends React.Component{
         return true;
     }
 
-    render() {
+    renderEdit() {
         return(
             <div>
-                <h3 style={{"marginLeft":"20px"}}>Componente motivacional</h3>
                 <div className="row">
-                    <a onClick={this.handleClick.bind(this)} className="waves-effect waves-light btn" style={{"marginLeft":"20px"}}><i className="material-icons left">save</i>Guardar</a>
+                    <div className="input-field col s4">
+                        <h4 style={{"marginLeft":"20px"}}>Componente motivacional</h4>
+                    </div>
+                    <div className="input-field col s2">
+                        <a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn light-green" style={{"marginTop":"20px"}}>
+                            <i className="material-icons">check</i></a>
+                    </div>
                 </div>
                 <div className="row">
                     <form className="col s12">
@@ -152,5 +175,86 @@ export default class MotivationalComponent extends React.Component{
                 />
             </div>
     )
+    }
+
+    renderDefault() {
+        return(
+            <div>
+                <div className="row">
+                    <div className="input-field col s4">
+                    <h4 style={{"marginLeft":"20px"}}>Componente motivacional</h4>
+                    </div>
+                    <div className="input-field col s2">
+                        <a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn" style={{"marginTop":"20px"}}>
+                            <i className="material-icons">edit</i></a>
+                    </div>
+                </div>
+                <div className="row">
+                    <form className="col s12">
+                        <div className="row">
+                            <div className="input-field col s2">
+                                <label style={{"marginLeft":"10px"}}>Propósito superior:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p>{this.state.superiorpurpose}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s2">
+                                <label style={{"marginLeft":"10px"}}>Objetivo retador:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p>{this.state.challengingobjective}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s2">
+                                <label style={{"marginLeft":"10px"}}>Visión:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p>{this.state.vision}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s2">
+                                <label style={{"marginLeft":"10px"}}>Misión:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p>{this.state.mision}</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div className="row">
+                    <div className="input-field col s4">
+                        <table className="bordered" style={{"marginLeft":"10px"}}>
+                            <tr>
+                                <th>Valores</th>
+                            </tr>
+                            <tbody>
+                            { this.state.valueList.map((val, index)=>{
+                                return(
+                                    <tr>
+                                        <MotivationalComponentValue
+                                            _id={this.state._id}
+                                            name={val}
+                                            key={val}
+                                        />
+                                    </tr>
+                                )
+                            }) }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <MotivationalComponentValueManager
+                    _id={this.state._id}
+                />
+            </div>
+        )
+    }
+
+    render() {
+        return this.state.isInEditMode ? this.renderEdit() : this.renderDefault()
     }
 }

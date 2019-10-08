@@ -67,7 +67,7 @@ class ModalModeloFinanciero extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Estados Financieros</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <p><a href="/BalanceSheet">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Estados Financieros<i class="material-icons right">X</i></span>
