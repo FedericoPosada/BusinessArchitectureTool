@@ -9,17 +9,17 @@ export default class Assets extends React.Component{
         super(props);
         this.state={
             _id:"",
-            cash:"",
-            marketablesecurities:"",
-            inventories:"",
-            accountsreceivable:"",
-            property:"",
-            intangible:"",
-            investment:"",
-            otherassets:"",
-            totalcurrent:"",
-            totalnoncurrent:"",
-            totalassets:"",
+            cash:0,
+            marketablesecurities:0,
+            inventories:0,
+            accountsreceivable:0,
+            property:0,
+            intangible:0,
+            investment:0,
+            otherassets:0,
+            totalcurrent:0,
+            totalnoncurrent:0,
+            totalassets:0,
             isInEditMode:false
         }
     }
@@ -318,7 +318,7 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total activos corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p>{this.state.totalcurrent}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalcurrent}</p>
                             </div>
                         </div>
                         <hr />
@@ -365,7 +365,7 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total activos fijos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p>{this.state.totalnoncurrent}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalnoncurrent}</p>
                             </div>
                         </div>
                         <hr />
@@ -374,7 +374,7 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total activos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p>{this.state.totalassets}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalassets}</p>
                             </div>
                         </div>
                     </form>

@@ -32,6 +32,7 @@ import CapacitiesMap from "../ui/CapacitiesMap/CapacitiesMap";
 import OntologicModelCreator from "../ui/BusinessModel/OntologicModelCreator";
 import OrgChartCreator from "../ui/OrganizationalStructure/OrgChartCreator";
 import BalanceSheet from "../ui/FinancialModel/BalanceSheet";
+import FinancialStatements from "../ui/FinancialModel/FinancialStatements";
 
 const history = createBrowserHistory();
 
@@ -82,7 +83,7 @@ export const routes = (
 			<Route path="/CapacitiesMap" component={CapacitiesMap}/>
 			<Route path="/OntologicModelCreator" component={OntologicModelCreator}/>
 			<Route path="/OrgChartCreator" component={OrgChartCreator}/>
-			<Route path="/BalanceSheet" component={BalanceSheet}/>
+			<Route path="/FinancialStatements" component={FinancialStatements}/>
 
 			<Route path="*" component={NotFound}/>
         </Switch>

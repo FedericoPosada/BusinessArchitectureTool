@@ -9,17 +9,19 @@ export default class Liabilities extends React.Component{
         super(props);
         this.state={
             _id:"",
-            cash:"",
-            marketablesecurities:"",
-            inventories:"",
-            accountsreceivable:"",
-            property:"",
-            intangible:"",
-            investment:"",
-            otherassets:"",
-            totalcurrent:"",
-            totalnoncurrent:"",
-            totalassets:"",
+            accountspayable:0,
+            financialliabilities:0,
+            unearnedrevenue:0,
+            longtermdebt:0,
+            otherlongtermliabilities:0,
+            treasuryshares:0,
+            additionalpaidin:0,
+            comprehensiveloss:0,
+            retainedearnings:0,
+            totalcurrentl:0,
+            totalnoncurrentl:0,
+            totalequity:0,
+            total:0,
             isInEditMode:false
         }
     }
@@ -30,17 +32,19 @@ export default class Liabilities extends React.Component{
             let bSheet = bSheetsContainer.findOne({owner:Meteor.userId()});
             if(typeof bSheet !== 'undefined'){
                 this.setState({
-                    cash:bSheet.cash,
-                    marketablesecurities:bSheet.marketablesecurities,
-                    inventories:bSheet.inventories,
-                    accountsreceivable:bSheet.accountsreceivable,
-                    property: bSheet.property,
-                    intangible:bSheet.intangible,
-                    investment:bSheet.investment,
-                    otherassets:bSheet.otherassets,
-                    totalcurrent:bSheet.totalcurrent,
-                    totalnoncurrent:bSheet.totalnoncurrent,
-                    totalassets:bSheet.totalassets,
+                    accountspayable:bSheet.accountspayable,
+                    financialliabilities:bSheet.financialliabilities,
+                    unearnedrevenue:bSheet.unearnedrevenue,
+                    longtermdebt:bSheet.longtermdebt,
+                    otherlongtermliabilities: bSheet.otherlongtermliabilities,
+                    treasuryshares:bSheet.treasuryshares,
+                    additionalpaidin:bSheet.additionalpaidin,
+                    comprehensiveloss:bSheet.comprehensiveloss,
+                    retainedearnings:bSheet.retainedearnings,
+                    totalcurrentl:bSheet.totalcurrentl,
+                    totalnoncurrentl:bSheet.totalnoncurrentl,
+                    totalequity:bSheet.totalequity,
+                    total:bSheet.total,
                     _id:bSheet._id
                 });
             }
@@ -66,57 +70,70 @@ export default class Liabilities extends React.Component{
 
     calculateTotals(){
         let currentassets=[];
-        currentassets[0]=this.refs.cash.value;
-        currentassets[1]=this.refs.marketablesecurities.value;
-        currentassets[2]=this.refs.inventories.value;
-        currentassets[3]=this.refs.accountsreceivable.value;
-        let totalcurrent=0;
+        currentassets[0]=this.refs.accountspayable.value;
+        currentassets[1]=this.refs.financialliabilities.value;
+        currentassets[2]=this.refs.unearnedrevenue.value;
+        let totalcurrentl=0;
         for(let i=0;i <currentassets.length;i++)
         {
             console.log(currentassets[i]);
             if(currentassets[i].length===0)
-                totalcurrent+=0;
+                totalcurrentl+=0;
             else
-                totalcurrent+=parseInt(currentassets[i]);
+                totalcurrentl+=parseInt(currentassets[i]);
         }
-        let totalnoncurrent=0;
+        let totalnoncurrentl=0;
         let noncurrent=[];
-        noncurrent[0]=this.refs.property.value;
-        noncurrent[1]=this.refs.intangible.value;
-        noncurrent[2]=this.refs.investment.value;
-        noncurrent[3]=this.refs.otherassets.value;
+        noncurrent[0]=this.refs.otherlongtermliabilities.value;
+        noncurrent[1]=this.refs.longtermdebt.value;
         for(let i=0;i < noncurrent.length;i++)
         {
             if(noncurrent[i].length===0)
-                totalnoncurrent+=0;
+                totalnoncurrentl+=0;
             else
-                totalnoncurrent+=parseInt(noncurrent[i]);
+                totalnoncurrentl+=parseInt(noncurrent[i]);
+        }
+        let totalequity=0;
+        let equity=[];
+        equity[0]=this.refs.retainedearnings.value;
+        equity[1]=this.refs.treasuryshares.value;
+        equity[2]=this.refs.additionalpaidin.value;
+        equity[3]=this.refs.comprehensiveloss.value;
+        for(let i=0;i < equity.length;i++)
+        {
+            if(equity[i].length===0)
+                totalequity+=0;
+            else
+                totalequity+=parseInt(equity[i]);
         }
         this.setState({
-            totalcurrent:totalcurrent,
-            totalnoncurrent:totalnoncurrent,
-            totalassets:totalcurrent+totalnoncurrent
+            totalcurrentl:totalcurrentl,
+            totalnoncurrentl:totalnoncurrentl,
+            totalequity:totalcurrentl+totalnoncurrentl
         })
-        this.refs.totalcurrent.value=totalcurrent;
-        this.refs.totalnoncurrent.value=totalnoncurrent;
-        this.refs.totalassets.value=totalnoncurrent+totalcurrent;
+        this.refs.totalcurrentl.value=totalcurrentl;
+        this.refs.totalnoncurrentl.value=totalnoncurrentl;
+        this.refs.totalequity.value=totalequity;
+        this.refs.total.value=totalnoncurrentl+totalcurrentl+totalequity;
 
     }
 
     updateAssets(){
         bSheetsContainer.update({_id:this.state._id},
             {$set:{
-                        cash:this.refs.cash.value,
-                        marketablesecurities:this.refs.marketablesecurities.value,
-                        inventories:this.refs.inventories.value,
-                        accountsreceivable:this.refs.accountsreceivable.value,
-                        property:this.refs.property.value,
-                        intangible:this.refs.intangible.value,
-                        investment:this.refs.investment.value,
-                        otherassets:this.refs.otherassets.value,
-                        totalcurrent:this.refs.totalcurrent.value,
-                        totalnoncurrent:this.refs.totalnoncurrent.value,
-                        totalassets:this.refs.totalassets.value
+                        accountspayable:this.refs.accountspayable.value,
+                        financialliabilities:this.refs.financialliabilities.value,
+                        unearnedrevenue:this.refs.unearnedrevenue.value,
+                        longtermdebt:this.refs.longtermdebt.value,
+                        otherlongtermliabilities:this.refs.otherlongtermliabilities.value,
+                        treasuryshares:this.refs.treasuryshares.value,
+                        additionalpaidin:this.refs.additionalpaidin.value,
+                        comprehensiveloss:this.refs.comprehensiveloss.value,
+                        retainedearnings:this.refs.retainedearnings.value,
+                        totalcurrentl:this.refs.totalcurrentl.value,
+                        totalnoncurrentl:this.refs.totalnoncurrentl.value,
+                        totalequity:this.refs.totalequity.value,
+                        total:this.refs.total.value,
                     }
                 }, (err,done)=>{
                     if (err)
@@ -131,7 +148,7 @@ export default class Liabilities extends React.Component{
             <div>
                 <div className="row">
                     <div className="input-field col s4">
-                        <h4 style={{"marginLeft":"20px"}} >Activos</h4>
+                        <h4 style={{"marginLeft":"20px"}} >Pasivos</h4>
                     </div>
                     <div className="input-field col s2">
                         <a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn light-green" style={{"marginTop":"20px"}}>
@@ -143,115 +160,141 @@ export default class Liabilities extends React.Component{
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s4">
-                                <h5 style={{"marginLeft":"20px"}}>Activos corrientes</h5>
+                                <h5 style={{"marginLeft":"20px"}}>Pasivos corrientes</h5>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Caja y equivalentes de caja:</label>
+                                <label style={{"marginLeft":"10px"}}>Cuentas por pagar:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="cash" ref="cash" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.cash}/>
+                                <input id="accountspayable" ref="accountspayable" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.accountspayable}/>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Valores negociables:</label>
+                                <label style={{"marginLeft":"10px"}}>Gastos acumulados:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="marketablesecurities" ref="marketablesecurities" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.marketablesecurities}/>
+                                <input id="financialliabilities" ref="financialliabilities" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.financialliabilities}/>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Inventarios:</label>
+                                <label style={{"marginLeft":"10px"}}>Ingresos no devengados:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="inventories" ref="inventories" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.inventories}/>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Cuentas por cobrar:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <input id="accountsreceivable" ref="accountsreceivable" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.accountsreceivable}/>
+                                <input id="unearnedrevenue" ref="unearnedrevenue" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.unearnedrevenue}/>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Total activos corrientes:</label>
+                                <label style={{"marginLeft":"10px"}}>Total pasivos corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="totalcurrent" ref="totalcurrent" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.totalcurrent} disabled={true}/>
+                                <input id="totalcurrentl" ref="totalcurrentl" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.totalcurrentl} disabled={true}/>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s4">
-                                <h5 style={{"marginLeft":"20px"}}>Activos fijos</h5>
+                                <h5 style={{"marginLeft":"20px"}}>Pasivos no corrientes</h5>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Propiedades y equipos:</label>
+                                <label style={{"marginLeft":"10px"}}>Deuda a largo plazo:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="property" ref="property" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.property}/>
+                                <input id="longtermdebt" ref="longtermdebt" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.longtermdebt}/>
                             </div>
                         </div>
+
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Activos intangibles:</label>
+                                <label style={{"marginLeft":"10px"}}>Otros pasivos a largo plazo:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="intangible" ref="intangible" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.intangible}/>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Inversiones:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <input id="investment" ref="investment" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.investment}/>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Otros activos:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <input id="otherassets" ref="otherassets" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.otherassets}/>
+                                <input id="otherlongtermliabilities" ref="otherlongtermliabilities" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.otherlongtermliabilities}/>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Total activos fijos:</label>
+                                <label style={{"marginLeft":"10px"}}>Total pasivos no corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="totalnoncurrent" ref="totalnoncurrent" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.totalnoncurrent} disabled={true}/>
+                                <input id="totalnoncurrentl" ref="totalnoncurrentl" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.totalnoncurrentl} disabled={true}/>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s4">
-                                <label style={{"marginLeft":"10px"}}>Total activos:</label>
+                                <h4 style={{"marginLeft":"20px"}}>Patrimonio:</h4>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s4">
+                                <label style={{"marginLeft":"10px"}}>Autocartera:</label>
                             </div>
                             <div className="input-field col s6">
-                                <input id="totalassets" ref="totalassets" type="number" className="validate" style={{"text-align":"center"}}
-                                       defaultValue={this.state.totalassets} disabled={true}/>
+                                <input id="treasuryshares" ref="treasuryshares" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.treasuryshares}/>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s4">
+                                <label style={{"marginLeft":"10px"}}>Capital pagado adicional:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input id="additionalpaidin" ref="additionalpaidin" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.additionalpaidin}/>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s4">
+                                <label style={{"marginLeft":"10px"}}>Otra pérdida integral acumulada:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input id="comprehensiveloss" ref="comprehensiveloss" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.comprehensiveloss}/>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s4">
+                                <label style={{"marginLeft":"10px"}}>Utilidades retenidas:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input id="retainedearnings" ref="retainedearnings" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.retainedearnings}/>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                            <div className="input-field col s4">
+                                <label style={{"marginLeft":"10px"}}>Total patrimonio:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input id="totalequity" ref="totalequity" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.totalequity} disabled={true}/>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                            <div className="input-field col s4">
+                                <label style={{"marginLeft":"10px"}}>Total patrimonio:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input id="total" ref="total" type="number" className="validate" style={{"text-align":"center"}}
+                                       defaultValue={this.state.total} disabled={true}/>
                             </div>
                         </div>
                     </form>
@@ -265,7 +308,7 @@ export default class Liabilities extends React.Component{
             <div>
                 <div className="row">
                     <div className="input-field col s4">
-                        <h4 style={{"marginLeft":"20px"}}>Activos</h4>
+                        <h4 style={{"marginLeft":"20px"}}>Pasivos</h4>
                     </div>
                     <div className="input-field col s2">
                         <a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn" style={{"marginTop":"20px"}}>
@@ -277,104 +320,128 @@ export default class Liabilities extends React.Component{
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s4">
-                                <h5 style={{"marginLeft":"20px"}}>Activos corrientes</h5>
+                                <h5 style={{"marginLeft":"20px"}}>Pasivos corrientes</h5>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Caja y equivalentes de caja:</label>
+                                <label style={{"marginLeft":"10px"}}>Cuentas por pagar:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cash}</p>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Valores negociables:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.marketablesecurities}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.accountspayable}</p>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Inventarios:</label>
+                                <label style={{"marginLeft":"10px"}}>Gastos acumulados:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.inventories}</p>
+                            <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.financialliabilities}</p>
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Cuentas por cobrar:</label>
+                                <label style={{"marginLeft":"10px"}}>Ingresos no devengados:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.accountsreceivable}</p>
+                            <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.unearnedrevenue}</p>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Total activos corrientes:</label>
+                                <label style={{"marginLeft":"10px"}}>Total pasivos corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p>{this.state.totalcurrent}</p>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="row">
-                            <div className="input-field col s4">
-                                <h5 style={{"marginLeft":"20px"}}>Activos fijos</h5>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Propiedades y equipos:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.property}</p>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Activos intangibles:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.intangible}</p>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Inversiones:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.investment}</p>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Otros activos:</label>
-                            </div>
-                            <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.otherassets}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalcurrentl}</p>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Total activos fijos:</label>
+                                <h5 style={{"marginLeft":"20px"}}>Pasivos no corrientes</h5>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Deuda a largo plazo:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p>{this.state.totalnoncurrent}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.longtermdebt}</p>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Otros pasivos a largo plazo:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.otherlongtermliabilities}</p>
                             </div>
                         </div>
                         <hr />
                         <div className="row">
                             <div className="input-field col s6">
-                                <label style={{"marginLeft":"10px"}}>Total activos:</label>
+                                <label style={{"marginLeft":"10px"}}>Total pasivos no corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p>{this.state.totalassets}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalnoncurrentl} </p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <h4 style={{"marginLeft":"20px"}}>Patrimonio:</h4>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Autocartera:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.treasuryshares}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Capital pagado adicional:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.additionalpaidin}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Otra pérdida integral acumulada:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.comprehensiveloss}</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Utilidades retenidas:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.retainedearnings}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Total patrimonio:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalequity}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="row">
+                            <div className="input-field col s6">
+                                <label style={{"marginLeft":"10px"}}>Total pasivos y patrimonio:</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.total} </p>
                             </div>
                         </div>
                     </form>
