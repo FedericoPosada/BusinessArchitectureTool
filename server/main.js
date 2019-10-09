@@ -35,6 +35,7 @@ import {pCapacitiesContainer} from "../imports/api/pcapacities";
 import {pSubpackagesContainer} from "../imports/api/psubpackages";
 import {bSheetsContainer} from "../imports/api/bsheets";
 import {incomeStatementsContainer} from "../imports/api/istatements";
+import {cashFlowsContainer} from "../imports/api/cashflows";
 import '../imports/api/pimages';
 import '../imports/api/ontologicmodels';
 import '../imports/api/orgcharts';
