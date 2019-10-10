@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import FinancialStatements from "./FinancialModel/FinancialStatements";
+import FinancialIndicatorsList from "./FinancialModel/FinancialIndicatorsList";
 
 class ModalModeloFinanciero extends Component {
   componentDidMount() {
@@ -85,7 +86,7 @@ class ModalModeloFinanciero extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Indicadores Financieros</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <p><a href="/FinancialIndicatorsList">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">>Indicadores Financieros<i class="material-icons right">X</i></span>

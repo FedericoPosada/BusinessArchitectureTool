@@ -33,6 +33,7 @@ import OntologicModelCreator from "../ui/BusinessModel/OntologicModelCreator";
 import OrgChartCreator from "../ui/OrganizationalStructure/OrgChartCreator";
 import BalanceSheet from "../ui/FinancialModel/BalanceSheet";
 import FinancialStatements from "../ui/FinancialModel/FinancialStatements";
+import FinancialIndicatorsList from "../ui/FinancialModel/FinancialIndicatorsList";
 
 const history = createBrowserHistory();
 
@@ -84,6 +85,7 @@ export const routes = (
 			<Route path="/OntologicModelCreator" component={OntologicModelCreator}/>
 			<Route path="/OrgChartCreator" component={OrgChartCreator}/>
 			<Route path="/FinancialStatements" component={FinancialStatements}/>
+			<Route path="/FinancialIndicatorsList" component={FinancialIndicatorsList}/>
 
 			<Route path="*" component={NotFound}/>
         </Switch>
