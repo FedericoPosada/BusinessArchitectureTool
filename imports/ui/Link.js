@@ -130,7 +130,7 @@ render() {
 			            <div className="col m12">
 			            <div className="row">
 			              <div className="col m3">
-			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Descargar PDF</a>
+			              	<a href="/FinalDocument" className="waves-effect waves-light btn-small light-blue darken-3">Descargar PDF</a>
 			              </div>
 			              <div className="col m3">
 			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 2</a>

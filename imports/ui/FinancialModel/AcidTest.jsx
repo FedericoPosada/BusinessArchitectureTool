@@ -1,5 +1,6 @@
 import React from 'react';
 import {bSheetsContainer} from "../../api/bsheets";
+import {financialContainer} from "../../api/finindicators";
 
 
 export default class AcidTest extends React.Component{
@@ -12,7 +13,8 @@ export default class AcidTest extends React.Component{
                 cassets: bSheet.totalcurrent,
                 cliabilities: bSheet.totalcurrentl,
                 inventories: bSheet.inventories,
-                meaning:""
+                meaning:"",
+                indid:""
             };
             this.calculateValue();
         }
@@ -29,6 +31,7 @@ export default class AcidTest extends React.Component{
     componentWillMount() {
         Tracker.autorun(()=>{
             Meteor.subscribe('bsheets');
+            Meteor.subscribe('finindicators');
             let bSheet = bSheetsContainer.findOne({owner:Meteor.userId()});
             console.log(bSheet);
             if(typeof bSheet !== "undefined") {
@@ -39,6 +42,11 @@ export default class AcidTest extends React.Component{
                 });
                 this.calculateValue();
             }
+            let finAcid=financialContainer.findOne({name:"Prueba ácida"});
+            if(typeof finAcid !== "undefined")
+                this.setState({
+                    indid:finAcid._id
+                })
         })
     }
     calculateValue(){
@@ -58,6 +66,10 @@ export default class AcidTest extends React.Component{
                 value:acidt,
                 meaning:meanVal
             });
+            if(this.state.indid !== "")
+                financialContainer.update({_id:this.state.indid},{$set:{value:acidt}});
+            else
+                financialContainer.insert({name:"Prueba ácida",value:acidt});
         }
     }
     render() {

@@ -26,10 +26,6 @@ export default class Process extends React.Component{
                 imageid:nextProps.imageid
             })
         }
-        let query=OntologicModels.collection.find({}).fetch();
-        let query2=ProcessesImages.collection.find({}).fetch();
-        console.log(query)
-        console.log(query2)
     }
     uploadIt(e) {
         e.preventDefault();
@@ -184,6 +180,7 @@ export default class Process extends React.Component{
                             <div className="input-field col s10">
                                 <img src={cursor}/>
                                 <a className="waves-effect waves-light btn red" onClick={this.removeFile.bind(this)} style={{"marginLeft":"14px"}}><i className="material-icons">delete</i></a>
+                                <a className="waves-effect waves-light btn red" href={cursor} download={true} style={{"marginLeft":"14px"}}><i className="material-icons">file_download</i></a>
                             </div>
                             }
                             { this.state.imageid.length === 0 &&

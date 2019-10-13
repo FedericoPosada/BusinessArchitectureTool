@@ -37,13 +37,15 @@ import {bSheetsContainer} from "../imports/api/bsheets";
 import {incomeStatementsContainer} from "../imports/api/istatements";
 import {cashFlowsContainer} from "../imports/api/cashflows";
 import {financialContainer} from "../imports/api/finindicators";
+import '../imports/api/finaldocuments';
 import '../imports/api/pimages';
 import '../imports/api/ontologicmodels';
 import '../imports/api/orgcharts';
+import {Document, Packer, Paragraph, TextRun} from "docx";
+import * as fs from "fs";
 
 Meteor.startup(() => {
   // code to run on server at startup
-
   WebApp.connectHandlers.use((req, res, next) => {
   	const _id = req.url.slice(1);
   	const link = Links.findOne({_id});
@@ -66,50 +68,6 @@ Meteor.startup(() => {
   	}
 
   });
-
-  // WebApp.connectHandlers.use((req, res, next) => {
-  // 	console.log('This is my new header!');
-  // 	//res.setHeader('Location', 'http://google.com');
-  // 	// res.statusCode = 302;
-  // 	// res.end();
-  // 	console.log(res);
-  // });
-
-  // const petSchema = new SimpleSchema({	
-  // 		name: {
-  // 			type: String
-  // 		}
-  // });
-
-  // petSchema.validate({
-  // 	name: 'Adnan'
-  // });
-
-  // const employeeSchema = new SimpleSchema({
-  // 	name: {
-  // 		type: String,
-  // 		min: 1,
-  // 		max: 200
-  // 	},
-
-  // 	hourlyWage: {
-  // 		type: Number,
-  // 		min: 1
-  // 	},
-
-  // 	email: {
-  // 		type: String,
-  // 		regEx: SimpleSchema.RegEx.Email
-  // 	}
-
-  // });
-
-  // employeeSchema.validate({
-  // 	name: 'Adnan',
-  // 	hourlyWage: 13,
-  // 	email: 'adnan@gm.com'
-  // })
-  // 
   
 
 });

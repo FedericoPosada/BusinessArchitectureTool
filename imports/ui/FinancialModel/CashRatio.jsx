@@ -1,5 +1,6 @@
 import React from 'react';
 import {bSheetsContainer} from "../../api/bsheets";
+import {financialContainer} from "../../api/finindicators";
 
 
 export default class CashRatio extends React.Component{
@@ -11,7 +12,8 @@ export default class CashRatio extends React.Component{
             this.state={
                 cash: bSheet.cash,
                 cliabilities: bSheet.totalcurrentl,
-                meaning:""
+                meaning:"",
+                indid:""
             };
             this.calculateValue();
         }
@@ -27,6 +29,7 @@ export default class CashRatio extends React.Component{
     componentWillMount() {
         Tracker.autorun(()=>{
             Meteor.subscribe('bsheets');
+            Meteor.subscribe('finindicators');
             let bSheet = bSheetsContainer.findOne({owner:Meteor.userId()});
             console.log(bSheet);
             if(typeof bSheet !== "undefined") {
@@ -36,6 +39,11 @@ export default class CashRatio extends React.Component{
                 });
                 this.calculateValue();
             }
+            let finAcid=financialContainer.findOne({name:"Razón de efectivo"});
+            if(typeof finAcid !== "undefined")
+                this.setState({
+                    indid:finAcid._id
+                })
         })
     }
     calculateValue(){
@@ -57,6 +65,10 @@ export default class CashRatio extends React.Component{
                 value:cashr,
                 meaning:meanVal
             });
+            if(this.state.indid !== "")
+                financialContainer.update({_id:this.state.indid},{$set:{value:cashr}});
+            else
+                financialContainer.insert({name:"Razón de efectivo",value:cashr});
         }
     }
     render() {
