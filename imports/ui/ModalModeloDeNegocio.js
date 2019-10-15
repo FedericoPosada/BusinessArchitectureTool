@@ -66,7 +66,7 @@ class ModalModeloDeNegocio extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Portafolio de Servicios</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <p><a href="/BusinessServicesPortfolio">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Portafolio de Servicios<i class="material-icons right">X</i></span>

@@ -43,9 +43,26 @@ import '../imports/api/ontologicmodels';
 import '../imports/api/orgcharts';
 import {Document, Packer, Paragraph, TextRun} from "docx";
 import * as fs from "fs";
+import OntologicModels from "../imports/api/OntologicModelsCol";
+import OrgCharts from "../imports/api/OrgChartCol";
 
 Meteor.startup(() => {
   // code to run on server at startup
+	Meteor.methods({
+		'getOntologicalModel'() {
+			let result=[];
+			let route="";
+			let routeorg="";
+			let query=OntologicModels.collection.findOne({userId:Meteor.userId()});
+			let queryorg=OrgCharts.collection.findOne({userId:Meteor.userId()});
+			if(typeof queryorg !== "undefined")
+				result[0]=fs.readFileSync(queryorg.path);
+			if(typeof query !== "undefined")
+				result[1]=fs.readFileSync(query.path);
+			return result;
+		}
+	});
+
   WebApp.connectHandlers.use((req, res, next) => {
   	const _id = req.url.slice(1);
   	const link = Links.findOne({_id});
