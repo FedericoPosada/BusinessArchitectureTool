@@ -11,6 +11,7 @@ export default class TacticList extends React.Component {
     }
     componentWillMount(){
         Tracker.autorun(()=>{
+            Meteor.subscribe('tactics');
             var tacs = tacticsContainer.find({}).fetch();
             this.setState({list: tacs});
         })

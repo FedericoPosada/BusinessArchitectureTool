@@ -22,7 +22,8 @@ export default class CurrentRatio extends React.Component{
             value:"",
             cassets:0,
             cliabilities:0,
-            meaning:""
+            meaning:"",
+            indid:""
         }
     }
 
@@ -39,7 +40,7 @@ export default class CurrentRatio extends React.Component{
                 });
                 this.calculateValue();
             }
-            let finAcid=financialContainer.findOne({name:"Razón corriente"});
+            let finAcid=financialContainer.findOne({name:"Razón corriente",owner:Meteor.userId()});
             if(typeof finAcid !== "undefined")
                 this.setState({
                     indid:finAcid._id
@@ -64,9 +65,9 @@ export default class CurrentRatio extends React.Component{
                 meaning:meanVal
             });
             if(this.state.indid !== "")
-                financialContainer.update({_id:this.state.indid},{$set:{value:cratio}});
+                financialContainer.update({_id:this.state.indid},{$set:{value:cratio,meaning:meanVal}});
             else
-                financialContainer.insert({name:"Razón corriente",value:cratio});
+                financialContainer.insert({name:"Razón corriente",value:cratio,meaning:meanVal,owner:Meteor.userId()});
         }
     }
     render() {

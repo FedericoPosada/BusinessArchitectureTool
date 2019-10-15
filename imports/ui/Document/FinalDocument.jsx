@@ -22,6 +22,13 @@ import {bSheetsContainer} from "../../api/bsheets";
 import {incomeStatementsContainer} from "../../api/istatements";
 import {cashFlowsContainer} from "../../api/cashflows";
 import {motivCompContainer} from "../../api/motivcomp";
+import {financialContainer} from "../../api/finindicators";
+import {bStrategiesContainer} from "../../api/bstrategies";
+import {objectivesContainer} from "../../api/objectives";
+import {goalsContainer} from "../../api/goals";
+import {tacticsContainer} from "../../api/tactics";
+import {achIndicatorsContainer} from "../../api/achindicators";
+import {strategiesContainer} from "../../api/strategies";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -42,6 +49,14 @@ export default class FinalDocument extends React.Component {
         Meteor.subscribe('istatements');
         Meteor.subscribe('cashflows');
         Meteor.subscribe('motivcomp');
+        Meteor.subscribe('finindicators');
+        Meteor.subscribe('bstrategies');
+        Meteor.subscribe('bstrategies');
+        Meteor.subscribe('objectives');
+        Meteor.subscribe('goals');
+        Meteor.subscribe('tactics');
+        Meteor.subscribe('strategies');
+        Meteor.subscribe('achindicators');
         Tracker.autorun(()=> {
             let doc = FinalDocuments.collection.findOne({userId: Meteor.userId()});
             if (typeof doc !== "undefined")
@@ -125,6 +140,18 @@ export default class FinalDocument extends React.Component {
                         },
                     },
                     {
+                        id: "SubSectionSubtitles",
+                        name: "SubSectionSubtitles",
+                        basedOn: "Heading3",
+                        next: "Heading3",
+                        quickFormat: true,
+                        run: {
+                            bold: true,
+                            color: "000000",
+                            font: "Segoe UI"
+                        },
+                    },
+                    {
                         id: "TableText",
                         name: "TableText",
                         quickFormat: true,
@@ -162,13 +189,17 @@ export default class FinalDocument extends React.Component {
                     let istatement=self.createIncomeStatement();
                     let cashflow=self.createCashFlow();
                     let motivcomp=self.createMotivComponent();
+                    let finind=self.createFinancialIndicators();
+                    let bstrats=self.createBusinessStrategies();
+                    let stratTables=self.createStrategicPlan();
                     doc.addSection({
                         properties: {},
                         children: [
                             new TableOfContents("Summary", {
                                 hyperlink: true,
                                 headingStyleRange: "1-5",
-                                stylesWithLevels: [new StyleLevel("SectionTitles", 1), new StyleLevel("SectionSubtitles", 2)],
+                                stylesWithLevels: [new StyleLevel("SectionTitles", 1), new StyleLevel("SectionSubtitles", 2),
+                                    new StyleLevel("SubSectionSubtitles", 3)]
                             }),
                             new Paragraph({
                                 text: "1. Modelo de negocio",
@@ -222,6 +253,17 @@ export default class FinalDocument extends React.Component {
                                 text: "\n"
                             }),
                             new Paragraph({
+                                text: "2.4. Indicadores financieros",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            finind,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
                                 text: "3. Modelo estratégico",
                                 style: "SectionTitles",
                                 pageBreakBefore: true,
@@ -233,7 +275,80 @@ export default class FinalDocument extends React.Component {
                             new Paragraph({
                                 text: "\n"
                             }),
-                            motivcomp
+                            motivcomp,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.2. Estrategias de negocio",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            bstrats,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.3. Plan estratégico",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.3.1. Objetivos",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            stratTables[0],
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.3.2. Metas",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            stratTables[1],
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.3.3. Estrategias",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            stratTables[2],
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.3.4. Tácticas",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            stratTables[3],
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.3.5. Indicadores de logro",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            stratTables[4],
                         ],
                     });
                     let file;
@@ -255,7 +370,7 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableText",
+                        style:"TableHeading",
                         rowSpan:2
                     })],
                     shading: {
@@ -267,7 +382,7 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Servicio de negocio",
-                        style:"TableText",
+                        style:"TableHeading",
                         rowSpan:2
                     })],
                     shading: {
@@ -279,7 +394,7 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Objeto de negocio",
-                        style:"TableText"
+                        style:"TableHeading"
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -290,7 +405,7 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Tipo de cliente",
-                        style:"TableText",
+                        style:"TableHeading",
                         rowSpan:2
                     })],
                     shading: {
@@ -302,7 +417,7 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Operaciones",
-                        style:"TableText",
+                        style:"TableHeading",
                         rowSpan:2
                     })],
                     shading: {
@@ -1458,22 +1573,12 @@ export default class FinalDocument extends React.Component {
                                     text: "Efectivo neto provisto por actividades de operación",
                                     style: "TableHeading"
                                 })],
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
                             }),
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "$ "+cashFlow.cashoperativeactivities,
                                     style: "TableHeading"
                                 })],
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
                             }),
                         ],
                     }),
@@ -1565,22 +1670,12 @@ export default class FinalDocument extends React.Component {
                                     text: "Efectivo neto provisto por actividades de inversión",
                                     style: "TableHeading"
                                 })],
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
                             }),
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "$ "+cashFlow.cashinvestmentactivities,
                                     style: "TableHeading"
                                 })],
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
                             }),
                         ],
                     }),
@@ -1657,22 +1752,12 @@ export default class FinalDocument extends React.Component {
                                     text: "Efectivo neto provisto por actividades de financiación:",
                                     style: "TableHeading"
                                 })],
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
                             }),
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "$ "+cashFlow.cashfinancingactivities,
                                     style: "TableHeading"
                                 })],
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
                             }),
                         ],
                     }),
@@ -1735,6 +1820,172 @@ export default class FinalDocument extends React.Component {
         }
         else
             return "";
+    }
+
+    createFinancialIndicators(){
+        let cashratio=financialContainer.findOne({name:"Razón de efectivo",owner:Meteor.userId()});
+        let currentratio=financialContainer.findOne({name:"Razón corriente",owner:Meteor.userId()});
+        let acidtest=financialContainer.findOne({name:"Prueba ácida",owner:Meteor.userId()});
+        let row;
+        let text;
+        let indicatorsRows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text: "Indicadores financieros",
+                        style: "TableHeading"
+                    })],
+                    columnSpan:3,
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                    verticalAlign: VerticalAlign.CENTER
+                }),
+            ],
+        }),
+            new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Nombre",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Valor",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Significado",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                ],
+            })];
+        if(typeof cashratio !== 'undefined') {
+            text=""+cashratio.value;
+            if(text.length > 4){
+                text=text.substring(0,4);
+            }
+            row = new TableRow({
+                children:[
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: cashratio.name,
+                            style: "TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: text,
+                            style: "TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: cashratio.meaning,
+                            style: "TableText"
+                        })]
+                    }),
+                ]
+            });
+            indicatorsRows.push(row);
+        }
+        if(typeof currentratio !== 'undefined') {
+            text=""+currentratio.value;
+            if(text.length > 4){
+                text=text.substring(0,4);
+            }
+            row = new TableRow({
+                children:[
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: currentratio.name,
+                            style: "TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: text,
+                            style: "TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: currentratio.meaning,
+                            style: "TableText"
+                        })]
+                    }),
+                ]
+            });
+            indicatorsRows.push(row);
+        }
+        if(typeof acidtest !== 'undefined') {
+            text=""+acidtest.value;
+            if(text.length > 4){
+                text=text.substring(0,4);
+            }
+            row = new TableRow({
+                children:[
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: acidtest.name,
+                            style: "TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: text,
+                            style: "TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: acidtest.meaning,
+                            style: "TableText"
+                        })]
+                    }),
+                ]
+            });
+            indicatorsRows.push(row);
+        }
+        const table = new Table({
+            rows: indicatorsRows,
+            width: {
+                size: 100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
     }
 
     createMotivComponent(){
@@ -1887,6 +2138,533 @@ export default class FinalDocument extends React.Component {
         else
             return "";
     }
+
+    createBusinessStrategies(){
+        var bStrategies = bStrategiesContainer.find({owner:Meteor.userId()}).fetch();
+        let rows=[];
+        rows.push(new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Estrategia",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Descripción",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Categoría",
+                        style:"TableHeading",
+                        rowSpan:2
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID asociada",
+                        style:"TableHeading",
+                        rowSpan:2
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        }));
+        let currentRow;
+        bStrategies.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.description,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.category,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.associatedid,
+                            style:"TableText"
+                        })]
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+
+        const table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
+    }
+
+    createStrategicPlan(){
+        let currentRow;
+        let objectives = objectivesContainer.find({owner:Meteor.userId()}).fetch();
+        let goals = goalsContainer.find({owner:Meteor.userId()}).fetch();
+        let tacs = tacticsContainer.find({}).fetch();
+        let achinds = achIndicatorsContainer.find({owner:Meteor.userId()}).fetch();
+        let strats = strategiesContainer.find({owner:Meteor.userId()}).fetch();
+        let goalsrows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Meta",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Objetivo",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Fecha límite",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        let tacsrows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Táctica",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Estrategia",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        let stratsrows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Estrategia",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Objetivo",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        let achindsrows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Descripción",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Meta",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Fecha límite",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        let objrows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Objetivo",
+                        style:"TableHeading"
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        objectives.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                ],
+            });
+            objrows.push(currentRow);
+        });
+        goals.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.objective,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.deadline,
+                            style:"TableText"
+                        })]
+                    }),
+                ],
+            });
+            goalsrows.push(currentRow);
+        });
+        strats.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.objective,
+                            style:"TableText"
+                        })]
+                    }),
+                ],
+            });
+            stratsrows.push(currentRow);
+        });
+        tacs.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.strategy,
+                            style:"TableText"
+                        })]
+                    }),
+                ],
+            });
+            tacsrows.push(currentRow);
+        });
+        achinds.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.description,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.goal,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.deadline,
+                            style:"TableText"
+                        })]
+                    }),
+                ],
+            });
+            achindsrows.push(currentRow);
+        });
+
+        let tableObj = new Table({
+            rows: objrows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        let tableGoals = new Table({
+            rows: goalsrows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        let tableStrats = new Table({
+            rows: stratsrows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        let tableTacs = new Table({
+            rows: tacsrows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        let tableAch = new Table({
+            rows: achindsrows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+
+        return [tableObj,tableGoals,tableStrats,tableTacs,tableAch];
+
+    }
+
+
+
 
 
     render(){

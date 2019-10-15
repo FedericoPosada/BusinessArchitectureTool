@@ -24,7 +24,8 @@ export default class AcidTest extends React.Component{
             cassets:0,
             cliabilities:0,
             inventories:0,
-            meaning:""
+            meaning:"",
+            indid:""
         }
     }
 
@@ -42,7 +43,7 @@ export default class AcidTest extends React.Component{
                 });
                 this.calculateValue();
             }
-            let finAcid=financialContainer.findOne({name:"Prueba ácida"});
+            let finAcid=financialContainer.findOne({name:"Prueba ácida",owner:Meteor.userId()});
             if(typeof finAcid !== "undefined")
                 this.setState({
                     indid:finAcid._id
@@ -67,9 +68,9 @@ export default class AcidTest extends React.Component{
                 meaning:meanVal
             });
             if(this.state.indid !== "")
-                financialContainer.update({_id:this.state.indid},{$set:{value:acidt}});
+                financialContainer.update({_id:this.state.indid},{$set:{value:acidt,meaning:meanVal}});
             else
-                financialContainer.insert({name:"Prueba ácida",value:acidt});
+                financialContainer.insert({name:"Prueba ácida",value:acidt,owner:Meteor.userId(),meaning:meanVal});
         }
     }
     render() {

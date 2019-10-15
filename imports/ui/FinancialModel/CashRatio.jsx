@@ -22,7 +22,8 @@ export default class CashRatio extends React.Component{
             value:"",
             cash:0,
             cliabilities:0,
-            meaning:""
+            meaning:"",
+            indid:""
         }
     }
 
@@ -39,7 +40,7 @@ export default class CashRatio extends React.Component{
                 });
                 this.calculateValue();
             }
-            let finAcid=financialContainer.findOne({name:"Razón de efectivo"});
+            let finAcid=financialContainer.findOne({name:"Razón de efectivo",owner:Meteor.userId()});
             if(typeof finAcid !== "undefined")
                 this.setState({
                     indid:finAcid._id
@@ -66,9 +67,9 @@ export default class CashRatio extends React.Component{
                 meaning:meanVal
             });
             if(this.state.indid !== "")
-                financialContainer.update({_id:this.state.indid},{$set:{value:cashr}});
+                financialContainer.update({_id:this.state.indid},{$set:{value:cashr,meaning:meanVal}});
             else
-                financialContainer.insert({name:"Razón de efectivo",value:cashr});
+                financialContainer.insert({name:"Razón de efectivo",value:cashr,meaning:meanVal,owner:Meteor.userId()});
         }
     }
     render() {
