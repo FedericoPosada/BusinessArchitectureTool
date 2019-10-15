@@ -272,7 +272,7 @@ export default class CashFlow extends React.Component{
                             </div>
                             <div className="row">
                                 <div className="input-field col s8">
-                                    <label style={{"marginLeft":"10px","marginRight":"30px"}}>Inventarios:</label>
+                                    <label style={{"marginLeft":"10px","marginRight":"30px"}}>Otros gastos operativos:</label>
                                 </div>
                                 <div className="input-field col s4">
                                     <input id="opexpense" ref="opexpense" type="number" className="validate" style={{"text-align":"center"}}
@@ -408,15 +408,6 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Pago por arrendamientos financieros y de capital:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <input id="repaymentslongterm" ref="repaymentslongterm" type="number" className="validate" style={{"text-align":"center"}}
-                                           defaultValue={this.state.repaymentslongterm} />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s8">
-                                    <label style={{"marginLeft":"10px","marginRight":"30px"}}>Pago por arrendamientos financieros y de capital:</label>
-                                </div>
-                                <div className="input-field col s4">
                                     <input id="leasespayments" ref="leasespayments" type="number" className="validate" style={{"text-align":"center"}}
                                            defaultValue={this.state.leasespayments} />
                                 </div>
@@ -511,7 +502,7 @@ export default class CashFlow extends React.Component{
                             </div>
                             <div className="row">
                                 <div className="input-field col s8">
-                                    <label style={{"marginLeft":"10px","marginRight":"30px"}}>Inventarios:</label>
+                                    <label style={{"marginLeft":"10px","marginRight":"30px"}}>Otros gastos operativos:</label>
                                 </div>
                                 <div className="input-field col s4">
                                     <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.opexpense}</p>
@@ -623,14 +614,6 @@ export default class CashFlow extends React.Component{
                             <div className="row">
                                 <div className="input-field col s8">
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Pago de deudas a largo plazo:</label>
-                                </div>
-                                <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.repaymentslongterm} </p>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="input-field col s8">
-                                    <label style={{"marginLeft":"10px","marginRight":"30px"}}>Pago por arrendamientos financieros y de capital:</label>
                                 </div>
                                 <div className="input-field col s4">
                                     <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.repaymentslongterm} </p>
