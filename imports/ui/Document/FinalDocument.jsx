@@ -29,6 +29,16 @@ import {goalsContainer} from "../../api/goals";
 import {tacticsContainer} from "../../api/tactics";
 import {achIndicatorsContainer} from "../../api/achindicators";
 import {strategiesContainer} from "../../api/strategies";
+import {transfActionsContainer} from "../../api/transfactions";
+import {projectsContainer} from "../../api/projects";
+import {supActivitiesContainer} from "../../api/supactivities";
+import {processesContainer} from "../../api/processes";
+import {applicationsContainer} from "../../api/applications";
+import {opIndicatorsContainer} from "../../api/opindicators";
+import {stIndicatorsContainer} from "../../api/stindicators";
+import {exIndicatorsContainer} from "../../api/exindicators";
+import {resourcesContainer} from "../../api/resources";
+import {resServicesContainer} from "../../api/resservices";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -57,6 +67,17 @@ export default class FinalDocument extends React.Component {
         Meteor.subscribe('tactics');
         Meteor.subscribe('strategies');
         Meteor.subscribe('achindicators');
+        Meteor.subscribe('transfactions');
+        Meteor.subscribe('projects');
+        Meteor.subscribe('transfactions');
+        Meteor.subscribe('supactivities');
+        Meteor.subscribe('processes');
+        Meteor.subscribe('applications');
+        Meteor.subscribe('stindicators');
+        Meteor.subscribe('opindicators');
+        Meteor.subscribe('exindicators');
+        Meteor.subscribe('resservices');
+        Meteor.subscribe('resources');
         Tracker.autorun(()=> {
             let doc = FinalDocuments.collection.findOne({userId: Meteor.userId()});
             if (typeof doc !== "undefined")
@@ -78,33 +99,33 @@ export default class FinalDocument extends React.Component {
 
     uploadIt(e) {
         let self = this;
-            let file = e;
-            if (file) {
-                let uploadInstance = FinalDocuments.insert({
-                    file: file,
-                    streams: 'dynamic',
-                    chunkSize: 'dynamic',
-                    allowWebWorkers: true // If you see issues with uploads, change this to false
-                }, false);
+        let file = e;
+        if (file) {
+            let uploadInstance = FinalDocuments.insert({
+                file: file,
+                streams: 'dynamic',
+                chunkSize: 'dynamic',
+                allowWebWorkers: true // If you see issues with uploads, change this to false
+            }, false);
 
-                // These are the event functions, don't need most of them, it shows where we are in the process
-                uploadInstance.on('start', function () {
-                    console.log('Starting');
-                })
+            // These are the event functions, don't need most of them, it shows where we are in the process
+            uploadInstance.on('start', function () {
+                console.log('Starting');
+            })
 
-                uploadInstance.on('end', function (error, fileObj) {
-                    console.log('On end File Object: ', fileObj);
-                })
+            uploadInstance.on('end', function (error, fileObj) {
+                console.log('On end File Object: ', fileObj);
+            })
 
-                uploadInstance.on('uploaded', function (error, fileObj) {
-                    console.log('uploaded: ', fileObj);
-                    // Reset our state for the next file
-                    self.setState({
-                        docid:fileObj._id
-                    });
-                })
-                uploadInstance.start(); // Must manually start the upload
-            }
+            uploadInstance.on('uploaded', function (error, fileObj) {
+                console.log('uploaded: ', fileObj);
+                // Reset our state for the next file
+                self.setState({
+                    docid:fileObj._id
+                });
+            })
+            uploadInstance.start(); // Must manually start the upload
+        }
 
     }
 
@@ -180,10 +201,10 @@ export default class FinalDocument extends React.Component {
                 if(error){
                     console.log(error);
                 } else {
-                    img=result[0];
-                    img2=result[1];
-                    const image1 = Media.addImage(doc, img);
-                    const image2 = Media.addImage(doc, img2);
+                    img=result[1];
+                    img2=result[0];
+                    const image1 = Media.addImage(doc, img,600,500);
+                    const image2 = Media.addImage(doc, img2,600,500);
                     let bservportfolio=self.createBServicesPortfolio();
                     let bsheet=self.createBalanceSheet();
                     let istatement=self.createIncomeStatement();
@@ -192,6 +213,14 @@ export default class FinalDocument extends React.Component {
                     let finind=self.createFinancialIndicators();
                     let bstrats=self.createBusinessStrategies();
                     let stratTables=self.createStrategicPlan();
+                    let transfAct=self.createTransfActions();
+                    let projCatalog=self.createProjectsPortfolio();
+                    let opinds=self.createOperativeIndicators();
+                    let stinds=self.createStrategicIndicators();
+                    let extinds=self.createExternalIndicators();
+                    let appCatalog=self.createAppCatalog();
+                    let valuechain=self.createValueChain();
+                    let resModel=self.createResourcesModel();
                     doc.addSection({
                         properties: {},
                         children: [
@@ -214,6 +243,17 @@ export default class FinalDocument extends React.Component {
                                 text: "\n"
                             }),
                             bservportfolio,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "1.2. Modelo ontológico",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph(image1),
                             new Paragraph({
                                 text: "2. Modelo financiero",
                                 style: "SectionTitles",
@@ -349,6 +389,193 @@ export default class FinalDocument extends React.Component {
                                 text: "\n"
                             }),
                             stratTables[4],
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.4. Mapa de proyectos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.4.1. Acciones de transformación",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            transfAct,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "3.4.2. Portafolio de proyectos",
+                                style: "SubSectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            projCatalog,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "4. Mapa de capacidades",
+                                style: "SectionTitles",
+                                pageBreakBefore: true,
+                            }),
+                            new Paragraph({
+                                text: "5. Estructura organizacional",
+                                style: "SectionTitles",
+                                pageBreakBefore: true,
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "5.1. Catálogo de cargos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "5.2. Organigrama",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph(image2),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "6. Modelo de procesos",
+                                style: "SectionTitles",
+                                pageBreakBefore: true,
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "6.1. Cadena de valor",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            valuechain,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "6.2. Catálogo de procesos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "7. Modelo de recursos",
+                                style: "SectionTitles",
+                                pageBreakBefore: true,
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "7.1. Modelo de recursos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            resModel,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "7.2. Modelo de recursos TI",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "7.3. Catálogo de componentes tecnológicos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "7.4. Catálogo de aplicaciones",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            appCatalog,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "7.5. Modelo operativo",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "8. Modelo de información",
+                                style: "SectionTitles",
+                                pageBreakBefore: true,
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "8.1. Indicadores operativos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            opinds,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "8.2. Indicadores estratégicos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            stinds,
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            new Paragraph({
+                                text: "8.3. Indicadores externos",
+                                style: "SectionSubtitles"
+                            }),
+                            new Paragraph({
+                                text: "\n"
+                            }),
+                            extinds,
                         ],
                     });
                     let file;
@@ -371,7 +598,7 @@ export default class FinalDocument extends React.Component {
                     children: [new Paragraph({
                         text:"ID",
                         style:"TableHeading",
-                        rowSpan:2
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -383,7 +610,7 @@ export default class FinalDocument extends React.Component {
                     children: [new Paragraph({
                         text:"Servicio de negocio",
                         style:"TableHeading",
-                        rowSpan:2
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -394,7 +621,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Objeto de negocio",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -406,7 +634,7 @@ export default class FinalDocument extends React.Component {
                     children: [new Paragraph({
                         text:"Tipo de cliente",
                         style:"TableHeading",
-                        rowSpan:2
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -418,7 +646,7 @@ export default class FinalDocument extends React.Component {
                     children: [new Paragraph({
                         text:"Operaciones",
                         style:"TableHeading",
-                        rowSpan:2
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -446,29 +674,38 @@ export default class FinalDocument extends React.Component {
                     new TableCell({
                         children: [new Paragraph({
                             text:val.customid,
-                            style:"TableText"
-                        })]
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
                     }),
                     new TableCell({
                         children: [new Paragraph({
                             text:val.name,
-                            style:"TableText"
-                        })]
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
                     }),
                     new TableCell({
                         children: [new Paragraph({
                             text:val.object,
-                            style:"TableText"
-                        })]
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
                     }),
                     new TableCell({
                         children: [new Paragraph({
                             text:val.client,
-                            style:"TableText"
-                        })]
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
                     }),
                     new TableCell({
-                        children: bServiceOperationsPars
+                        children: bServiceOperationsPars,
+                        verticalAlign: VerticalAlign.CENTER,
                     })
                 ],
             });
@@ -501,7 +738,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Activos",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "B3B4B5",
@@ -514,7 +752,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Pasivos",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "B3B4B5",
@@ -531,7 +770,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Activos corrientes",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "D1D1D1",
@@ -544,7 +784,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Pasivos corrientes",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "D1D1D1",
@@ -685,7 +926,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Pasivos no corrientes",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "D1D1D1",
@@ -702,7 +944,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Activos fijos",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "D1D1D1",
@@ -799,7 +1042,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Patrimonio",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 shading: {
                                     fill: "B3B4B5",
@@ -1007,7 +1251,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Estado de ingresos y egresos",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 columnSpan:2,
                                 shading: {
@@ -1360,7 +1605,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Flujo de caja",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 columnSpan:2,
                                 shading: {
@@ -1833,7 +2079,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text: "Indicadores financieros",
-                        style: "TableHeading"
+                        style: "TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     columnSpan:3,
                     shading: {
@@ -1850,7 +2097,8 @@ export default class FinalDocument extends React.Component {
                     new TableCell({
                         children: [new Paragraph({
                             text: "Nombre",
-                            style: "TableHeading"
+                            style: "TableHeading",
+                            alignment: AlignmentType.CENTER,
                         })],
                         shading: {
                             fill: "D1D1D1",
@@ -1862,7 +2110,8 @@ export default class FinalDocument extends React.Component {
                     new TableCell({
                         children: [new Paragraph({
                             text: "Valor",
-                            style: "TableHeading"
+                            style: "TableHeading",
+                            alignment: AlignmentType.CENTER,
                         })],
                         shading: {
                             fill: "D1D1D1",
@@ -1874,7 +2123,8 @@ export default class FinalDocument extends React.Component {
                     new TableCell({
                         children: [new Paragraph({
                             text: "Significado",
-                            style: "TableHeading"
+                            style: "TableHeading",
+                            alignment: AlignmentType.CENTER,
                         })],
                         shading: {
                             fill: "D1D1D1",
@@ -2007,7 +2257,8 @@ export default class FinalDocument extends React.Component {
                             new TableCell({
                                 children: [new Paragraph({
                                     text: "Componente motivacional",
-                                    style: "TableHeading"
+                                    style: "TableHeading",
+                                    alignment: AlignmentType.CENTER,
                                 })],
                                 columnSpan:2,
                                 shading: {
@@ -2147,7 +2398,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2158,7 +2410,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Estrategia",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2169,7 +2422,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Descripción",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2181,7 +2435,7 @@ export default class FinalDocument extends React.Component {
                     children: [new Paragraph({
                         text:"Categoría",
                         style:"TableHeading",
-                        rowSpan:2
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2193,7 +2447,7 @@ export default class FinalDocument extends React.Component {
                     children: [new Paragraph({
                         text:"ID asociada",
                         style:"TableHeading",
-                        rowSpan:2
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2270,7 +2524,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2281,7 +2536,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Meta",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2318,7 +2574,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2329,7 +2586,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Táctica",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2340,7 +2598,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Estrategia",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2355,7 +2614,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2366,7 +2626,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Estrategia",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2377,7 +2638,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Objetivo",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2392,7 +2654,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2403,7 +2666,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Descripción",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2414,7 +2678,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Meta",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2425,7 +2690,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Fecha límite",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2440,7 +2706,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"ID",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2451,7 +2718,8 @@ export default class FinalDocument extends React.Component {
                 new TableCell({
                     children: [new Paragraph({
                         text:"Objetivo",
-                        style:"TableHeading"
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
                     })],
                     shading: {
                         fill: "B3B4B5",
@@ -2663,9 +2931,1500 @@ export default class FinalDocument extends React.Component {
 
     }
 
+    createTransfActions(){
+        let currentRow;
+        let actions = transfActionsContainer.find({owner:Meteor.userId()}).fetch();
+        let rows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Nombre",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Descripción",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Costo",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Riesgo",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Modelo",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Artefacto",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+
+        actions.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.description,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.artifact,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.model,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:""+val.cost,
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:""+val.risk,
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })]
+                    }),
+                ],
+            });
+            rows.push(currentRow);
+        });
+
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
+    }
+
+    createProjectsPortfolio(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let projects = projectsContainer.find({owner:Meteor.userId()}).fetch();
+        let currentActions=[];
+        let actionsPars=[];
+        projects.map((val, index)=>{
+            actionsPars=[];
+            currentActions=val.actions;
+            currentActions.map((valA, indexA)=>{
+                actionsPars.push(new Paragraph({
+                    text:"- "+valA.customid+" "+valA.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Nombre",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.name,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Descripción",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.description,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Prioridad",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.priority,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Fecha límite",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.deadline,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Acciones de transformación",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:actionsPars,
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 50,
+                    bottom: 50,
+                    right: 50,
+                    left: 50,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
+    createValueChain(){
+        let supactivities;
+        let rowChildren=[];
+        let activitiespars=[];
+        let supcategories=["Infraestructura","Recursos humanos","Tecnología","Compras"];
+        let pcategories=["Logística de entrada","Operaciones","Logística de salida","Marketing","Servicios"];
+        let rows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text: "Actividades de soporte",
+                        style: "TableHeading"
+                    })],
+                    columnSpan:5,
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                    verticalAlign: VerticalAlign.CENTER
+                }),
+            ],
+        }),
+        ];
+        for(let i=0;i<supcategories.length;i++)
+        {
+            activitiespars=[];
+            supactivities = supActivitiesContainer.find({category:supcategories[i],owner:Meteor.userId()}).fetch();
+            supactivities.map((valA, indexA)=>{
+                activitiespars.push(new Paragraph({
+                    text:"- "+valA.customid+" "+valA.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            rows.push(new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: supcategories[i],
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: activitiespars,
+                        columnSpan:4,
+                    }),
+                ],
+            }));
+        }
+        rows.push(new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Actividades primarias",
+                            style: "TableHeading"
+                        })],
+                        columnSpan:5,
+                        shading: {
+                            fill: "B3B4B5",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                ],
+            }),
+        );
+        rows.push(new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Logística",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Operaciones",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Logística de salida",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Marketing",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text: "Servicios",
+                            style: "TableHeading"
+                        })],
+                        shading: {
+                            fill: "D1D1D1",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                        verticalAlign: VerticalAlign.CENTER
+                    }),
+                ],
+            }),
+        );
+        for(let i=0;i<pcategories.length;i++)
+        {
+            activitiespars=[];
+            supactivities = processesContainer.find({category:pcategories[i],owner:Meteor.userId()}).fetch();
+            supactivities.map((valA, indexA)=>{
+                activitiespars.push(new Paragraph({
+                    text:"- "+valA.customid+" "+valA.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            rowChildren.push(new TableCell({
+                children: activitiespars
+            }));
+        }
+        rows.push(new TableRow({
+            children:rowChildren
+        }));
+
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
 
 
+    }
 
+    createResourcesModel(){
+        let resources = resourcesContainer.find({owner:Meteor.userId()}).fetch();
+        let resRows=[];
+        resRows.push(new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Nombre",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Descripción",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Costo mensual",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Servicios",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        }));
+        let resourceServices;
+        let resourceServicesPars=[];
+        let merging;
+        let currentRow;
+        resources.map((val, index)=>{
+            merging=1;
+            resourceServicesPars=[];
+            resourceServices = resServicesContainer.find({owner:Meteor.userId(),resourcecustomid:val.customid}).fetch();
+            resourceServices.map((valint, indexint)=> {
+                resourceServicesPars.push(new Paragraph({
+                    text:"-"+valint.customid+" "+valint.name+"\n",
+                    style:"TableText"}))
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.description,
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.cost,
+                            style:"TableText",
+                            alignment: AlignmentType.CENTER,
+                        })],
+                        verticalAlign: VerticalAlign.CENTER,
+                    }),
+                    new TableCell({
+                        children: resourceServicesPars,
+                        verticalAlign: VerticalAlign.CENTER,
+                    })
+                ],
+            });
+            resRows.push(currentRow);
+        });
+
+        const table = new Table({
+            rows: resRows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
+    }
+
+    createAppCatalog(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let apps = applicationsContainer.find({owner:Meteor.userId()}).fetch();
+        let currentCapacities=[];
+        let capsPars=[];
+        let currentComps=[];
+        let compsPars=[];
+        apps.map((val, index)=>{
+            compsPars=[];
+            capsPars=[];
+            currentCapacities=val.capacities;
+            currentComps=val.components;
+            currentCapacities.map((valCa, indexCa)=>{
+                capsPars.push(new Paragraph({
+                    text:"- "+valCa.customid+" "+valCa.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentComps.map((valC, indexC)=>{
+                compsPars.push(new Paragraph({
+                    text:"- "+valC.customid+" "+valC.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Nombre",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.name,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Costo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.cost,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Capacidades implementadas",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:capsPars,
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Componentes tecnológicos relacionados",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:compsPars,
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 50,
+                    bottom: 50,
+                    right: 50,
+                    left: 50,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
+    createOperativeIndicators(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let opInd = opIndicatorsContainer.find({owner:Meteor.userId()}).fetch();
+        let currentPositions=[];
+        let positionsPars=[];
+        let currentProcs=[];
+        let procsPars=[];
+        opInd.map((val, index)=>{
+            positionsPars=[];
+            procsPars=[];
+            currentPositions=val.positions;
+            currentProcs=val.processes;
+            currentPositions.map((valP, indexP)=>{
+                positionsPars.push(new Paragraph({
+                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentProcs.map((valPr, indexPr)=>{
+                procsPars.push(new Paragraph({
+                    text:"- "+valPr.customid+" "+valPr.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Descripción",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.description,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Forma de cálculo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.calculation,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Frecuencia de cálculo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.calcfrequency,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Dimensiones",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.dimensions,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Cargos responsables",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:positionsPars,
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Procesos asociados",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:procsPars,
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 75,
+                    bottom: 75,
+                    right: 75,
+                    left: 75,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
+    createStrategicIndicators(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let opInd = stIndicatorsContainer.find({owner:Meteor.userId()}).fetch();
+        opInd.map((val, index)=>{
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Descripción",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.description,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Forma de cálculo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.calculation,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Frecuencia de cálculo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.calcfrequency,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Dimensiones",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.dimensions,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Asociado a",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.type,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID asociada",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.associatedId,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 50,
+                    bottom: 50,
+                    right: 50,
+                    left: 50,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
+    createExternalIndicators(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let opInd = exIndicatorsContainer.find({owner:Meteor.userId()}).fetch();
+        opInd.map((val, index)=>{
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Descripción",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.description,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Forma de cálculo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.calculation,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Frecuencia de cálculo",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.calcfrequency,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Dimensiones",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.dimensions,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Categoría",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.category,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 50,
+                    bottom: 50,
+                    right: 50,
+                    left: 50,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
 
     render(){
         let query=FinalDocuments.findOne({_id:this.state.docid});
