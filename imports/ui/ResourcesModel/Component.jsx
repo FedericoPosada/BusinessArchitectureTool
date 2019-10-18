@@ -74,10 +74,6 @@ export default class Component extends React.Component {
                 <td>{this.props.description}</td>
                 <td style={{width:"5%"}}><a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn" style={{marginRight:5, marginBottom:5}}><i
                     className="material-icons">edit</i></a>
-                    { this.state.serMode && <a onClick={this.changePosMode.bind(this)} className="waves-effect waves-light btn" ><i
-                        className="material-icons">chevron_left</i></a>}
-                    { !this.state.serMode && <a onClick={this.changePosMode.bind(this)} className="waves-effect waves-light btn"><i
-                        className="material-icons">chevron_right</i></a>}
                 </td>
             </>
         )
@@ -100,10 +96,6 @@ export default class Component extends React.Component {
                     className="material-icons">delete</i></a>
                     <a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn light-green" style={{marginRight:5,marginBottom:5}}><i
                         className="material-icons">check</i></a>
-                    { this.state.serMode && <a onClick={this.changePosMode.bind(this)} className="waves-effect waves-light btn" style={{marginBottom:5}}><i
-                        className="material-icons">chevron_left</i></a>}
-                    { !this.state.serMode && <a onClick={this.changePosMode.bind(this)} className="waves-effect waves-light btn" style={{marginBottom:5}}><i
-                        className="material-icons">chevron_right</i></a>}
                 </td>
             </>
         )

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
+import TIResourcesModel from "./ResourcesModel/TIResourcesModel";
+import OperativeModel from "./ResourcesModel/OperativeModel";
 
 class ModalModeloDeRecursos extends Component {
   componentDidMount() {
@@ -75,22 +77,23 @@ class ModalModeloDeRecursos extends Component {
                             </div>
                           </div>
                     </div>
-                   
-                     <div className="col m4">
-                          <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
-                            </div>
-                            <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Modelo Operativo</span>
-                              <p><a href="#">Llevame allí!</a></p>
-                            </div>
-                            <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Modelo Operativo<i class="material-icons right">X</i></span>
-                              <p>Identifica las operaciones de tu negocio</p>
-                            </div>
-                          </div>
-                    </div>
+              <div className="col m4">
+                  <div className="card">
+                      <div className="card-image waves-effect waves-block waves-light">
+                          <img className="activator" height="125"
+                               src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
+                      </div>
+                      <div className="card-content">
+                          <span className="card-title activator grey-text text-darken-4">Modelo de Recursos TI</span>
+                          <p><a href="/TIResourcesModel">Llevame allí!</a></p>
+                      </div>
+                      <div className="card-reveal">
+                          <span className="card-title grey-text text-darken-4">Modelo Operativo<i
+                              className="material-icons right">X</i></span>
+                          <p>Identifica las operaciones de tu negocio</p>
+                      </div>
+                  </div>
+              </div>
               <div className="col m4">
                   <div className="card">
                       <div className="card-image waves-effect waves-block waves-light">
@@ -102,7 +105,7 @@ class ModalModeloDeRecursos extends Component {
                           <p><a href="/ComponentsCatalog">Llevame allí!</a></p>
                       </div>
                       <div className="card-reveal">
-                          <span className="card-title grey-text text-darken-4">Modelo Operativo<i
+                          <span className="card-title grey-text text-darken-4">Catálogo de componentes tecnológicos<i
                               className="material-icons right">X</i></span>
                           <p>Identifica las operaciones de tu negocio</p>
                       </div>
@@ -126,9 +129,25 @@ class ModalModeloDeRecursos extends Component {
                       </div>
                   </div>
               </div>
-                    <div class="col m2">
-                        
-                    </div>
+
+
+              <div className="col m4">
+                  <div className="card">
+                      <div className="card-image waves-effect waves-block waves-light">
+                          <img className="activator" height="125"
+                               src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
+                      </div>
+                      <div className="card-content">
+                          <span className="card-title activator grey-text text-darken-4">Modelo Operativo</span>
+                          <p><a href="/OperativeModel">Llevame allí!</a></p>
+                      </div>
+                      <div className="card-reveal">
+                          <span className="card-title grey-text text-darken-4">Modelo Operativo<i
+                              className="material-icons right">X</i></span>
+                          <p>Identifica las operaciones de tu negocio</p>
+                      </div>
+                  </div>
+              </div>
           </div>
         </div>
           <div className="modal-footer">

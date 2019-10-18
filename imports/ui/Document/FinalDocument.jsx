@@ -39,6 +39,10 @@ import {stIndicatorsContainer} from "../../api/stindicators";
 import {exIndicatorsContainer} from "../../api/exindicators";
 import {resourcesContainer} from "../../api/resources";
 import {resServicesContainer} from "../../api/resservices";
+import {tiResourcesContainer} from "../../api/tiresources";
+import {positionsContainer} from "../../api/positions";
+import {componentsContainer} from "../../api/components";
+import {opItemsContainer} from "../../api/opitems";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -54,6 +58,7 @@ export default class FinalDocument extends React.Component {
     componentWillMount() {
         Meteor.subscribe('finaldocuments');
         Meteor.subscribe('bservices');
+        Meteor.subscribe('opitems');
         Meteor.subscribe('bservoperations');
         Meteor.subscribe('bsheets');
         Meteor.subscribe('istatements');
@@ -78,6 +83,9 @@ export default class FinalDocument extends React.Component {
         Meteor.subscribe('exindicators');
         Meteor.subscribe('resservices');
         Meteor.subscribe('resources');
+        Meteor.subscribe('tiresources');
+        Meteor.subscribe('positions');
+        Meteor.subscribe('components');
         Tracker.autorun(()=> {
             let doc = FinalDocuments.collection.findOne({userId: Meteor.userId()});
             if (typeof doc !== "undefined")
@@ -221,6 +229,10 @@ export default class FinalDocument extends React.Component {
                     let appCatalog=self.createAppCatalog();
                     let valuechain=self.createValueChain();
                     let resModel=self.createResourcesModel();
+                    let resTIModel=self.createTIResourcesModel();
+                    let posCatalog=self.createPositionCatalog();
+                    let compsCatalog=self.createComponentsCatalog();
+                    let opModel=self.createOperativeModel();
                     doc.addSection({
                         properties: {},
                         children: [
@@ -441,6 +453,7 @@ export default class FinalDocument extends React.Component {
                             new Paragraph({
                                 text: "\n"
                             }),
+                            posCatalog,
                             new Paragraph({
                                 text: "\n"
                             }),
@@ -507,6 +520,7 @@ export default class FinalDocument extends React.Component {
                             new Paragraph({
                                 text: "\n"
                             }),
+                            resTIModel,
                             new Paragraph({
                                 text: "\n"
                             }),
@@ -517,6 +531,7 @@ export default class FinalDocument extends React.Component {
                             new Paragraph({
                                 text: "\n"
                             }),
+                            compsCatalog,
                             new Paragraph({
                                 text: "\n"
                             }),
@@ -538,6 +553,7 @@ export default class FinalDocument extends React.Component {
                             new Paragraph({
                                 text: "\n"
                             }),
+                            opModel,
                             new Paragraph({
                                 text: "8. Modelo de información",
                                 style: "SectionTitles",
@@ -577,6 +593,7 @@ export default class FinalDocument extends React.Component {
                             }),
                             extinds,
                         ],
+
                     });
                     let file;
                     Packer.toBlob(doc).then((blob) => {
@@ -3465,6 +3482,213 @@ export default class FinalDocument extends React.Component {
 
     }
 
+    createPositionCatalog(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let opInd = positionsContainer.find({owner:Meteor.userId()}).fetch();
+        let currentCapacities=[];
+        let capacitiesPars=[];
+        let currentDeps=[];
+        let depsPars=[];
+        opInd.map((val, index)=>{
+            depsPars=[""];
+            capacitiesPars=[""];
+            currentCapacities=val.capacities;
+            currentDeps=val.dependents;
+            currentCapacities.map((valP, indexP)=>{
+                capacitiesPars.push(new Paragraph({
+                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentDeps.map((valPr, indexPr)=>{
+                depsPars.push(new Paragraph({
+                    text:"- "+valPr.customid+" "+valPr.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Nombre",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.name,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Salario",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.salary,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Número de empleados",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.number,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Capacidades implementadas",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:capacitiesPars,
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Cargos dependientes",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:depsPars,
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 75,
+                    bottom: 75,
+                    right: 75,
+                    left: 75,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
     createResourcesModel(){
         let resources = resourcesContainer.find({owner:Meteor.userId()}).fetch();
         let resRows=[];
@@ -3590,6 +3814,298 @@ export default class FinalDocument extends React.Component {
 
         const table = new Table({
             rows: resRows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
+    }
+
+    createTIResourcesModel(){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let opInd = tiResourcesContainer.find({owner:Meteor.userId()}).fetch();
+        let currentServices=[];
+        let servicesPars=[];
+        let currentComps=[];
+        let compsPars=[];
+        opInd.map((val, index)=>{
+            servicesPars=[""];
+            compsPars=[""];
+            currentServices=resServicesContainer.find({owner:Meteor.userId(),resourcecustomid:val.customid}).fetch();;
+            currentComps=val.components;
+            currentServices.map((valP, indexP)=>{
+                servicesPars.push(new Paragraph({
+                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentComps.map((valPr, indexPr)=>{
+                compsPars.push(new Paragraph({
+                    text:"- "+valPr+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                }
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Nombre",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.name,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Descripción",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.description,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Costo mensual",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"$ "+val.cost,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Servicios",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:servicesPars,
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Componentes tecnológicos",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:compsPars,
+                            }),
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 75,
+                    bottom: 75,
+                    right: 75,
+                    left: 75,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
+    createComponentsCatalog(){
+        let currentRow;
+        let actions = componentsContainer.find({owner:Meteor.userId()}).fetch();
+        let rows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"ID",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Nombre",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Descripción",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        actions.map((val, index)=>{
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.customid,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.name,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.description,
+                            style:"TableText"
+                        })]
+                    }),
+                ],
+            });
+            rows.push(currentRow);
+        });
+
+        let table = new Table({
+            rows: rows,
             width: {
                 size:100,
                 type: WidthType.PERCENTAGE,
@@ -3790,6 +4306,107 @@ export default class FinalDocument extends React.Component {
         return table;
     }
 
+    createOperativeModel(){
+        let currentRow;
+        let currentPositions=[];
+        let positionsPars=[];
+        let currentRes=[];
+        let resPars=[];
+        let opitems = opItemsContainer.find({owner:Meteor.userId()}).fetch();
+        let rows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Capacidad",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Cargos",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Recursos",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        opitems.map((val, index)=>{
+            currentPositions=[];
+            positionsPars=[];
+            currentRes=[];
+            resPars=[];
+            currentPositions=val.positions;
+            currentPositions.map((valP, indexP)=>{
+                positionsPars.push(new Paragraph({
+                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentRes=val.resources;
+            currentRes.map((valP, indexP)=>{
+                resPars.push(new Paragraph({
+                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [new Paragraph({
+                            text:val.capacitycustomid+" "+val.capacityname,
+                            style:"TableText"
+                        })]
+                    }),
+                    new TableCell({
+                        children: positionsPars
+                    }),
+                    new TableCell({
+                        children: resPars
+                    }),
+                ],
+            });
+            rows.push(currentRow);
+        });
+
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
+            },
+        });
+        return table;
+    }
+
     createOperativeIndicators(){
         let currentTable;
         let currentRow;
@@ -3800,8 +4417,8 @@ export default class FinalDocument extends React.Component {
         let currentProcs=[];
         let procsPars=[];
         opInd.map((val, index)=>{
-            positionsPars=[];
-            procsPars=[];
+            positionsPars=[""];
+            procsPars=[""];
             currentPositions=val.positions;
             currentProcs=val.processes;
             currentPositions.map((valP, indexP)=>{
