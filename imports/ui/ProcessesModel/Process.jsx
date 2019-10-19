@@ -81,7 +81,8 @@ export default class Process extends React.Component{
             }
         }
         processesContainer.update(query,updateObj);
-        Meteor.call('RemoveFile', this.props.imageid, function (err, res) {
+        ProcessesImages.collection.remove({_id:this.state.imageid});
+        Meteor.call('RemoveFile', {_id:this.state.imageid}, function (err, res) {
             if (err)
                 Materialize.toast("Ha ocurrido un error.",3000);
         })
@@ -180,7 +181,6 @@ export default class Process extends React.Component{
                             <div className="input-field col s10">
                                 <img src={cursor}/>
                                 <a className="waves-effect waves-light btn red" onClick={this.removeFile.bind(this)} style={{"marginLeft":"14px"}}><i className="material-icons">delete</i></a>
-                                <a className="waves-effect waves-light btn red" href={cursor} download={true} style={{"marginLeft":"14px"}}><i className="material-icons">file_download</i></a>
                             </div>
                             }
                             { this.state.imageid.length === 0 &&

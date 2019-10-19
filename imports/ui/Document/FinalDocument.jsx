@@ -43,6 +43,7 @@ import {tiResourcesContainer} from "../../api/tiresources";
 import {positionsContainer} from "../../api/positions";
 import {componentsContainer} from "../../api/components";
 import {opItemsContainer} from "../../api/opitems";
+import ProcessesImages from "../../api/ProcessesImagesCol";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -50,12 +51,25 @@ export default class FinalDocument extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            docid:""
+            docid:"",
+            procimagesids:[],
+            loaded:false
         }
         this.uploadIt=this.uploadIt.bind(this);
     }
 
     componentWillMount() {
+        let self=this;
+        Meteor.call('getProcsImages',function(error, result){
+            if(result.length > 0){
+                console.log("Si es mayor");
+                self.setState({
+                        procimagesids: result,
+                    loaded:true
+                    }
+                )
+            }
+        });
         Meteor.subscribe('finaldocuments');
         Meteor.subscribe('bservices');
         Meteor.subscribe('opitems');
@@ -86,6 +100,9 @@ export default class FinalDocument extends React.Component {
         Meteor.subscribe('tiresources');
         Meteor.subscribe('positions');
         Meteor.subscribe('components');
+        Meteor.subscribe('processes');
+        Meteor.subscribe('processesimages');
+
         Tracker.autorun(()=> {
             let doc = FinalDocuments.collection.findOne({userId: Meteor.userId()});
             if (typeof doc !== "undefined")
@@ -204,403 +221,409 @@ export default class FinalDocument extends React.Component {
             },
         });
         Meteor.call(
-            'getOntologicalModel',
+            'getImagesDoc',
             function(error, result){
                 if(error){
                     console.log(error);
                 } else {
-                    img=result[1];
-                    img2=result[0];
-                    const image1 = Media.addImage(doc, img,600,500);
-                    const image2 = Media.addImage(doc, img2,600,500);
-                    let bservportfolio=self.createBServicesPortfolio();
-                    let bsheet=self.createBalanceSheet();
-                    let istatement=self.createIncomeStatement();
-                    let cashflow=self.createCashFlow();
-                    let motivcomp=self.createMotivComponent();
-                    let finind=self.createFinancialIndicators();
-                    let bstrats=self.createBusinessStrategies();
-                    let stratTables=self.createStrategicPlan();
-                    let transfAct=self.createTransfActions();
-                    let projCatalog=self.createProjectsPortfolio();
-                    let opinds=self.createOperativeIndicators();
-                    let stinds=self.createStrategicIndicators();
-                    let extinds=self.createExternalIndicators();
-                    let appCatalog=self.createAppCatalog();
-                    let valuechain=self.createValueChain();
-                    let resModel=self.createResourcesModel();
-                    let resTIModel=self.createTIResourcesModel();
-                    let posCatalog=self.createPositionCatalog();
-                    let compsCatalog=self.createComponentsCatalog();
-                    let opModel=self.createOperativeModel();
-                    doc.addSection({
-                        properties: {},
-                        children: [
-                            new TableOfContents("Summary", {
-                                hyperlink: true,
-                                headingStyleRange: "1-5",
-                                stylesWithLevels: [new StyleLevel("SectionTitles", 1), new StyleLevel("SectionSubtitles", 2),
-                                    new StyleLevel("SubSectionSubtitles", 3)]
-                            }),
-                            new Paragraph({
-                                text: "1. Modelo de negocio",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "1.1. Portafolio de servicios",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            bservportfolio,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "1.2. Modelo ontológico",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph(image1),
-                            new Paragraph({
-                                text: "2. Modelo financiero",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "2.1. Balance general",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            bsheet,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "2.2. Ingresos y egresos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            istatement,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "2.3. Flujo de caja",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            cashflow,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "2.4. Indicadores financieros",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            finind,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3. Modelo estratégico",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "3.1. Componente motivacional",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            motivcomp,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.2. Estrategias de negocio",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            bstrats,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.3. Plan estratégico",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.3.1. Objetivos",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            stratTables[0],
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.3.2. Metas",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            stratTables[1],
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.3.3. Estrategias",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            stratTables[2],
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.3.4. Tácticas",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            stratTables[3],
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.3.5. Indicadores de logro",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            stratTables[4],
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.4. Mapa de proyectos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.4.1. Acciones de transformación",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            transfAct,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "3.4.2. Portafolio de proyectos",
-                                style: "SubSectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            projCatalog,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "4. Mapa de capacidades",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "5. Estructura organizacional",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "5.1. Catálogo de cargos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            posCatalog,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "5.2. Organigrama",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph(image2),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "6. Modelo de procesos",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "6.1. Cadena de valor",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            valuechain,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "6.2. Catálogo de procesos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "7. Modelo de recursos",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "7.1. Modelo de recursos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            resModel,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "7.2. Modelo de recursos TI",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            resTIModel,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "7.3. Catálogo de componentes tecnológicos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            compsCatalog,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "7.4. Catálogo de aplicaciones",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            appCatalog,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "7.5. Modelo operativo",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            opModel,
-                            new Paragraph({
-                                text: "8. Modelo de información",
-                                style: "SectionTitles",
-                                pageBreakBefore: true,
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "8.1. Indicadores operativos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            opinds,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "8.2. Indicadores estratégicos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            stinds,
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            new Paragraph({
-                                text: "8.3. Indicadores externos",
-                                style: "SectionSubtitles"
-                            }),
-                            new Paragraph({
-                                text: "\n"
-                            }),
-                            extinds,
-                        ],
+                    if(result !== "") {
+                        img = result[1];
+                        img2 = result[0];
+                        const image1 = Media.addImage(doc, img, 600, 500);
+                        const image2 = Media.addImage(doc, img2, 600, 500);
+                        let procCatalog=self.createProcessCatalog(doc);
+                        let bservportfolio = self.createBServicesPortfolio();
+                        let bsheet = self.createBalanceSheet();
+                        let istatement = self.createIncomeStatement();
+                        let cashflow = self.createCashFlow();
+                        let motivcomp = self.createMotivComponent();
+                        let finind = self.createFinancialIndicators();
+                        let bstrats = self.createBusinessStrategies();
+                        let stratTables = self.createStrategicPlan();
+                        let transfAct = self.createTransfActions();
+                        let projCatalog = self.createProjectsPortfolio();
+                        let opinds = self.createOperativeIndicators();
+                        let stinds = self.createStrategicIndicators();
+                        let extinds = self.createExternalIndicators();
+                        let appCatalog = self.createAppCatalog();
+                        let valuechain = self.createValueChain();
+                        let resModel = self.createResourcesModel();
+                        let resTIModel = self.createTIResourcesModel();
+                        let posCatalog = self.createPositionCatalog();
+                        let compsCatalog = self.createComponentsCatalog();
+                        let opModel = self.createOperativeModel();
+                        doc.addSection({
+                            properties: {},
+                            children: [
+                                new TableOfContents("Summary", {
+                                    hyperlink: true,
+                                    headingStyleRange: "1-5",
+                                    stylesWithLevels: [new StyleLevel("SectionTitles", 1), new StyleLevel("SectionSubtitles", 2),
+                                        new StyleLevel("SubSectionSubtitles", 3)]
+                                }),
+                                new Paragraph({
+                                    text: "1. Modelo de negocio",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "1.1. Portafolio de servicios",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                bservportfolio,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "1.2. Modelo ontológico",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph(image1),
+                                new Paragraph({
+                                    text: "2. Modelo financiero",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "2.1. Balance general",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                bsheet,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "2.2. Ingresos y egresos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                istatement,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "2.3. Flujo de caja",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                cashflow,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "2.4. Indicadores financieros",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                finind,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3. Modelo estratégico",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "3.1. Componente motivacional",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                motivcomp,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.2. Estrategias de negocio",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                bstrats,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.3. Plan estratégico",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.3.1. Objetivos",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                stratTables[0],
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.3.2. Metas",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                stratTables[1],
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.3.3. Estrategias",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                stratTables[2],
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.3.4. Tácticas",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                stratTables[3],
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.3.5. Indicadores de logro",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                stratTables[4],
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.4. Mapa de proyectos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.4.1. Acciones de transformación",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                transfAct,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "3.4.2. Portafolio de proyectos",
+                                    style: "SubSectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                projCatalog,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "4. Mapa de capacidades",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "5. Estructura organizacional",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "5.1. Catálogo de cargos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                posCatalog,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "5.2. Organigrama",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph(image2),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "6. Modelo de procesos",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "6.1. Cadena de valor",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                valuechain,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "6.2. Catálogo de procesos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                procCatalog,
+                                new Paragraph({
+                                    text: "7. Modelo de recursos",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "7.1. Modelo de recursos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                resModel,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "7.2. Modelo de recursos TI",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                resTIModel,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "7.3. Catálogo de componentes tecnológicos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                compsCatalog,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "7.4. Catálogo de aplicaciones",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                appCatalog,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "7.5. Modelo operativo",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                opModel,
+                                new Paragraph({
+                                    text: "8. Modelo de información",
+                                    style: "SectionTitles",
+                                    pageBreakBefore: true,
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "8.1. Indicadores operativos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                opinds,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "8.2. Indicadores estratégicos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                stinds,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "8.3. Indicadores externos",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                extinds,
+                            ],
 
-                    });
-                    let file;
-                    Packer.toBlob(doc).then((blob) => {
-                        // saveAs from FileSaver will download the file
-                        file=new File([blob],Meteor.userId()+"FinalDoc.docx");
-                        self.uploadIt(file);
-                    });
+                        });
+                        let file;
+                        Packer.toBlob(doc).then((blob) => {
+                            // saveAs from FileSaver will download the file
+                            file = new File([blob], Meteor.userId() + "FinalDoc.docx");
+                            self.uploadIt(file);
+                        });
+                    }
+                    else
+                        Materialize.toast("No se ha completa")
                 }
             }
         );
@@ -3308,6 +3331,205 @@ export default class FinalDocument extends React.Component {
         return table;
     }
 
+    createProcessCatalog(doc){
+        let currentTable;
+        let currentRow;
+        let rows=[];
+        let images=this.state.procimagesids;
+        let queryimages=ProcessesImages.collection.find({userId:Meteor.userId()}).fetch();
+        let opInd = processesContainer.find({owner:Meteor.userId()}).fetch();
+        let index=-1;
+        let image;
+        let currentActivities=[];
+        let activitiesPars=[];
+        opInd.map((val, index)=>{
+            index=-1;
+            image="";
+            activitiesPars=[""];
+            currentActivities=val.activities;
+            currentActivities.map((valP, indexP)=>{
+                activitiesPars.push(new Paragraph({
+                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    style:"TableText"
+                }))
+            });
+            if(typeof queryimages !== "undefined") {
+                for (let i = 0; i < queryimages.length;i++){
+                    if(queryimages[i]._id === val.imageid)
+                        index=i;
+                }
+            }
+            if(index > -1 && images.length>0) {
+                image = Media.addImage(doc, images[index], 550, 400);
+            }
+
+            currentTable = new Table({
+                rows: [
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"ID",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Nombre",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.name,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Tipo de proceso",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:val.category,
+                                    style:"TableText"
+                                })],
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Actividades del proceso",
+                                    style:"TableHeading"
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                            }),
+                            new TableCell({
+                                children:activitiesPars,
+                            }),
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph({
+                                    text:"Imagen del proceso",
+                                    style:"TableHeading",
+                                    alignment: AlignmentType.CENTER,
+                                })],
+                                shading: {
+                                    fill: "B3B4B5",
+                                    val: ShadingType.CLEAR,
+                                    color: "auto",
+                                },
+                                columnSpan:2
+                            })
+                        ]
+                    }),
+                    new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[new Paragraph(image)],
+                                columnSpan:2
+                            })
+                        ]
+                    }),
+                ],
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 75,
+                    bottom: 75,
+                    right: 75,
+                    left: 75,
+                },
+            });
+            currentRow=new TableRow({
+                children: [
+                    new TableCell({
+                        children: [currentTable],
+                        borders: {
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            left: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                            right: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            },
+                        },
+                    })
+                ],
+            });
+            rows.push(currentRow);
+        });
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 75,
+                bottom: 75,
+                right: 75,
+                left: 75,
+            },
+        });
+        return table;
+    }
+
     createValueChain(){
         let supactivities;
         let rowChildren=[];
@@ -5052,16 +5274,21 @@ export default class FinalDocument extends React.Component {
             cursor="";
         return(
             <div>
-                { cursor !== "" &&
+                { this.state.loaded && cursor !== "" &&
                 <div className="input-field col s10">
                     <a className="waves-effect waves-light btn red" onClick={this.removeFinalDocument.bind(this)} style={{"marginLeft":"14px"}}><i className="material-icons left">delete</i>Borrar</a>
                     <a className="waves-effect waves-light btn" href={cursor} download={true} style={{"marginLeft":"14px"}}><i className="material-icons left">file_download</i>Descargar</a>
                 </div>
                 }
-                { cursor === "" &&
+                { this.state.loaded && cursor === "" &&
                 <div className="input-field col s8">
                     <a className="waves-effect waves-light btn light-green" onClick={this.createDoc.bind(this)}
                        style={{"marginLeft":"14px"}}><i className="material-icons left">library_add</i>Crear documento</a>
+                </div>
+                }
+                { !this.state.loaded  &&
+                <div className="input-field col s8">
+                    <h4>Cargando...</h4>
                 </div>
                 }
             </div>
