@@ -35,6 +35,9 @@ export default class PredefinedSubpackageCreator extends React.Component {
                 <h5 style={{"marginLeft":"20px"}}>Subpaquetes disponibles:</h5>
             </div>
             <div className="row">
+                <div className="input-field col s1">
+                    <h5>Agregar a:</h5>
+                </div>
                 <div className="input-field col s4">
                     <select className="browser-default" ref="subpackagepackage" onChange={this.handlePackageChange.bind(this)} style={{width:"100%"}}>
                         <option></option>

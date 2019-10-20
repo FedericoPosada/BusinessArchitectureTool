@@ -44,6 +44,9 @@ import {positionsContainer} from "../../api/positions";
 import {componentsContainer} from "../../api/components";
 import {opItemsContainer} from "../../api/opitems";
 import ProcessesImages from "../../api/ProcessesImagesCol";
+import {packagesContainer} from "../../api/packages";
+import {subpackagesContainer} from "../../api/subpackages";
+import {capacitiesContainer} from "../../api/capacities";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -102,6 +105,9 @@ export default class FinalDocument extends React.Component {
         Meteor.subscribe('components');
         Meteor.subscribe('processes');
         Meteor.subscribe('processesimages');
+        Meteor.subscribe('capacities');
+        Meteor.subscribe('subpackages');
+        Meteor.subscribe('packages');
 
         Tracker.autorun(()=> {
             let doc = FinalDocuments.collection.findOne({userId: Meteor.userId()});
@@ -252,6 +258,7 @@ export default class FinalDocument extends React.Component {
                         let posCatalog = self.createPositionCatalog();
                         let compsCatalog = self.createComponentsCatalog();
                         let opModel = self.createOperativeModel();
+                        let capMap=self.createCapacitiesMap();
                         doc.addSection({
                             properties: {},
                             children: [
@@ -457,6 +464,7 @@ export default class FinalDocument extends React.Component {
                                     style: "SectionTitles",
                                     pageBreakBefore: true,
                                 }),
+                                capMap,
                                 new Paragraph({
                                     text: "5. Estructura organizacional",
                                     style: "SectionTitles",
@@ -3326,6 +3334,172 @@ export default class FinalDocument extends React.Component {
                 bottom: 75,
                 right: 75,
                 left: 75,
+            },
+        });
+        return table;
+    }
+
+    createCapacitiesMap(){
+        let currentRow;
+        let childrenRow=[];
+        let packs = packagesContainer.find({owner:Meteor.userId()}, {sort:{customid:1}}).fetch();
+        let rows=[new TableRow({
+            children: [
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Paquete",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Subpaquete",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Capacidad",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+                new TableCell({
+                    children: [new Paragraph({
+                        text:"Tipo",
+                        style:"TableHeading",
+                        alignment: AlignmentType.CENTER,
+                    })],
+                    shading: {
+                        fill: "B3B4B5",
+                        val: ShadingType.CLEAR,
+                        color: "auto",
+                    },
+                }),
+            ],
+        })];
+        packs.map((val, index)=>{
+            let firstOfPackage=true;
+            let subpacks = subpackagesContainer.find({owner: Meteor.userId(), "customid": new RegExp(val.customid)}, {sort: {customid: 1}}).fetch();
+            subpacks.map((valS,indexS)=>{
+                let firstOfSubPack=true;
+                let caps= capacitiesContainer.find({owner: Meteor.userId(), "customid": new RegExp(valS.customid)}, {sort: {customid: 1}}).fetch();
+                caps.map((valC,indexC)=>{
+                    let cellPack="";
+                    let borderPack={top: {
+                        style: BorderStyle.NONE,
+                            size: 1,
+                            color: "white",
+                    },
+                    bottom: {
+                        style: BorderStyle.NONE,
+                            size: 1,
+                            color: "white",
+                    }};
+                    let borderSubPack={top: {
+                            style: BorderStyle.NONE,
+                            size: 1,
+                            color: "white",
+                        },
+                        bottom: {
+                            style: BorderStyle.NONE,
+                            size: 1,
+                            color: "white",
+                        }};
+                    let cellSubPack="";
+                    if(firstOfPackage){
+                        cellPack=val.customid+" "+val.name;
+                        firstOfPackage=false;
+                        borderPack={
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            }};
+                    }
+                    if(firstOfSubPack){
+                        cellSubPack=valS.customid+" "+valS.name;
+                        firstOfSubPack=false;
+                        borderSubPack={
+                            bottom: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            }};
+                    }
+                    if(indexC === caps.length-1)
+                    {
+                        borderSubPack={
+                            top: {
+                                style: BorderStyle.NONE,
+                                size: 1,
+                                color: "white",
+                            }};
+                    }
+                    currentRow=new TableRow({
+                        children: [
+                            new TableCell({
+                                children: [new Paragraph({
+                                    text:cellPack,
+                                    style:"TableText",
+                                    borders:borderPack
+                                })]
+                            }),
+                            new TableCell({
+                                children: [new Paragraph({
+                                    text:cellSubPack,
+                                    style:"TableText",
+                                    borders:borderSubPack
+                                })]
+                            }),
+                            new TableCell({
+                                children: [new Paragraph({
+                                    text:valC.customid+" "+valC.name,
+                                    style:"TableText"
+                                })]
+                            }),
+                            new TableCell({
+                                children: [new Paragraph({
+                                    text:valC.category,
+                                    style:"TableText"
+                                })]
+                            }),
+                        ],
+                    });
+                    rows.push(currentRow);
+                })
+            });
+
+        });
+
+        let table = new Table({
+            rows: rows,
+            width: {
+                size:100,
+                type: WidthType.PERCENTAGE,
+            },
+            margins: {
+                top: 50,
+                bottom: 50,
+                right: 50,
+                left: 50,
             },
         });
         return table;
