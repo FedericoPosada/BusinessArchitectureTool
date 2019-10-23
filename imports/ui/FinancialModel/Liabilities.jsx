@@ -328,7 +328,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Cuentas por pagar:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.accountspayable}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.accountspayable).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -336,7 +339,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Gastos acumulados:</label>
                             </div>
                             <div className="input-field col s6">
-                            <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.financialliabilities}</p>
+                            <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.financialliabilities).toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                            })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -344,7 +350,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ingresos no devengados:</label>
                             </div>
                             <div className="input-field col s6">
-                            <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.unearnedrevenue}</p>
+                            <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.unearnedrevenue).toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                            })}</p>
                             </div>
                         </div>
                         <hr />
@@ -353,7 +362,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total pasivos corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalcurrentl}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalcurrentl).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -367,7 +379,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Deuda a largo plazo:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.longtermdebt}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.longtermdebt).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
 
@@ -376,7 +391,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Otros pasivos a largo plazo:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.otherlongtermliabilities}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.otherlongtermliabilities).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -385,7 +403,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total pasivos no corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalnoncurrentl} </p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalnoncurrentl).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })} </p>
                             </div>
                         </div>
                         <hr />
@@ -399,7 +420,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Autocartera:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.treasuryshares}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.treasuryshares).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -407,7 +431,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Capital pagado adicional:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.additionalpaidin}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.additionalpaidin).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -415,7 +442,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Otra pérdida integral acumulada:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.comprehensiveloss}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.comprehensiveloss).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -423,7 +453,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Utilidades retenidas:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.retainedearnings}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.retainedearnings).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -432,7 +465,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total patrimonio:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalequity}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalequity).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -441,7 +477,10 @@ export default class Liabilities extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total pasivos y patrimonio:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.total} </p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.total).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })} </p>
                             </div>
                         </div>
                     </form>

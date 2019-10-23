@@ -855,7 +855,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.cash,
+                                    text: Number(bSheet.cash).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',    
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -867,7 +870,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.accountspayable,
+                                    text: Number(bSheet.accountspayable).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -883,7 +889,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.marketablesecurities,
+                                    text: Number(bSheet.marketablesecurities).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -895,7 +904,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.financialliabilities,
+                                    text: Number(bSheet.financialliabilities).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -911,7 +923,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.inventories,
+                                    text: Number(bSheet.inventories).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -923,7 +938,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.unearnedrevenue,
+                                    text: Number(bSheet.unearnedrevenue).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -939,7 +957,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.accountspayable,
+                                    text: Number(bSheet.accountspayable).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -951,7 +972,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.totalcurrentl,
+                                    text: Number(bSheet.totalcurrentl).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -967,7 +991,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.totalcurrent,
+                                    text: Number(bSheet.totalcurrent).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -1011,7 +1038,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.longtermdebt,
+                                    text: Number(bSheet.longtermdebt).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1027,7 +1057,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.property,
+                                    text: Number(bSheet.property).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1039,7 +1072,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.otherlongtermliabilities,
+                                    text: Number(bSheet.otherlongtermliabilities).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1055,7 +1091,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.intangible,
+                                    text: Number(bSheet.intangible).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1067,7 +1106,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.totalnoncurrentl,
+                                    text: Number(bSheet.totalnoncurrentl).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -1083,7 +1125,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.investment,
+                                    text: Number(bSheet.investment).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1113,7 +1158,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.otherassets,
+                                    text: Number(bSheet.otherassets).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1125,7 +1173,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.treasuryshares,
+                                    text: Number(bSheet.treasuryshares).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1141,7 +1192,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.totalnoncurrent,
+                                    text: Number(bSheet.totalnoncurrent).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -1153,7 +1207,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.additionalpaidin,
+                                    text: Number(bSheet.additionalpaidin).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1173,7 +1230,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.comprehensiveloss,
+                                    text: Number(bSheet.comprehensiveloss).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1193,7 +1253,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.retainedearnings,
+                                    text: Number(bSheet.retainedearnings).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1213,7 +1276,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.totalequity,
+                                    text: Number(bSheet.totalequity).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -1235,7 +1301,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.totalassets,
+                                    text: Number(bSheet.totalassets).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -1259,7 +1328,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+bSheet.total,
+                                    text: Number(bSheet.total).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -1322,7 +1394,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.productnetsales,
+                                    text: Number(iStatement.productnetsales).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1338,7 +1413,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.servicenetsales,
+                                    text: Number(iStatement.servicenetsales).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1359,7 +1437,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.totalnetsales,
+                                    text: Number(iStatement.totalnetsales).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -1380,7 +1461,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.salescost,
+                                    text: Number(iStatement.salescost).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1396,7 +1480,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.marketing,
+                                    text: Number(iStatement.marketing).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1412,7 +1499,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.technology,
+                                    text: Number(iStatement.technology).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1428,7 +1518,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.adminexpenses,
+                                    text: Number(iStatement.adminexpenses).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1444,7 +1537,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.otheropexpenses,
+                                    text: Number(iStatement.otheropexpenses).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1465,7 +1561,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.totalopexpenses,
+                                    text: Number(iStatement.totalopexpenses).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -1486,7 +1585,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.operationalincome,
+                                    text: Number(iStatement.operationalincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1502,7 +1604,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.interestincome,
+                                    text: Number(iStatement.interestincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1518,7 +1623,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.interestexpense,
+                                    text: Number(iStatement.interestexpense).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1534,7 +1642,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.othernetincome,
+                                    text: Number(iStatement.othernetincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1555,7 +1666,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.incomebeftaxes,
+                                    text: Number(iStatement.incomebeftaxes).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -1576,7 +1690,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.taxes,
+                                    text: Number(iStatement.taxes).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1592,7 +1709,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.investmentincome,
+                                    text: Number(iStatement.investmentincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1613,7 +1733,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+iStatement.netincome,
+                                    text: Number(iStatement.netincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -1676,7 +1799,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.cashbeginning,
+                                    text: Number(cashFlow.cashbeginning).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1709,7 +1835,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.netincome,
+                                    text: Number(cashFlow.netincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1725,7 +1854,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.depreciation,
+                                    text: Number(cashFlow.depreciation).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1741,7 +1873,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.stockcompensation,
+                                    text: Number(cashFlow.stockcompensation).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1757,7 +1892,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.opexpense,
+                                    text: Number(cashFlow.opexpense).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1773,7 +1911,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.deferredinc,
+                                    text: Number(cashFlow.deferredinc).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1806,7 +1947,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.inventories,
+                                    text: Number(cashFlow.inventories).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1822,7 +1966,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.accreceivable,
+                                    text: Number(cashFlow.accreceivable).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1838,7 +1985,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.accpayable,
+                                    text: Number(cashFlow.accpayable).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1854,7 +2004,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.otherliabilities,
+                                    text: Number(cashFlow.otherliabilities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1870,7 +2023,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.cashoperativeactivities,
+                                    text: Number(cashFlow.cashoperativeactivities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -1903,7 +2059,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.purchasesproperty,
+                                    text: Number(cashFlow.purchasesproperty).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1919,7 +2078,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.purchasesproperty,
+                                    text: Number(cashFlow.purchasesproperty).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1935,7 +2097,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.purchasesmarketablesecurities,
+                                    text: Number(cashFlow.purchasesmarketablesecurities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1951,7 +2116,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.salesmarketablesecurities,
+                                    text: Number(cashFlow.salesmarketablesecurities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -1967,7 +2135,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.cashinvestmentactivities,
+                                    text: Number(cashFlow.cashinvestmentactivities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -2000,7 +2171,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.proceedslongterm,
+                                    text: Number(cashFlow.proceedslongterm).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -2016,7 +2190,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.repaymentslongterm,
+                                    text: Number(cashFlow.repaymentslongterm).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -2033,7 +2210,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.leasespayments,
+                                    text: Number(cashFlow.leasespayments).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableText"
                                 })],
                             }),
@@ -2049,7 +2229,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.cashfinancingactivities,
+                                    text: Number(cashFlow.cashfinancingactivities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -2065,7 +2248,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.cashincrease,
+                                    text: Number(cashFlow.cashincrease).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                             }),
@@ -2086,7 +2272,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children: [new Paragraph({
-                                    text: "$ "+cashFlow.finalcash,
+                                    text: Number(cashFlow.finalcash).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style: "TableHeading"
                                 })],
                                 shading: {
@@ -3963,7 +4152,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children:[new Paragraph({
-                                    text:val.salary,
+                                    text:Number(val.salary).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style:"TableText"
                                 })],
                             }),
@@ -4193,7 +4385,10 @@ export default class FinalDocument extends React.Component {
                     }),
                     new TableCell({
                         children: [new Paragraph({
-                            text:val.cost,
+                            text:Number(val.cost).toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        }),
                             style:"TableText",
                             alignment: AlignmentType.CENTER,
                         })],
@@ -4330,7 +4525,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children:[new Paragraph({
-                                    text:"$ "+val.cost,
+                                    text:Number(val.cost).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    }),
                                     style:"TableText"
                                 })],
                             }),

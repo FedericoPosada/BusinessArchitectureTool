@@ -53,10 +53,10 @@ export default class CashFlow extends React.Component{
                     otherliabilities:cashFlow.otherliabilities,
                     purchasesproperty:cashFlow.purchasesproperty,
                     incentivesproperty:cashFlow.incentivesproperty,
-                    salesmarketablesecurities:cashFlow.accpayable,
-                    purchasesmarketablesecurities:cashFlow.otherliabilities,
-                    proceedslongterm:cashFlow.purchasesproperty,
-                    repaymentslongterm:cashFlow.incentivesproperty,
+                    salesmarketablesecurities:cashFlow.salesmarketablesecurities,
+                    purchasesmarketablesecurities:cashFlow.purchasesmarketablesecurities,
+                    proceedslongterm:cashFlow.proceedslongterm,
+                    repaymentslongterm:cashFlow.repaymentslongterm,
                     leasespayments:cashFlow.leasespayments,
                     cashoperativeactivities:cashFlow.cashoperativeactivities,
                     cashinvestmentactivities:cashFlow.cashinvestmentactivities,
@@ -163,7 +163,13 @@ export default class CashFlow extends React.Component{
             else
                 totalfinance+=parseInt(finance[i]);
         }
-        let finalcash=totaloperative+totalinv+totalfinance;
+        let cashbeg=0;
+        try {
+            cashbeg = parseInt(this.refs.cashbeginning.value);
+        }
+        catch (e) {
+        }
+        let finalcash=totaloperative+totalinv+totalfinance+cashbeg;
         let inc=finalcash-this.state.cashbeginning;
 
         this.setState({
@@ -473,7 +479,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Efectivo y equivalentes de efectivo al inicio del periodo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cashbeginning}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.cashbeginning).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -481,7 +490,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Utilidad neta del ejercicio:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.netincome}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.netincome).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -489,7 +501,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Depreciación:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.depreciation}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.depreciation).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -497,7 +512,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Compensación basada en acciones:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.stockcompensation}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.stockcompensation).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -505,7 +523,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Otros gastos operativos:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.opexpense}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.opexpense).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -513,7 +534,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Impuestos diferidos sobre la renta:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.deferredinc}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.deferredinc).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -524,7 +548,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Inventarios:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.inventories}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.inventories).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -532,7 +559,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Cuentas por cobrar:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.accreceivable}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.accreceivable).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -540,7 +570,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Cuentas por pagar:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.accpayable}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.accpayable).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -548,7 +581,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Otros pasivos:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.otherliabilities}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.otherliabilities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <hr />
@@ -557,7 +593,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Efectivo neto provisto por actividades de operación:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cashoperativeactivities} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.cashoperativeactivities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <hr />
@@ -566,7 +605,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Adquisición de propiedad, planta y equipo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.purchasesproperty}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.purchasesproperty).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -574,7 +616,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Venta de propiedad, planta y equipo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.incentivesproperty}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.incentivesproperty).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -582,7 +627,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Compra de valores negociables:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.purchasesmarketablesecurities}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.purchasesmarketablesecurities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <div className="row">
@@ -590,7 +638,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Venta de valores negociables:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.salesmarketablesecurities}</p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.salesmarketablesecurities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })}</p>
                                 </div>
                             </div>
                             <hr />
@@ -599,7 +650,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Efectivo neto provisto por actividades de inversión:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cashinvestmentactivities} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.cashinvestmentactivities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <hr />
@@ -608,7 +662,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Ingresos por deudas a largo plazo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.proceedslongterm} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.proceedslongterm).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <div className="row">
@@ -616,7 +673,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Pago de deudas a largo plazo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.repaymentslongterm} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.repaymentslongterm).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <div className="row">
@@ -624,7 +684,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Pago por arrendamientos financieros y de capital:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.leasespayments} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.leasespayments).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <hr />
@@ -633,7 +696,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Efectivo neto provisto por actividades de financiación:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cashfinancingactivities} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.cashfinancingactivities).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <hr />
@@ -642,7 +708,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Incremento neto sobre el efectivo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cashincrease} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.cashincrease).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                             <hr />
@@ -651,7 +720,10 @@ export default class CashFlow extends React.Component{
                                     <label style={{"marginLeft":"10px","marginRight":"30px"}}>Efectivo y equivalentes de efectivo al final del periodo:</label>
                                 </div>
                                 <div className="input-field col s4">
-                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.finalcash} </p>
+                                    <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.finalcash).toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })} </p>
                                 </div>
                             </div>
                         </form>

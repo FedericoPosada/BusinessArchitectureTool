@@ -410,7 +410,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ventas netas de productos:</label>
                             </div>
                             <div className="input-field col s3">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.productnetsales}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.productnetsales).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -418,7 +421,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ventas netas de servicios:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.servicenetsales}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.servicenetsales).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -427,7 +433,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ventas netas:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalnetsales} </p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalnetsales).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })} </p>
                             </div>
                         </div>
                         <hr />
@@ -436,7 +445,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Costos por ventas:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.salescost}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.salescost).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -444,7 +456,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Publicidad:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.marketing}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.marketing).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -452,7 +467,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Tecnología y contenido:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.technology}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.technology).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -460,7 +478,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Gastos administrativos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.adminexpenses}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.adminexpenses).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -468,7 +489,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Otros gastos operativos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.otheropexpenses}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.otheropexpenses).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -477,7 +501,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total gastos operativos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalopexpenses} </p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalopexpenses).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })} </p>
                             </div>
                         </div>
                         <hr />
@@ -486,7 +513,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ingresos operacionales:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.operationalincome}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.operationalincome).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -494,7 +524,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ingresos por intereses:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.interestincome}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.interestincome).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -502,7 +535,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Gastos por intereses:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.interestexpense}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.interestexpense).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -510,7 +546,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Otros ingresos netos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.othernetincome}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.othernetincome).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -519,7 +558,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ingresos antes de impuestos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.incomebeftaxes} </p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.incomebeftaxes).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })} </p>
                             </div>
                         </div>
                         <hr />
@@ -528,7 +570,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Impuestos sobre la renta:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.taxes}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.taxes).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -536,7 +581,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ingresos por inversiones:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.investmentincome}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.investmentincome).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -545,7 +593,10 @@ export default class IncomeStatement extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Ingresos netos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.netincome} </p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.netincome).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })} </p>
                             </div>
                         </div>
                     </form>
