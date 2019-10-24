@@ -132,7 +132,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Descripción:</label>
                             </div>
                             <div className="input-field col s8">
@@ -140,7 +140,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Forma de cálculo:</label>
                             </div>
                             <div className="input-field col s8">
@@ -148,7 +148,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Frecuencia de cálculo:</label>
                             </div>
                             <div className="input-field col s8">
@@ -163,7 +163,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Dimensiones:</label>
                             </div>
                             <div className="input-field col s8">
@@ -171,7 +171,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Asociado a:</label>
                             </div>
                             <div className="input-field col s8">
@@ -185,7 +185,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>ID asociada:</label>
                             </div>
                             <div className="input-field col s8">
@@ -235,7 +235,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>ID:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -245,7 +245,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Descripción:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -255,7 +255,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Forma de cálculo:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -265,7 +265,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Frecuencia de cálculo:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -275,7 +275,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Dimensiones:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -285,7 +285,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Asociado a:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -295,7 +295,7 @@ export default class StrategicIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>ID asociada:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>

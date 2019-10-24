@@ -60,6 +60,7 @@ export default class ResourceServicesManager extends React.Component {
                 owner:Meteor.userId()
             };
             resServicesContainer.insert(resservice, (err, done) => {
+                if(err)
                 console.log(err + " id = " + done)
             });
             this.refs.resservicename.value = "";

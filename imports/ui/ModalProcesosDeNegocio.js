@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
+import ValueChain from "./ProcessesModel/ValueChain";
 
 class ModalProcesosDeNegocio extends Component {
   componentDidMount() {
@@ -82,7 +83,7 @@ class ModalProcesosDeNegocio extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Cadena de Valor</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <p><a href="/ValueChain">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Cadena de Valor<i class="material-icons right">X</i></span>

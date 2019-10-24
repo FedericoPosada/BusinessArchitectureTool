@@ -3712,7 +3712,7 @@ export default class FinalDocument extends React.Component {
             currentActivities=val.activities;
             currentActivities.map((valP, indexP)=>{
                 activitiesPars.push(new Paragraph({
-                    text:valP.customid+" "+valP.name+"-"+valP.capacitycustomid+" "+valP.capacityname+"\n",
+                    text:valP.customid+" "+valP.name+" - "+valP.capacitycustomid+" "+valP.capacityname+"\n",
                     style:"TableText"
                 }))
             });
@@ -3723,7 +3723,7 @@ export default class FinalDocument extends React.Component {
                 }
             }
             if(index > -1 && images.length>0) {
-                image = Media.addImage(doc, images[index], 550, 400);
+                image = Media.addImage(doc, images[index], 575, 250);
             }
 
             currentTable = new Table({
@@ -4799,7 +4799,10 @@ export default class FinalDocument extends React.Component {
                             }),
                             new TableCell({
                                 children:[new Paragraph({
-                                    text:val.cost,
+                                    text:Number(val.cost).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                }),
                                     style:"TableText"
                                 })],
                             }),
@@ -4955,14 +4958,14 @@ export default class FinalDocument extends React.Component {
             currentPositions=val.positions;
             currentPositions.map((valP, indexP)=>{
                 positionsPars.push(new Paragraph({
-                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    text:"- "+valP.customid+"\n",
                     style:"TableText"
                 }))
             });
             currentRes=val.resources;
             currentRes.map((valP, indexP)=>{
                 resPars.push(new Paragraph({
-                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    text:"- "+valP.customid+"\n",
                     style:"TableText"
                 }))
             });

@@ -34,15 +34,15 @@ export default class ApplicationCatalog extends React.Component {
     render(){
         return (
             <div>
-                <h3>Catálogo de aplicaciones</h3>
+                <h3 style={{"marginLeft":"20px"}}>Catálogo de aplicaciones</h3>
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s4">
-                            {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{marginBottom:20}}
+                            {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{marginBottom:20,"marginLeft":"20px"}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons">cancel</i></a>}
-                            {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20}}
+                            {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20,"marginLeft":"20px"}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons right">add</i>Nueva aplicación</a>}
-                        <table className="striped" >
+                        <table className="striped" style={{"marginLeft":"20px"}}>
                     <tbody>
                     <tr>
                         <th>ID</th>
@@ -75,7 +75,9 @@ export default class ApplicationCatalog extends React.Component {
                     </tbody>
                 </table>
                         </div>
-                        <div className="input-field col s8">
+                        <div className="input-field col s1">
+                        </div>
+                        <div className="input-field col s6">
                             {
                                 this.state.isInCreateMode && <ApplicationCreator />
                             }

@@ -159,7 +159,10 @@ export default class Position extends React.Component{
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
                                 {
-                                    this.props.salary
+                                    Number(this.props.salary).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })
                                 }
                             </div>
                         </div>

@@ -13,6 +13,7 @@ export default class ResourceComponentsList extends React.Component {
     componentWillMount(){
         Tracker.autorun(()=>{
             Meteor.subscribe('tiresources');
+            Meteor.subscribe('components');
             let resource = tiResourcesContainer.findOne({owner:Meteor.userId(),customid:this.props.resourcecustomid});
             let idsComps=resource.components;
             this.setState({list: idsComps});
@@ -30,18 +31,20 @@ export default class ResourceComponentsList extends React.Component {
                 </tr>
                 { this.state.list.map((val, index)=>{
                     const comp=componentsContainer.findOne({customid:val});
-                    let name=comp.name;
-                    return(
-                        <tr key={"Fila"+index}>
-                            <ResourceComponent
-                                resourceid={this.props.resourceid}
-                                componentcustomid={val}
-                                name={name}
-                                resourcecustomid={this.props.resourcecustomid}
-                                key={"ResCom"+this.props.resourcecustomid+" "+index}
-                            />
-                        </tr>
-                    )
+                    if(typeof comp !== "undefined") {
+                        let name = comp.name;
+                        return (
+                            <tr key={"Fila" + index}>
+                                <ResourceComponent
+                                    resourceid={this.props.resourceid}
+                                    componentcustomid={val}
+                                    name={name}
+                                    resourcecustomid={this.props.resourcecustomid}
+                                    key={"ResCom" + this.props.resourcecustomid + " " + index}
+                                />
+                            </tr>
+                        )
+                    }
                 }) }
                 </tbody>
             </table>

@@ -13,7 +13,7 @@ export default class OperativeModelList extends React.Component {
     componentWillMount(){
         Tracker.autorun(()=>{
             Meteor.subscribe('opitems');
-            let opitems = opItemsContainer.find({owner:Meteor.userId()}).fetch();
+            let opitems = opItemsContainer.find({owner:Meteor.userId()}, {sort: {capacitycustomid: 1}}).fetch();
             this.setState({list: opitems});
         })
     }
