@@ -37,8 +37,7 @@ export default class ProcessActivityManager extends React.Component {
         if (this.checkFields()) {
             let activitycustomid;
             let tempid = this.props.processcustomid.replace("P", "A")
-            let proc = processesContainer.findOne({_id: this.props.processid,owner: Meteor.userId()})
-            console.log(proc);
+            let proc = processesContainer.findOne({_id: this.props.processid,owner: Meteor.userId()});
             let currentActivities=proc.activities;
             if (currentActivities.length === 0) {
                 activitycustomid = tempid + "1.";

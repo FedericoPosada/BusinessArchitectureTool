@@ -3712,7 +3712,7 @@ export default class FinalDocument extends React.Component {
             currentActivities=val.activities;
             currentActivities.map((valP, indexP)=>{
                 activitiesPars.push(new Paragraph({
-                    text:"- "+valP.customid+" "+valP.name+"\n",
+                    text:valP.customid+" "+valP.name+"-"+valP.capacitycustomid+" "+valP.capacityname+"\n",
                     style:"TableText"
                 }))
             });
