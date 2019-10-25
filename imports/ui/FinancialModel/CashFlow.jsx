@@ -135,8 +135,14 @@ export default class CashFlow extends React.Component{
             console.log(operative[i]);
             if(operative[i].length===0)
                 totaloperative+=0;
-            else
-                totaloperative+=parseInt(operative[i]);
+            else {
+                try {
+                    totaloperative += parseInt(operative[i]);
+                }
+                catch (e) {
+                    totaloperative +=0;
+                }
+            }
         }
         let totalinv=0;
         let inversion=[];
@@ -148,8 +154,14 @@ export default class CashFlow extends React.Component{
         {
             if(inversion[i].length===0)
                 totalinv+=0;
-            else
-                totalinv+=parseInt(inversion[i]);
+            else {
+                try {
+                    totalinv += parseInt(inversion[i]);
+                }
+                catch (e) {
+                    totalinv +=0;
+                }
+            }
         }
         let totalfinance=0;
         let finance=[];
@@ -160,8 +172,14 @@ export default class CashFlow extends React.Component{
         {
             if(finance[i].length===0)
                 totalfinance+=0;
-            else
-                totalfinance+=parseInt(finance[i]);
+            else {
+                try {
+                    totalfinance += parseInt(finance[i]);
+                }
+                catch (e) {
+                    totalfinance +=0;
+                }
+            }
         }
         let cashbeg=0;
         try {

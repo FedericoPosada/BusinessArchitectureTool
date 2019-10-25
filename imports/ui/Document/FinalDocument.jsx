@@ -4909,7 +4909,7 @@ export default class FinalDocument extends React.Component {
         let positionsPars=[];
         let currentRes=[];
         let resPars=[];
-        let opitems = opItemsContainer.find({owner:Meteor.userId()}).fetch();
+        let opitems = opItemsContainer.find({owner:Meteor.userId()}, {sort: {capacitycustomid: 1}}).fetch();
         let rows=[new TableRow({
             children: [
                 new TableCell({

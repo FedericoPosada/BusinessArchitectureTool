@@ -79,8 +79,14 @@ export default class Liabilities extends React.Component{
             console.log(currentassets[i]);
             if(currentassets[i].length===0)
                 totalcurrentl+=0;
-            else
-                totalcurrentl+=parseInt(currentassets[i]);
+            else {
+                try {
+                    totalcurrentl += parseInt(currentassets[i]);
+                }
+                catch (e) {
+                    totalcurrentl +=0;
+                }
+            }
         }
         let totalnoncurrentl=0;
         let noncurrent=[];
@@ -90,8 +96,14 @@ export default class Liabilities extends React.Component{
         {
             if(noncurrent[i].length===0)
                 totalnoncurrentl+=0;
-            else
-                totalnoncurrentl+=parseInt(noncurrent[i]);
+            else {
+                try {
+                    totalnoncurrentl += parseInt(noncurrent[i]);
+                }
+                catch (e) {
+                    totalnoncurrentl +=0;
+                }
+            }
         }
         let totalequity=0;
         let equity=[];
@@ -103,8 +115,14 @@ export default class Liabilities extends React.Component{
         {
             if(equity[i].length===0)
                 totalequity+=0;
-            else
-                totalequity+=parseInt(equity[i]);
+            else {
+                try{
+                totalequity += parseInt(equity[i]);
+                }
+                catch (e) {
+                    totalequity +=0;
+                }
+            }
         }
         this.setState({
             totalcurrentl:totalcurrentl,

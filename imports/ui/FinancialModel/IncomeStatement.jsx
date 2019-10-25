@@ -115,8 +115,14 @@ export default class IncomeStatement extends React.Component{
             console.log(sales[i]);
             if(sales[i].length===0)
                 totalsales+=0;
-            else
-                totalsales+=parseInt(sales[i]);
+            else {
+                try {
+                    totalsales += parseInt(sales[i]);
+                }
+                catch (e) {
+                    totalsales +=0;
+                }
+            }
         }
         let totalopexp=0;
         let opexpenses=[];
@@ -129,8 +135,14 @@ export default class IncomeStatement extends React.Component{
         {
             if(opexpenses[i].length===0)
                 totalopexp+=0;
-            else
-                totalopexp+=parseInt(opexpenses[i]);
+            else {
+                try{
+                totalopexp += parseInt(opexpenses[i]);
+                }
+                catch (e) {
+                    totalopexp +=0;
+                }
+            }
         }
         let incbeftax=0;
         let incomesbeftax=[];
@@ -142,8 +154,14 @@ export default class IncomeStatement extends React.Component{
         {
             if(incomesbeftax[i].length===0)
                 incbeftax+=0;
-            else
-                incbeftax+=parseInt(incomesbeftax[i]);
+            else {
+                try {
+                    incbeftax += parseInt(incomesbeftax[i]);
+                }
+                catch (e) {
+                    incbeftax +=0;
+                }
+            }
         }
         let other=[];
         other[0]=this.refs.taxes.value;
@@ -154,8 +172,14 @@ export default class IncomeStatement extends React.Component{
             console.log(other[i]);
             if(other[i].length===0)
                 finalNumber+=0;
-            else
-                finalNumber+=parseInt(other[i]);
+            else {
+                try {
+                    finalNumber += parseInt(other[i]);
+                }
+                catch (e) {
+                    finalNumber +=0;
+                }
+            }
         }
         this.setState({
             totalnetsales:totalsales,

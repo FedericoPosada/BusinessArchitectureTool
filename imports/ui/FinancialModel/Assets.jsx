@@ -76,8 +76,13 @@ export default class Assets extends React.Component{
             console.log(currentassets[i]);
             if(currentassets[i].length===0)
                 totalcurrent+=0;
-            else
-                totalcurrent+=parseInt(currentassets[i]);
+            else {
+                try{
+                totalcurrent += parseInt(currentassets[i]);}
+                catch (e) {
+                    totalcurrent+=0;
+                }
+            }
         }
         let totalnoncurrent=0;
         let noncurrent=[];
@@ -89,8 +94,13 @@ export default class Assets extends React.Component{
         {
             if(noncurrent[i].length===0)
                 totalnoncurrent+=0;
-            else
-                totalnoncurrent+=parseInt(noncurrent[i]);
+            else {
+                try{
+                totalnoncurrent += parseInt(noncurrent[i]);}
+                catch (e) {
+                    totalnoncurrent +=0;
+                }
+            }
         }
         this.setState({
             totalcurrent:totalcurrent,
