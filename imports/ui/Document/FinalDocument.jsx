@@ -2753,7 +2753,7 @@ export default class FinalDocument extends React.Component {
         let currentRow;
         let objectives = objectivesContainer.find({owner:Meteor.userId()}).fetch();
         let goals = goalsContainer.find({owner:Meteor.userId()}).fetch();
-        let tacs = tacticsContainer.find({}).fetch();
+        let tacs = tacticsContainer.find({owner:Meteor.userId()}).fetch();
         let achinds = achIndicatorsContainer.find({owner:Meteor.userId()}).fetch();
         let strats = strategiesContainer.find({owner:Meteor.userId()}).fetch();
         let goalsrows=[new TableRow({

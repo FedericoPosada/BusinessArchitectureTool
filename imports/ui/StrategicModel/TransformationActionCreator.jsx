@@ -64,17 +64,21 @@ export default class TransformationActionCreator extends React.Component{
         }
     }
     checkFields(){
-        if(this.refs.descEdit.value.length === 0
-            || this.refs.nameEdit.value.length === 0
-            || this.refs.artifactEdit.value.length === 0
-            || this.refs.modelEdit.value.length === 0
-            || this.refs.costEdit.value.length === 0
-            || this.refs.riskEdit.value.length === 0)
-        {
-            Materialize.toast("Todos los campos deben completarse.",3000);
-            return false;
+        try {
+            if (this.refs.descEdit.value.length === 0
+                || this.refs.nameEdit.value.length === 0
+                || this.refs.artifactEdit.value.length === 0
+                || this.refs.modelEdit.value.length === 0
+                || this.refs.costEdit.value.length === 0
+                || this.refs.riskEdit.value.length === 0) {
+                Materialize.toast("Todos los campos deben completarse.", 3000);
+                return false;
+            }
+            return true;
         }
-        return true;
+        catch (e) {
+            Materialize.toast("Todos los campos deben completarse.", 3000);
+        }
     }
     handleModelChange(){
         const value = this.refs.modelEdit.value;
