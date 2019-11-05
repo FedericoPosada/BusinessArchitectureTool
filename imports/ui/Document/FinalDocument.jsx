@@ -65,10 +65,17 @@ export default class FinalDocument extends React.Component {
         let self=this;
         Meteor.call('getProcsImages',function(error, result){
             if(result.length > 0){
-                console.log("Si es mayor");
                 self.setState({
                         procimagesids: result,
                     loaded:true
+                    }
+                )
+            }
+            else {
+                Materialize.toast("No se han encontrado imágenes de procesos",3000);
+                self.setState({
+                        procimagesids: result,
+                        loaded:true
                     }
                 )
             }
@@ -464,6 +471,9 @@ export default class FinalDocument extends React.Component {
                                     style: "SectionTitles",
                                     pageBreakBefore: true,
                                 }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
                                 capMap,
                                 new Paragraph({
                                     text: "5. Estructura organizacional",
@@ -638,6 +648,7 @@ export default class FinalDocument extends React.Component {
     }
 
     createBServicesPortfolio(){
+        try{
         let bServices = bServicesContainer.find({owner:Meteor.userId()}).fetch();
         let servRows=[];
         servRows.push(new TableRow({
@@ -773,10 +784,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createBalanceSheet(){
+        try{
         let bSheet = bSheetsContainer.findOne({owner:Meteor.userId()});
         if(typeof bSheet !== 'undefined') {
             const table = new Table({
@@ -1358,10 +1373,14 @@ export default class FinalDocument extends React.Component {
             return table;
         }
         else
-            return "";
+            return "";}
+    catch (e) {
+        return new Paragraph("");
+    }
     }
 
     createIncomeStatement(){
+        try{
         let iStatement = incomeStatementsContainer.findOne({owner:Meteor.userId()});
         if(typeof iStatement !== 'undefined') {
             const table = new Table({
@@ -1763,549 +1782,557 @@ export default class FinalDocument extends React.Component {
             return table;
         }
         else
-            return "";
+            return "";}
+    catch (e) {
+        return new Paragraph("");
+    }
     }
 
     createCashFlow(){
-        let cashFlow = cashFlowsContainer.findOne({owner:Meteor.userId()});
-        if(typeof cashFlow !== 'undefined'){
-            const table = new Table({
-                rows: [
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Flujo de caja",
-                                    style: "TableHeading",
-                                    alignment: AlignmentType.CENTER,
-                                })],
-                                columnSpan:2,
-                                shading: {
-                                    fill: "B3B4B5",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                                verticalAlign: VerticalAlign.CENTER
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Efectivo y equivalentes de efectivo al inicio del periodo",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.cashbeginning).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Actividades de operación",
-                                    style: "TableHeading"
-                                })],
-                                columnSpan:2,
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                                verticalAlign: VerticalAlign.CENTER
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Utilidad neta del ejercicio",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.netincome).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Depreciación",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.depreciation).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Compensación basada en acciones",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.stockcompensation).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Otros gastos operativos",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.opexpense).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Impuestos diferidos sobre la renta",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.deferredinc).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Cambios en activos y pasivos",
-                                    style: "TableHeading"
-                                })],
-                                columnSpan:2,
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                                verticalAlign: VerticalAlign.CENTER
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Inventarios",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.inventories).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Cuentas por cobrar",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.accreceivable).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Cuentas por pagar",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.accpayable).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Otros pasivos",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.otherliabilities).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Efectivo neto provisto por actividades de operación",
-                                    style: "TableHeading"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.cashoperativeactivities).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableHeading"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Actividades de inversión",
-                                    style: "TableHeading"
-                                })],
-                                columnSpan:2,
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                                verticalAlign: VerticalAlign.CENTER
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Adquisición de propiedad, planta y equipo",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.purchasesproperty).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Venta de propiedad, planta y equipo",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.purchasesproperty).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Compra de valores negociables",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.purchasesmarketablesecurities).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Venta de valores negociables",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.salesmarketablesecurities).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Efectivo neto provisto por actividades de inversión",
-                                    style: "TableHeading"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.cashinvestmentactivities).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableHeading"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Actividades de financiación",
-                                    style: "TableHeading"
-                                })],
-                                columnSpan:2,
-                                shading: {
-                                    fill: "D1D1D1",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                                verticalAlign: VerticalAlign.CENTER
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Ingresos por deudas a largo plazo",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.proceedslongterm).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Pago de deudas a largo plazo",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.repaymentslongterm).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
+        try {
+            let cashFlow = cashFlowsContainer.findOne({owner: Meteor.userId()});
+            if (typeof cashFlow !== 'undefined') {
+                const table = new Table({
+                    rows: [
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Flujo de caja",
+                                        style: "TableHeading",
+                                        alignment: AlignmentType.CENTER,
+                                    })],
+                                    columnSpan: 2,
+                                    shading: {
+                                        fill: "B3B4B5",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                    verticalAlign: VerticalAlign.CENTER
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Efectivo y equivalentes de efectivo al inicio del periodo",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.cashbeginning).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Actividades de operación",
+                                        style: "TableHeading"
+                                    })],
+                                    columnSpan: 2,
+                                    shading: {
+                                        fill: "D1D1D1",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                    verticalAlign: VerticalAlign.CENTER
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Utilidad neta del ejercicio",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.netincome).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Depreciación",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.depreciation).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Compensación basada en acciones",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.stockcompensation).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Otros gastos operativos",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.opexpense).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Impuestos diferidos sobre la renta",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.deferredinc).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Cambios en activos y pasivos",
+                                        style: "TableHeading"
+                                    })],
+                                    columnSpan: 2,
+                                    shading: {
+                                        fill: "D1D1D1",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                    verticalAlign: VerticalAlign.CENTER
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Inventarios",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.inventories).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Cuentas por cobrar",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.accreceivable).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Cuentas por pagar",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.accpayable).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Otros pasivos",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.otherliabilities).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Efectivo neto provisto por actividades de operación",
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.cashoperativeactivities).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Actividades de inversión",
+                                        style: "TableHeading"
+                                    })],
+                                    columnSpan: 2,
+                                    shading: {
+                                        fill: "D1D1D1",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                    verticalAlign: VerticalAlign.CENTER
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Adquisición de propiedad, planta y equipo",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.purchasesproperty).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Venta de propiedad, planta y equipo",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.purchasesproperty).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Compra de valores negociables",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.purchasesmarketablesecurities).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Venta de valores negociables",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.salesmarketablesecurities).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Efectivo neto provisto por actividades de inversión",
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.cashinvestmentactivities).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Actividades de financiación",
+                                        style: "TableHeading"
+                                    })],
+                                    columnSpan: 2,
+                                    shading: {
+                                        fill: "D1D1D1",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                    verticalAlign: VerticalAlign.CENTER
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Ingresos por deudas a largo plazo",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.proceedslongterm).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Pago de deudas a largo plazo",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.repaymentslongterm).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
 
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Pago por arrendamientos financieros y de capital",
-                                    style: "TableText"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.leasespayments).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableText"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Efectivo neto provisto por actividades de financiación:",
-                                    style: "TableHeading"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.cashfinancingactivities).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableHeading"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Incremento neto sobre el efectivo:",
-                                    style: "TableHeading"
-                                })],
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.cashincrease).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableHeading"
-                                })],
-                            }),
-                        ],
-                    }),
-                    new TableRow({
-                        children: [
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: "Efectivo y equivalentes de efectivo al final del periodo",
-                                    style: "TableHeading"
-                                })],
-                                shading: {
-                                    fill: "B3B4B5",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                            }),
-                            new TableCell({
-                                children: [new Paragraph({
-                                    text: Number(cashFlow.finalcash).toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    }),
-                                    style: "TableHeading"
-                                })],
-                                shading: {
-                                    fill: "B3B4B5",
-                                    val: ShadingType.CLEAR,
-                                    color: "auto",
-                                },
-                            }),
-                        ],
-                    }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Pago por arrendamientos financieros y de capital",
+                                        style: "TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.leasespayments).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableText"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Efectivo neto provisto por actividades de financiación:",
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.cashfinancingactivities).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Incremento neto sobre el efectivo:",
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.cashincrease).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableHeading"
+                                    })],
+                                }),
+                            ],
+                        }),
+                        new TableRow({
+                            children: [
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: "Efectivo y equivalentes de efectivo al final del periodo",
+                                        style: "TableHeading"
+                                    })],
+                                    shading: {
+                                        fill: "B3B4B5",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                }),
+                                new TableCell({
+                                    children: [new Paragraph({
+                                        text: Number(cashFlow.finalcash).toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        }),
+                                        style: "TableHeading"
+                                    })],
+                                    shading: {
+                                        fill: "B3B4B5",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                }),
+                            ],
+                        }),
 
-                ],
-                width: {
-                    size: 100,
-                    type: WidthType.PERCENTAGE,
-                },
-                margins: {
-                    top: 50,
-                    bottom: 50,
-                    right: 50,
-                    left: 50,
-                },
-            });
-            return table;
+                    ],
+                    width: {
+                        size: 100,
+                        type: WidthType.PERCENTAGE,
+                    },
+                    margins: {
+                        top: 50,
+                        bottom: 50,
+                        right: 50,
+                        left: 50,
+                    },
+                });
+                return table;
+            } else
+                return "";
         }
-        else
-            return "";
+    catch (e) {
+        return new Paragraph("");
+    }
     }
 
     createFinancialIndicators(){
+        try{
         let cashratio=financialContainer.findOne({name:"Razón de efectivo",owner:Meteor.userId()});
         let currentratio=financialContainer.findOne({name:"Razón corriente",owner:Meteor.userId()});
         let acidtest=financialContainer.findOne({name:"Prueba ácida",owner:Meteor.userId()});
@@ -2472,10 +2499,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+    catch (e) {
+        return new Paragraph("");
+    }
     }
 
     createMotivComponent(){
+        try{
         let motivC = motivCompContainer.findOne({owner:Meteor.userId()});
 
         if(typeof motivC !== 'undefined'){
@@ -2624,10 +2655,14 @@ export default class FinalDocument extends React.Component {
             return table;
         }
         else
-            return "";
+            return "";}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createBusinessStrategies(){
+        try{
         var bStrategies = bStrategiesContainer.find({owner:Meteor.userId()}).fetch();
         let rows=[];
         rows.push(new TableRow({
@@ -2746,10 +2781,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createStrategicPlan(){
+        try{
         let currentRow;
         let objectives = objectivesContainer.find({owner:Meteor.userId()}).fetch();
         let goals = goalsContainer.find({owner:Meteor.userId()}).fetch();
@@ -3164,11 +3203,15 @@ export default class FinalDocument extends React.Component {
             },
         });
 
-        return [tableObj,tableGoals,tableStrats,tableTacs,tableAch];
+        return [tableObj,tableGoals,tableStrats,tableTacs,tableAch];}
+        catch (e) {
+            return [new Paragraph(""),new Paragraph(""),new Paragraph(""),new Paragraph(""),new Paragraph("")];
+        }
 
     }
 
     createTransfActions(){
+        try{
         let currentRow;
         let actions = transfActionsContainer.find({owner:Meteor.userId()}).fetch();
         let rows=[new TableRow({
@@ -3325,10 +3368,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createProjectsPortfolio(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -3525,10 +3572,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createCapacitiesMap(){
+        try{
         let currentRow;
         let childrenRow=[];
         let packs = packagesContainer.find({owner:Meteor.userId()}, {sort:{customid:1}}).fetch();
@@ -3691,10 +3742,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createProcessCatalog(doc){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -3890,10 +3945,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createValueChain(){
+        try{
         let supactivities;
         let rowChildren=[];
         let activitiespars=[];
@@ -4062,12 +4121,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
-
-
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createPositionCatalog(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -4274,10 +4335,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createResourcesModel(){
+        try{
         let resources = resourcesContainer.find({owner:Meteor.userId()}).fetch();
         let resRows=[];
         resRows.push(new TableRow({
@@ -4416,10 +4481,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createTIResourcesModel(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -4626,10 +4695,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createComponentsCatalog(){
+        try{
         let currentRow;
         let actions = componentsContainer.find({owner:Meteor.userId()}).fetch();
         let rows=[new TableRow({
@@ -4711,10 +4784,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createAppCatalog(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -4900,10 +4977,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createOperativeModel(){
+        try{
         let currentRow;
         let currentPositions=[];
         let positionsPars=[];
@@ -5001,10 +5082,14 @@ export default class FinalDocument extends React.Component {
                 left: 50,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createOperativeIndicators(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -5229,10 +5314,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createStrategicIndicators(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -5444,10 +5533,14 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     createExternalIndicators(){
+        try{
         let currentTable;
         let currentRow;
         let rows=[];
@@ -5637,7 +5730,10 @@ export default class FinalDocument extends React.Component {
                 left: 75,
             },
         });
-        return table;
+        return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
     }
 
     render(){
