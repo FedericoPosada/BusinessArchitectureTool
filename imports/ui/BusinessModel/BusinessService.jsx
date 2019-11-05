@@ -43,7 +43,7 @@ export default class BusinessService extends React.Component {
             });
     }
     deleteService(){
-        var id = this.props.id;
+        var id = this.props._id;
         bServicesContainer.remove({_id:id});
     }
     changeEditMode(){
