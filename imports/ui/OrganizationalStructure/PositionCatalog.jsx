@@ -78,7 +78,7 @@ export default class PositionCatalog extends React.Component {
                         </div>
                         <div className="input-field col s1">
                         </div>
-                        <div className="input-field col s7">
+                        <div className="input-field col s6">
                             {
                                 this.state.isInCreateMode && <PositionCreator />
                             }

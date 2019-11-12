@@ -26,17 +26,17 @@ export default class OperativeIndicatorCreator extends React.Component{
             let indicatorcustomid;
             let labelSelected = this.refs.labelCreate.value;
             if (opIndicatorsContainer.find({owner:Meteor.userId(),"customid": new RegExp(labelSelected)}).count() === 0) {
-                indicatorcustomid = labelSelected + ".1.";
+                indicatorcustomid = labelSelected + "1";
             } else {
                 let customIdLastNumber = '';
                 let lastIndicators = opIndicatorsContainer.find({owner:Meteor.userId(),"customid": new RegExp(labelSelected)}).fetch();
                 let customIdLast = lastIndicators[lastIndicators.length - 1].customid;
-                for (let i = labelSelected.length+1; i < customIdLast.length-1; i++) {
+                for (let i = labelSelected.length; i < customIdLast.length; i++) {
                     customIdLastNumber += customIdLast.charAt(i);
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                indicatorcustomid = labelSelected + "." + lastnumber+".";
+                indicatorcustomid = labelSelected + lastnumber;
             }
             let createObj = {
                 customid: indicatorcustomid,

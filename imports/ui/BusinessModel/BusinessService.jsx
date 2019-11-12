@@ -85,7 +85,7 @@ export default class BusinessService extends React.Component {
                 <td>{this.props.name}</td>
                 <td>{this.props.object}</td>
                 <td>{this.props.client}</td>
-                <td style={{width:"5%"}}><a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn" style={{marginRight:5, marginBottom:5}}><i
+                <td style={{width:"5%"}}><a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn" style={{marginRight:5,marginBottom:5}}><i
                     className="material-icons">edit</i></a>
                     { this.state.opMode && <a onClick={this.changeOpMode.bind(this)} className="waves-effect waves-light btn" ><i
                         className="material-icons">chevron_left</i></a>}

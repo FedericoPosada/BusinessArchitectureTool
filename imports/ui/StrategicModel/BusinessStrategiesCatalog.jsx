@@ -163,7 +163,11 @@ export default class BusinessStrategiesCatalog extends React.Component {
                     <a onClick={this.handleClick} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Crear</a>
                     </div>
                 </div>
-                <BusinessStrategiesList/>
+                <div className="row">
+                    <div className="input-field col s11">
+                <BusinessStrategiesList style={{marginLeft:5}}/>
+                    </div>
+                </div>
              </div>
     )
     }

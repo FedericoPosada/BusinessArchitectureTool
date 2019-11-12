@@ -86,7 +86,11 @@ export default class BusinessServicesPortfolio extends React.Component {
                     <a onClick={this.handleClick} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Agregar</a>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="input-field col s11" style={{marginLeft:5}}>
                 <BusinessServicesList/>
+                </div>
+                </div>
              </div>
     )
     }

@@ -72,7 +72,9 @@ export default class ProjectsList extends React.Component {
                     </tbody>
                 </table>
                         </div>
-                        <div className="input-field col s8">
+                        <div className="input-field col s1">
+                        </div>
+                        <div className="input-field col s6">
                             {
                                 this.state.isInCreateMode && <ProjectCreator />
                             }

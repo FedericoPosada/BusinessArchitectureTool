@@ -46,7 +46,7 @@ export default class StrategicPlan extends React.Component {
                 <div className="row">
                     {this.state.purposeMode && <Purposes/>}
                     {this.state.meansMode && <Means/>}
-                    {this.state.indMode && <AchievementIndicatorCreator/>}
+                    {this.state.indMode && <AchievementIndicatorCreator style={{"marginLeft":14}}/>}
                 </div>
             </div>
         )

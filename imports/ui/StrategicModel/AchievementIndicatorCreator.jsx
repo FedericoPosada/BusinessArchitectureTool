@@ -69,8 +69,8 @@ export default class AchievementIndicatorCreator extends React.Component {
     render(){
         return (
             <div>
-                <h4>Indicadores de logro:</h4>
-                <AchievementIndicatorList/>
+                <h4 style={{"marginLeft":"14"}}>Indicadores de logro:</h4>
+                <AchievementIndicatorList style={{"marginLeft":"14"}}/>
                 <div className="row">
                     <div className="input-field col s4">
                         <input  ref="achDescCreate" type="text" className="validate"/>

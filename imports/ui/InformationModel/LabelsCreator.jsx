@@ -40,7 +40,11 @@ export default class ComponentsCatalog extends React.Component {
                         <a onClick={this.handleClick.bind(this)} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Agregar</a>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="input-field col s8">
                 <LabelsList/>
+                    </div>
+                </div>
             </div>
         )
     }
