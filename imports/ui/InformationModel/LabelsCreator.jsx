@@ -1,6 +1,7 @@
 import React from 'react';
 import {labelsContainer} from "../../api/labels";
 import LabelsList from "./LabelsList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ComponentsCatalog extends React.Component {
     checkFields(){
@@ -27,6 +28,7 @@ export default class ComponentsCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input ref="idEdit" type="text" className="validate"/>

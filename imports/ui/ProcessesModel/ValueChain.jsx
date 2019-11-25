@@ -1,6 +1,7 @@
 import React from 'react';
 import PrimaryActivities from "./PrimaryActivities";
 import SupportActivities from "./SupportActivities";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ValueChain extends React.Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class ValueChain extends React.Component {
     render() {
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="col s12">
                     <ul className="tabs">
                         <li className="tab col s3"><a onClick={this.changeSupportMode.bind(this)}>Actividades de soporte</a></li>

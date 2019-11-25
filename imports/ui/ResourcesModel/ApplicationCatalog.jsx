@@ -3,6 +3,7 @@ import {exIndicatorsContainer} from "../../api/exindicators";
 import Application from "./Application";
 import ApplicationCreator from "./ApplicationCreator";
 import {applicationsContainer} from "../../api/applications";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ApplicationCatalog extends React.Component {
     constructor(props){
@@ -34,6 +35,7 @@ export default class ApplicationCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Catálogo de aplicaciones</h3>
                 <form className="col s12">
                     <div className="row">

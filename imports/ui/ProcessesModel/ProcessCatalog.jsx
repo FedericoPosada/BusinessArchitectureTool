@@ -2,6 +2,7 @@ import React from 'react';
 import Process from "./Process";
 import ProcessCreator from "./ProcessCreator";
 import {processesContainer} from "../../api/processes";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ProcessCatalog extends React.Component {
     constructor(props){
@@ -33,6 +34,7 @@ export default class ProcessCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Catálogo de procesos</h3>
                 <form className="col s12">
                     <div className="row">

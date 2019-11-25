@@ -2,6 +2,7 @@ import React from 'react';
 import {stIndicatorsContainer} from "../../api/stindicators";
 import StrategicIndicator from "./StrategicIndicator";
 import StrategicIndicatorCreator from "./StrategicIndicatorCreator";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class StrategicIndicatorsList extends React.Component {
     constructor(props){
@@ -34,6 +35,7 @@ export default class StrategicIndicatorsList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Indicadores estratégicos</h3>
                 <form className="col s12">
                     <div className="row">

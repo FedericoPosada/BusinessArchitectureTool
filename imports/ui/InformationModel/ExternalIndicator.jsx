@@ -75,9 +75,7 @@ export default class ExternalIndicator extends React.Component{
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s2">
-                                <a className="waves-effect waves-light btn green" onClick={this.changeEditMode.bind(this)}><i className="material-icons">check</i></a>
-                            </div>
-                            <div className="input-field col s2">
+                                <a className="waves-effect waves-light btn green" onClick={this.changeEditMode.bind(this)} style={{marginRight:5}}><i className="material-icons">check</i></a>
                                 <a className="waves-effect waves-light btn red" onClick={this.deleteIndicator.bind(this)}><i className="material-icons">delete</i></a>
                             </div>
                         </div>
@@ -146,9 +144,7 @@ export default class ExternalIndicator extends React.Component{
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s2">
-                                <a className="waves-effect waves-light btn" onClick={this.changeEditMode.bind(this)}><i className="material-icons">edit</i></a>
-                            </div>
-                            <div className="input-field col s2">
+                                <a className="waves-effect waves-light btn" onClick={this.changeEditMode.bind(this)} style={{marginRight:5}}><i className="material-icons">edit</i></a>
                                 <a className="waves-effect waves-light btn red" onClick={this.deleteIndicator.bind(this)}><i className="material-icons">delete</i></a>
                             </div>
                         </div>

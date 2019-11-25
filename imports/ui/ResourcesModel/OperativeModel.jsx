@@ -7,6 +7,7 @@ import {capacitiesContainer} from "../../api/capacities";
 import {opItemsContainer} from "../../api/opitems";
 import OperativeModelList from "./OperativeModelList";
 import {positionsContainer} from "../../api/positions";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class OperativeModel extends React.Component {
     constructor(props){
@@ -111,6 +112,7 @@ export default class OperativeModel extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div>
                 <div className="row">
                     <div className="input-field col s1">

@@ -2,6 +2,7 @@ import React from 'react';
 import BalanceSheet from "./BalanceSheet";
 import IncomeStatement from "./IncomeStatement";
 import CashFlow from "./CashFlow";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 export default class FinancialStatements extends React.Component {
     constructor(props) {
         super(props)
@@ -35,6 +36,7 @@ export default class FinancialStatements extends React.Component {
     render() {
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="col s12">
                     <ul className="tabs">
                         <li className="tab col s4"><a onClick={this.changePurposeMode.bind(this)}>Balance general</a></li>

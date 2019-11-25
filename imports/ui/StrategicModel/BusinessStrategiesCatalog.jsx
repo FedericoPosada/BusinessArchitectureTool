@@ -3,6 +3,7 @@ import {bServicesContainer} from '../../api/bservices';
 import {resourcesContainer} from "../../api/resources";
 import {bStrategiesContainer} from "../../api/bstrategies";
 import BusinessStrategiesList from "./BusinessStrategiesList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class BusinessStrategiesCatalog extends React.Component {
     constructor(props){
@@ -115,6 +116,7 @@ export default class BusinessStrategiesCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s2">
                         <input name="name" placeholder="Nombre" type="text" ref="strategyname"

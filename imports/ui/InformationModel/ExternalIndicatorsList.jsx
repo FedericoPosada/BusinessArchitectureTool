@@ -2,6 +2,7 @@ import React from 'react';
 import {exIndicatorsContainer} from "../../api/exindicators";
 import ExternalIndicator from "./ExternalIndicator";
 import ExternalIndicatorCreator from "./ExternalIndicatorCreator";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ExternalIndicatorsList extends React.Component {
     constructor(props){
@@ -33,6 +34,7 @@ export default class ExternalIndicatorsList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Indicadores externos</h3>
                 <form className="col s12">
                     <div className="row">

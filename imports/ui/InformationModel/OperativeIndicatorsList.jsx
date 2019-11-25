@@ -2,6 +2,7 @@ import React from 'react';
 import {opIndicatorsContainer} from "../../api/opindicators";
 import OperativeIndicator from "./OperativeIndicator";
 import OperativeIndicatorCreator from "./OperativeIndicatorCreator";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class OperativeIndicatorsList extends React.Component {
     constructor(props){
@@ -34,6 +35,7 @@ export default class OperativeIndicatorsList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Indicadores operativos</h3>
                 <form className="col s12">
                     <div className="row">

@@ -2,6 +2,7 @@ import React from 'react';
 import {tiResourcesContainer} from "../../api/tiresources";
 import ResourcesList from "./ResourcesList";
 import TIResourcesList from "./TIResourcesList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class TIResourcesModel extends React.Component {
     checkFields(){
@@ -51,6 +52,7 @@ export default class TIResourcesModel extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input id="tiresourcename" ref="tiresourcename" type="text" className="validate"/>

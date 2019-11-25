@@ -2,6 +2,7 @@ import React from 'react';
 import TransformationAction from "./TransformationAction";
 import {transfActionsContainer} from "../../api/transfactions";
 import TransformationActionCreator from "./TransformationActionCreator";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class TransformationActionList extends React.Component {
     constructor(props){
@@ -33,6 +34,7 @@ export default class TransformationActionList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Acciones de transformación</h3>
                 <form className="col s12">
                     <div className="row">

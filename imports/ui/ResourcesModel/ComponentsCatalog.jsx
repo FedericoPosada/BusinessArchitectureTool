@@ -1,6 +1,7 @@
 import React from 'react';
 import {componentsContainer} from "../../api/components";
 import ComponentsList from "./ComponentsList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ComponentsCatalog extends React.Component {
     checkFields(){
@@ -47,6 +48,7 @@ export default class ComponentsCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input id="componentname" ref="componentname" type="text" className="validate"/>

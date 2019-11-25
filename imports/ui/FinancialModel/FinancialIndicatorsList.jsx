@@ -2,6 +2,7 @@ import React from 'react';
 import CurrentRatio from "./CurrentRatio";
 import AcidTest from "./AcidTest";
 import CashRatio from "./CashRatio";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class FinancialIndicatorsList extends React.Component {
     constructor(props){
@@ -36,6 +37,7 @@ export default class FinancialIndicatorsList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h4 style={{"marginLeft":"20px"}}>Indicadores financieros</h4>
                 <form className="col s12">
                     <div className="row">

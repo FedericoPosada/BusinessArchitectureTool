@@ -2,6 +2,7 @@ import React from 'react';
 import Project from "./Project";
 import ProjectCreator from "./ProjectCreator";
 import {projectsContainer} from "../../api/projects";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ProjectsList extends React.Component {
     constructor(props){
@@ -34,6 +35,7 @@ export default class ProjectsList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h4 style={{"marginLeft":"20px"}}>Proyectos:</h4>
                 <form className="col s12">
                     <div className="row">

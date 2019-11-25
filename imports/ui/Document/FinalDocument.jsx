@@ -47,6 +47,7 @@ import ProcessesImages from "../../api/ProcessesImagesCol";
 import {packagesContainer} from "../../api/packages";
 import {subpackagesContainer} from "../../api/subpackages";
 import {capacitiesContainer} from "../../api/capacities";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -5745,23 +5746,35 @@ export default class FinalDocument extends React.Component {
             cursor="";
         return(
             <div>
+                <PrivateLoggedHeader/>
+            <div style={{"background-color":"#E1E8F0","height":"100vh"}}>
+                <div className="row">
+                    <div className="input-field col s4">
+                    <h4 style={{"marginLeft":"20px"}}>Documento entregable:</h4>
+                    </div>
+                </div>
+                <div className="row">
                 { this.state.loaded && cursor !== "" &&
-                <div className="input-field col s10">
-                    <a className="waves-effect waves-light btn red" onClick={this.removeFinalDocument.bind(this)} style={{"marginLeft":"14px"}}><i className="material-icons left">delete</i>Borrar</a>
-                    <a className="waves-effect waves-light btn" href={cursor} download={true} style={{"marginLeft":"14px"}}><i className="material-icons left">file_download</i>Descargar</a>
+                <div className="input-field col s4">
+                    <a className="waves-effect waves-light btn red" onClick={this.removeFinalDocument.bind(this)} style={{"marginLeft":"20px"}}><i className="material-icons left">delete</i>Borrar</a>
+                    <a className="waves-effect waves-light btn" href={cursor} download={true} style={{"marginLeft":"20px"}}><i className="material-icons left">file_download</i>Descargar</a>
                 </div>
                 }
                 { this.state.loaded && cursor === "" &&
-                <div className="input-field col s8">
+                <div className="input-field col s4">
                     <a className="waves-effect waves-light btn light-green" onClick={this.createDoc.bind(this)}
-                       style={{"marginLeft":"14px"}}><i className="material-icons left">library_add</i>Crear documento</a>
+                       style={{"marginLeft":"20px"}}><i className="material-icons left">library_add</i>Crear documento</a>
                 </div>
                 }
                 { !this.state.loaded  &&
-                <div className="input-field col s8">
-                    <h4>Cargando...</h4>
+                <div className="input-field col s4">
+                    <h4 style={{"marginLeft":"20px"}}>Cargando...</h4>
                 </div>
                 }
+                    <div className="input-field col s4">
+                    </div>
+                </div>
+            </div>
             </div>
         )
     }

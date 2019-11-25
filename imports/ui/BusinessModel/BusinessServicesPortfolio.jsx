@@ -2,6 +2,7 @@ import React from 'react';
 import {bServicesContainer} from '../../api/bservices';
 import BusinessServicesList from './BusinessServicesList';
 import {clientsContainer} from "../../api/clients";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class BusinessServicesPortfolio extends React.Component {
     constructor(props){
@@ -64,6 +65,7 @@ export default class BusinessServicesPortfolio extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input id="servicename" ref="servicename" type="text" className="validate"/>

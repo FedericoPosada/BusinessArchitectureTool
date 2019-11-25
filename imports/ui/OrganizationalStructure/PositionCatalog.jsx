@@ -2,6 +2,7 @@ import React from 'react';
 import Position from "./Position";
 import PositionCreator from "./PositionCreator";
 import {positionsContainer} from "../../api/positions";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class PositionCatalog extends React.Component {
     constructor(props){
@@ -34,6 +35,7 @@ export default class PositionCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Catálogo de cargos</h3>
                 <form className="col s12">
                     <div className="row">
