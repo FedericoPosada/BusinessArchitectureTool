@@ -983,6 +983,7 @@ export default class FinalDocument extends React.Component {
                 ]
             }));
             opInd.map((val, index)=>{
+                activitiesPars=[];
                 currentOperations=val.operations;
                 currentOperations.map((valP, indexP)=>{
                     activitiesPars.push(new Paragraph({

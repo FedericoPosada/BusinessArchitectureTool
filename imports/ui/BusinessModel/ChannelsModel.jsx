@@ -79,7 +79,7 @@ export default class ChannelsModel extends React.Component {
                 });
                 this.refs.channelname.value = "";
                 this.refs.channeltype.value = "";
-            } else {
+            } else if (this.refs.channeltype.value.includes("M")){
                 let servicecustomid;
                 if (channelsContainer.find({owner: Meteor.userId(),"customid": new RegExp("M")}).count() === 0) {
                     servicecustomid = 'M1';
@@ -93,6 +93,68 @@ export default class ChannelsModel extends React.Component {
                     let lastnumber = parseInt(customIdLastNumber);
                     lastnumber++;
                     servicecustomid = "M" + lastnumber;
+                }
+                let channelname = this.refs.channelname.value.toString();
+                let channeltype = this.refs.channeltype.value.toString();
+                let bservice = {
+                    customid: servicecustomid,
+                    name: channelname,
+                    type: channeltype,
+                    operations: [],
+                    owner: Meteor.userId()
+                };
+                channelsContainer.insert(bservice, (err, done) => {
+                    if (err)
+                        Materialize.toast("Ha ocurrido un error al crear el servicio. Inténtelo de nuevo.", 3000);
+                });
+                this.refs.channelname.value = "";
+                this.refs.channeltype.value = "";
+            }
+            else if (this.refs.channeltype.value.includes("D")){
+                let servicecustomid;
+                if (channelsContainer.find({owner: Meteor.userId(),"customid": new RegExp("D")}).count() === 0) {
+                    servicecustomid = 'D1';
+                } else {
+                    let customIdLastNumber = '';
+                    let lastService = channelsContainer.find({owner: Meteor.userId()}).fetch();
+                    let customIdLast = lastService[lastService.length - 1].customid;
+                    for (let i = 1; i < customIdLast.length; i++) {
+                        customIdLastNumber += customIdLast.charAt(i);
+                    }
+                    let lastnumber = parseInt(customIdLastNumber);
+                    lastnumber++;
+                    servicecustomid = "D" + lastnumber;
+                }
+                let channelname = this.refs.channelname.value.toString();
+                let channeltype = this.refs.channeltype.value.toString();
+                let bservice = {
+                    customid: servicecustomid,
+                    name: channelname,
+                    type: channeltype,
+                    operations: [],
+                    owner: Meteor.userId()
+                };
+                channelsContainer.insert(bservice, (err, done) => {
+                    if (err)
+                        Materialize.toast("Ha ocurrido un error al crear el servicio. Inténtelo de nuevo.", 3000);
+                });
+                this.refs.channelname.value = "";
+                this.refs.channeltype.value = "";
+            }
+            else {
+                let servicecustomid;
+                if (channelsContainer.find({owner: Meteor.userId(),"customid": new RegExp("T")}).count() === 0) {
+                    servicecustomid = 'T1';
+                } else {
+                    let customIdLastNumber = '';
+                    let lastService = channelsContainer.find({owner: Meteor.userId()}).fetch();
+                    let customIdLast = lastService[lastService.length - 1].customid;
+                    for (let i = 1; i < customIdLast.length; i++) {
+                        customIdLastNumber += customIdLast.charAt(i);
+                    }
+                    let lastnumber = parseInt(customIdLastNumber);
+                    lastnumber++;
+                    servicecustomid = "T" + lastnumber;
                 }
                 let channelname = this.refs.channelname.value.toString();
                 let channeltype = this.refs.channeltype.value.toString();
@@ -127,6 +189,8 @@ export default class ChannelsModel extends React.Component {
                             <option>Aprovisionamiento</option>
                             <option>Monetización</option>
                             <option>Relacionamiento</option>
+                            <option>Distribución</option>
+                            <option>Transformación</option>
                         </select>
                     </div>
                     <div className="input-field col s3">
