@@ -257,7 +257,7 @@ export default class FinalDocument extends React.Component {
                         if(img2 !== "")
                          image2 = Media.addImage(doc, img2, 600, 500);
                         if(img3 !== "")
-                         image3 = Media.addImage(doc, img3, 600, 350);
+                         image3 = Media.addImage(doc, img3, 600, 250);
                         let procCatalog=self.createProcessCatalog(doc);
                         let bservportfolio = self.createBServicesPortfolio();
                         let cModel=self.createChannelModel();
@@ -341,13 +341,13 @@ export default class FinalDocument extends React.Component {
                                     text: "\n"
                                 }),
                                 new Paragraph({
-                                    text: "1.5. Cruce de canales y servicios",
+                                    text: "1.5. Cruce de canales y operaciones",
                                     style: "SectionSubtitles"
                                 }),
                                 new Paragraph({
                                     text: "\n"
                                 }),
-                                new Paragraph(image1),
+                                OpChanCrossing,
                                 new Paragraph({
                                     text: "2. Modelo financiero",
                                     style: "SectionTitles",
@@ -846,56 +846,45 @@ export default class FinalDocument extends React.Component {
             let rows=[];
             let opInd = channelsContainer.find({owner:Meteor.userId()}).fetch();
             let currentActivities=[];
-            let activitiesPars=[];
+            let currentRows=[];
             opInd.map((val, index)=>{
+                currentRows=[];
+                currentRows.push(new TableRow({
+                    children:[
+                        new TableCell({
+                            children:[
+                                new Paragraph({
+                                    text:val.customid+": "+val.name,
+                                    style:"TableHeading"
+                                })
+                            ],
+                            shading: {
+                                fill: "B3B4B5",
+                                val: ShadingType.CLEAR,
+                                color: "auto",
+                            },
+                            columnSpan:2
+                        })
+                    ]
+                }));
                 currentActivities=[];
-                console.log(val.customid);
                 currentActivities=channelActivitiesContainer.find({owner:Meteor.userId(),channelcustomid:val.customid}).fetch();
-                console.log(currentActivities);
-                activitiesPars=[];
                 currentActivities.map((valP, indexP)=>{
-                    console.log(" - "+valP.customid+" "+valP.name);
-                    activitiesPars.push(new Paragraph({
-                        text:" - "+valP.customid+" "+valP.name+"\n",
-                        style:"TableText"
-                    }))
+                    currentRows.push(new TableRow({
+                        children:[
+                            new TableCell({
+                                children:[
+                                    new Paragraph({
+                                        text:valP.customid+" "+valP.name+"\n",
+                                        style:"TableText"
+                                    })
+                                ]
+                            })
+                        ]
+                    }));
                 });
                 currentTable = new Table({
-                    rows: [
-                        new TableRow({
-                            children:[
-                                new TableCell({
-                                    children:[
-                                                new Paragraph({
-                                                text:val.customid+"-"+val.name,
-                                                style:"TableHeading"
-                                            })
-
-                                    ],
-                                    shading: {
-                                        fill: "B3B4B5",
-                                        val: ShadingType.CLEAR,
-                                        color: "auto",
-                                    },
-                                 columnSpan:2
-                                })
-                            ]
-                        }),
-                        new TableRow({
-                            children:[
-                                new TableCell({
-                                    children:[
-                                        new Paragraph({
-                                        text:"Actividades",
-                                        style:"TableText"
-                                    })],
-                                }),
-                                new TableCell({
-                                    children:activitiesPars
-                                }),
-                            ]
-                        }),
-                    ],
+                    rows: currentRows,
                     width: {
                         size:100,
                         type: WidthType.PERCENTAGE,
@@ -957,7 +946,84 @@ export default class FinalDocument extends React.Component {
         }
     }
 
-    createOpChanCrossing(){}
+    createOpChanCrossing(){
+        try{
+            let opInd = channelsContainer.find({owner:Meteor.userId()}).fetch();
+            let currentOperations=[];
+            let activitiesPars=[];
+            let currentRows=[];
+            currentRows.push(new TableRow({
+                children:[
+                    new TableCell({
+                        children:[
+                            new Paragraph({
+                                text:"Canal",
+                                style:"TableHeading"
+                            })
+                        ],
+                        shading: {
+                            fill: "B3B4B5",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                    }),
+                    new TableCell({
+                        children:[
+                            new Paragraph({
+                                text:"Operaciones",
+                                style:"TableHeading"
+                            })
+                        ],
+                        shading: {
+                            fill: "B3B4B5",
+                            val: ShadingType.CLEAR,
+                            color: "auto",
+                        },
+                    })
+                ]
+            }));
+            opInd.map((val, index)=>{
+                currentOperations=val.operations;
+                currentOperations.map((valP, indexP)=>{
+                    activitiesPars.push(new Paragraph({
+                        text:" - "+valP.customid+" "+valP.name+"\n",
+                        style:"TableText"
+                    }))
+                });
+                currentRows.push(new TableRow({
+                    children:[
+                        new TableCell({
+                            children:[
+                                new Paragraph({
+                                    text:val.customid,
+                                    style:"TableText"
+                                })
+                            ]
+                        }),
+                        new TableCell({
+                            children:activitiesPars
+                        })
+                    ]
+                }));
+            });
+            let table = new Table({
+                rows: currentRows,
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 50,
+                    bottom: 50,
+                    right: 50,
+                    left: 50,
+                },
+            });
+            return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
+    }
 
     createBalanceSheet(){
         try{

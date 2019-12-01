@@ -61,12 +61,8 @@ class ModalModeloDeNegocio extends Component {
                     <div className="col m4">
 
                         <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/portafolioDeServicios.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Portafolio de Servicios</span>
-                              <p><a href="/BusinessServicesPortfolio">Llevame allí!</a></p>
+                              <p><a href="/BusinessServicesPortfolio">Portafolio de Servicios</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Portafolio de Servicios<i class="material-icons right">X</i></span>
@@ -76,12 +72,8 @@ class ModalModeloDeNegocio extends Component {
                     </div>
                     <div className="col m4">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/modeloOntologico.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Modelo Ontologico</span>
-                              <p><a href="/OntologicModelCreator">Llevame allí!</a></p>
+                              <p><a href="/OntologicModelCreator">Modelo Ontologico</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Modelo Ontologico<i class="material-icons right">X</i></span>
@@ -91,12 +83,8 @@ class ModalModeloDeNegocio extends Component {
                     </div>
                       <div className="col m4">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/editorModeloDeNegocio.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Estructura de Negocio</span>
-                              <p><a href="/BusinessStructureCreator">Llevame allí!</a></p>
+                              <p><a href="/BusinessStructure">Estructura de Negocio</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Estructura de Negocio<i class="material-icons right">X</i></span>

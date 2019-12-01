@@ -116,7 +116,6 @@ export default class ChannelsModel extends React.Component {
     render(){
         return (
             <div>
-                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input id="channelname" ref="channelname" type="text" className="validate"/>

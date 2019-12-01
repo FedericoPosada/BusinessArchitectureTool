@@ -61,14 +61,9 @@ class ModalModeloOrganizacional extends Component {
                         
                     </div>
                      <div className="col m4">
-
                       <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/editorDeCargos.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Editor de Cargos</span>
-                              <p><a href="/PositionCatalog">Llevame allí!</a></p>
+                              <p><a href="/PositionCatalog">Editor de Cargos</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Editor de Cargos<i class="material-icons right">X</i></span>
@@ -80,12 +75,8 @@ class ModalModeloOrganizacional extends Component {
                      <div className="col m4">
 
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/organigrama.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Organigrama</span>
-                              <p><a href="/OrgChartCreator">Llevame allí!</a></p>
+                              <p><a href="/OrgChartCreator">Organigrama</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4"><br></br>Organigrama<i class="material-icons right">X</i></span>

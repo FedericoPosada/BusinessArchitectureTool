@@ -64,12 +64,8 @@ class ModalModeloFinanciero extends Component {
                      <div className="col m4">
 
                          <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/estadosFinancieros.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Estados Financieros</span>
-                              <p><a href="/FinancialStatements">Llevame allí!</a></p>
+                              <p><a href="/FinancialStatements">Estados Financieros</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Estados Financieros<i class="material-icons right">X</i></span>
@@ -81,12 +77,8 @@ class ModalModeloFinanciero extends Component {
                     
                      <div className="col m4">
                          <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/indicadoresFinancieros.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Indicadores Financieros</span>
-                              <p><a href="/FinancialIndicatorsList">Llevame allí!</a></p>
+                              <p><a href="/FinancialIndicatorsList">Indicadores Financieros</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">>Indicadores Financieros<i class="material-icons right">X</i></span>

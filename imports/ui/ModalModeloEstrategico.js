@@ -57,17 +57,10 @@ class ModalModeloEstrategico extends Component {
           <div className="row">
           <div className="modal-content">
             <font color="black"><h4>Modelo Estrategico</h4></font>
-                    <div class="col m2">
-                    </div>
-              <div className="col m4">
+              <div className="col m3">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/editorPlanEstrategico.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span className="card-title activator grey-text text-darken-4">Componente motivacional</span>
-                          <p><a href="/MotivationalComponent">Llevame allí!</a></p>
+                          <p><a href="/MotivationalComponent">Componente motivacional</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Componente motivacional<i
@@ -76,15 +69,10 @@ class ModalModeloEstrategico extends Component {
                   </div>
               </div>
 
-              <div className="col m4">
+              <div className="col m2">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/editorPlanEstrategico.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span className="card-title activator grey-text text-darken-4">Estrategias de negocio</span>
-                          <p><a href="/BusinessStrategiesCatalog">Llevame allí!</a></p>
+                          <p><a href="/BusinessStrategiesCatalog">Estrategias de negocio</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Estrategias de negocio<i
@@ -93,14 +81,10 @@ class ModalModeloEstrategico extends Component {
                   </div>
               </div>
 
-                     <div className="col m4">
+                     <div className="col m2">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/editorPlanEstrategico.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Plan Estratégico</span>
-                              <p><a href="/StrategicPlan">Llevame allí!</a></p>
+                              <p><a href="/StrategicPlan">Plan Estratégico</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Plan Estratégico<i class="material-icons right">X</i></span>
@@ -108,15 +92,10 @@ class ModalModeloEstrategico extends Component {
                             </div>
                           </div>
                     </div>
-                     <div className="col m4">
-
+                     <div className="col m3">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/visualizadorPlanEstrategico.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4"> Acciones de transformación</span>
-                              <p><a href="/TransformationActionList">Llevame allí!</a></p>
+                              <p><a href="/TransformationActionList">Acciones de transformación</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Visualizador Plan<i class="material-icons right">X</i></span>
@@ -124,17 +103,11 @@ class ModalModeloEstrategico extends Component {
                             </div>
                           </div>
                     </div>
-              <div className="col m4">
 
+              <div className="col m2">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/visualizadorPlanEstrategico.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span
-                              className="card-title activator grey-text text-darken-4"> Catálogo de proyectos</span>
-                          <p><a href="/ProjectsList">Llevame allí!</a></p>
+                          <p><a href="/ProjectsList">Catálogo de proyectos</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Visualizador Plan<i
@@ -143,8 +116,6 @@ class ModalModeloEstrategico extends Component {
                       </div>
                   </div>
               </div>
-                    <div class="col m2">
-                    </div>
           </div>
           </div>
           

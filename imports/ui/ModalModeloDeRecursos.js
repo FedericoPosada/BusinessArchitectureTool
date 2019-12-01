@@ -64,12 +64,8 @@ class ModalModeloDeRecursos extends Component {
                      <div className="col m4">
 
                            <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/modeloDeRecursos.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Modelo de Recursos</span>
-                              <p><a href="/ResourcesModel">Llevame allí!</a></p>
+                              <p><a href="/ResourcesModel">Modelo de Recursos</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Modelo de Recursos<i class="material-icons right">X</i></span>
@@ -79,13 +75,8 @@ class ModalModeloDeRecursos extends Component {
                     </div>
               <div className="col m4">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span className="card-title activator grey-text text-darken-4">Modelo de Recursos TI</span>
-                          <p><a href="/TIResourcesModel">Llevame allí!</a></p>
+                          <p><a href="/TIResourcesModel">Modelo de Recursos TI</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Modelo Operativo<i
@@ -96,13 +87,8 @@ class ModalModeloDeRecursos extends Component {
               </div>
               <div className="col m4">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span className="card-title activator grey-text text-darken-4">Catálogo de componentes tecnológicos</span>
-                          <p><a href="/ComponentsCatalog">Llevame allí!</a></p>
+                          <p><a href="/ComponentsCatalog">Catálogo de componentes tecnológicos</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Catálogo de componentes tecnológicos<i
@@ -114,13 +100,8 @@ class ModalModeloDeRecursos extends Component {
 
               <div className="col m4">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span className="card-title activator grey-text text-darken-4">Catálogo de aplicaciones</span>
-                          <p><a href="/ApplicationCatalog">Llevame allí!</a></p>
+                          <p><a href="/ApplicationCatalog">Catálogo de aplicaciones</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Modelo Operativo<i
@@ -133,13 +114,8 @@ class ModalModeloDeRecursos extends Component {
 
               <div className="col m4">
                   <div className="card">
-                      <div className="card-image waves-effect waves-block waves-light">
-                          <img className="activator" height="125"
-                               src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
-                      </div>
                       <div className="card-content">
-                          <span className="card-title activator grey-text text-darken-4">Modelo Operativo</span>
-                          <p><a href="/OperativeModel">Llevame allí!</a></p>
+                          <p><a href="/OperativeModel">Modelo Operativo</a></p>
                       </div>
                       <div className="card-reveal">
                           <span className="card-title grey-text text-darken-4">Modelo Operativo<i

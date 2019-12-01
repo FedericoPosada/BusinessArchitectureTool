@@ -62,12 +62,8 @@ class ModalProcesosDeNegocio extends Component {
                     </div>
                      <div className="col m4">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/catalogoDeProcesos.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Catalogo de Procesos</span>
-                              <p><a href="/ProcessCatalog">Llevame allí!</a></p>
+                              <p><a href="/ProcessCatalog">Catálogo de Procesos</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Catalogo de Procesos<i class="material-icons right">X</i></span>
@@ -78,12 +74,8 @@ class ModalProcesosDeNegocio extends Component {
                     
                      <div className="col m4">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/cadenaDeValor.PNG"></img>
-                            </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Cadena de Valor</span>
-                              <p><a href="/ValueChain">Llevame allí!</a></p>
+                              <p><a href="/ValueChain">Cadena de Valor</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Cadena de Valor<i class="material-icons right">X</i></span>
