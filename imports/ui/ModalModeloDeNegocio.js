@@ -96,7 +96,7 @@ class ModalModeloDeNegocio extends Component {
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4">Estructura de Negocio</span>
-                              <p><a href="http://172.24.101.248/editorModeloDeNegocio.html">Llevame allí!</a></p>
+                              <p><a href="/BusinessStructureCreator">Llevame allí!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Estructura de Negocio<i class="material-icons right">X</i></span>

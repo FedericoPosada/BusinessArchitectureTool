@@ -35,6 +35,8 @@ import BalanceSheet from "../ui/FinancialModel/BalanceSheet";
 import FinancialStatements from "../ui/FinancialModel/FinancialStatements";
 import FinancialIndicatorsList from "../ui/FinancialModel/FinancialIndicatorsList";
 import FinalDocument from "../ui/Document/FinalDocument";
+import BusinessStructureCreator from "../ui/BusinessModel/BusinessStructureCreator";
+import ChannelsModel from "../ui/BusinessModel/ChannelsModel";
 
 const history = createBrowserHistory();
 
@@ -88,6 +90,7 @@ export const routes = (
 			<Route path="/FinancialStatements" component={FinancialStatements}/>
 			<Route path="/FinancialIndicatorsList" component={FinancialIndicatorsList}/>
 			<Route path="/FinalDocument" component={FinalDocument}/>
+			<Route path="/BusinessStructureCreator" component={ChannelsModel}/>
 
 			<Route path="*" component={NotFound}/>
         </Switch>

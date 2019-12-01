@@ -48,6 +48,8 @@ import {packagesContainer} from "../../api/packages";
 import {subpackagesContainer} from "../../api/subpackages";
 import {capacitiesContainer} from "../../api/capacities";
 import PrivateLoggedHeader from "../PrivateLoggedHeader";
+import {channelsContainer} from "../../api/channels";
+import {channelActivitiesContainer} from "../../api/chanactivities";
 
 // Create document
 export default class FinalDocument extends React.Component {
@@ -116,6 +118,8 @@ export default class FinalDocument extends React.Component {
         Meteor.subscribe('capacities');
         Meteor.subscribe('subpackages');
         Meteor.subscribe('packages');
+        Meteor.subscribe('channels');
+        Meteor.subscribe('channelactivities');
 
         Tracker.autorun(()=> {
             let doc = FinalDocuments.collection.findOne({userId: Meteor.userId()});
@@ -172,6 +176,7 @@ export default class FinalDocument extends React.Component {
         let self=this;
         let img="";
         let img2="";
+        let img3="";
         const doc = new Document({
             styles: {
                 paragraphStyles: [
@@ -243,10 +248,20 @@ export default class FinalDocument extends React.Component {
                     if(result !== "") {
                         img = result[1];
                         img2 = result[0];
-                        const image1 = Media.addImage(doc, img, 600, 500);
-                        const image2 = Media.addImage(doc, img2, 600, 500);
+                        img3 = result[2];
+                        let image1="";
+                        let image2="";
+                        let image3="";
+                        if(img !== "")
+                         image1 = Media.addImage(doc, img, 600, 500);
+                        if(img2 !== "")
+                         image2 = Media.addImage(doc, img2, 600, 500);
+                        if(img3 !== "")
+                         image3 = Media.addImage(doc, img3, 600, 350);
                         let procCatalog=self.createProcessCatalog(doc);
                         let bservportfolio = self.createBServicesPortfolio();
+                        let cModel=self.createChannelModel();
+                        let OpChanCrossing=self.createOpChanCrossing();
                         let bsheet = self.createBalanceSheet();
                         let istatement = self.createIncomeStatement();
                         let cashflow = self.createCashFlow();
@@ -294,6 +309,39 @@ export default class FinalDocument extends React.Component {
                                 }),
                                 new Paragraph({
                                     text: "1.2. Modelo ontológico",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph(image1),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "1.3. Estructura de negocio",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph(image3),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "1.4. Modelo de canales",
+                                    style: "SectionSubtitles"
+                                }),
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                cModel,
+                                new Paragraph({
+                                    text: "\n"
+                                }),
+                                new Paragraph({
+                                    text: "1.5. Cruce de canales y servicios",
                                     style: "SectionSubtitles"
                                 }),
                                 new Paragraph({
@@ -790,6 +838,126 @@ export default class FinalDocument extends React.Component {
             return new Paragraph("");
         }
     }
+
+    createChannelModel(){
+        try{
+            let currentTable;
+            let currentRow;
+            let rows=[];
+            let opInd = channelsContainer.find({owner:Meteor.userId()}).fetch();
+            let currentActivities=[];
+            let activitiesPars=[];
+            opInd.map((val, index)=>{
+                currentActivities=[];
+                console.log(val.customid);
+                currentActivities=channelActivitiesContainer.find({owner:Meteor.userId(),channelcustomid:val.customid}).fetch();
+                console.log(currentActivities);
+                activitiesPars=[];
+                currentActivities.map((valP, indexP)=>{
+                    console.log(" - "+valP.customid+" "+valP.name);
+                    activitiesPars.push(new Paragraph({
+                        text:" - "+valP.customid+" "+valP.name+"\n",
+                        style:"TableText"
+                    }))
+                });
+                currentTable = new Table({
+                    rows: [
+                        new TableRow({
+                            children:[
+                                new TableCell({
+                                    children:[
+                                                new Paragraph({
+                                                text:val.customid+"-"+val.name,
+                                                style:"TableHeading"
+                                            })
+
+                                    ],
+                                    shading: {
+                                        fill: "B3B4B5",
+                                        val: ShadingType.CLEAR,
+                                        color: "auto",
+                                    },
+                                 columnSpan:2
+                                })
+                            ]
+                        }),
+                        new TableRow({
+                            children:[
+                                new TableCell({
+                                    children:[
+                                        new Paragraph({
+                                        text:"Actividades",
+                                        style:"TableText"
+                                    })],
+                                }),
+                                new TableCell({
+                                    children:activitiesPars
+                                }),
+                            ]
+                        }),
+                    ],
+                    width: {
+                        size:100,
+                        type: WidthType.PERCENTAGE,
+                    },
+                    margins: {
+                        top: 75,
+                        bottom: 75,
+                        right: 75,
+                        left: 75,
+                    },
+                });
+                currentRow=new TableRow({
+                    children: [
+                        new TableCell({
+                            children: [currentTable],
+                            borders: {
+                                top: {
+                                    style: BorderStyle.NONE,
+                                    size: 1,
+                                    color: "white",
+                                },
+                                bottom: {
+                                    style: BorderStyle.NONE,
+                                    size: 1,
+                                    color: "white",
+                                },
+                                left: {
+                                    style: BorderStyle.NONE,
+                                    size: 1,
+                                    color: "white",
+                                },
+                                right: {
+                                    style: BorderStyle.NONE,
+                                    size: 1,
+                                    color: "white",
+                                },
+                            },
+                        })
+                    ],
+                });
+                rows.push(currentRow);
+            });
+            let table = new Table({
+                rows: rows,
+                width: {
+                    size:100,
+                    type: WidthType.PERCENTAGE,
+                },
+                margins: {
+                    top: 75,
+                    bottom: 75,
+                    right: 75,
+                    left: 75,
+                },
+            });
+            return table;}
+        catch (e) {
+            return new Paragraph("");
+        }
+    }
+
+    createOpChanCrossing(){}
 
     createBalanceSheet(){
         try{

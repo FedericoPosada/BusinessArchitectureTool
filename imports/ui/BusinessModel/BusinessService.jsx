@@ -36,7 +36,7 @@ export default class BusinessService extends React.Component {
                 client: this.state.client
             }
             };
-            let query = {_id: this.props.id};
+            let query = {_id: this.props._id};
             bServicesContainer.update(query, newServiceValues, (err, done) => {
                 if (err) throw err;
                 console.log("Document updated");
