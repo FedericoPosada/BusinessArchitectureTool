@@ -16,7 +16,7 @@ export default class BusinessServicesPortfolio extends React.Component {
     componentWillMount() {
         Tracker.autorun(()=>{
             Meteor.subscribe('clients')
-            let clients = clientsContainer.find({}).fetch();
+            let clients = clientsContainer.find({owner:Meteor.userId()}).fetch();
             this.setState({clients: clients});
         })
     }

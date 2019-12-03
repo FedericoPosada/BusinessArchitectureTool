@@ -3,6 +3,7 @@ import {stIndicatorsContainer} from "../../api/stindicators";
 import {labelsContainer} from "../../api/labels";
 import {bServicesContainer} from "../../api/bservices";
 import {resourcesContainer} from "../../api/resources";
+import {channelsContainer} from "../../api/channels";
 
 
 export default class StrategicIndicatorCreator extends React.Component{
@@ -27,10 +28,12 @@ export default class StrategicIndicatorCreator extends React.Component{
             Meteor.subscribe('bservices');
             Meteor.subscribe('resources');
             Meteor.subscribe('stindicators');
+            Meteor.subscribe('channels');
             let labels = labelsContainer.find({owner:Meteor.userId()}).fetch();
             let services = bServicesContainer.find({owner:Meteor.userId()}).fetch();
             let resources = resourcesContainer.find({owner:Meteor.userId()}).fetch();
-            this.setState({labelList: labels,serviceList: services,resourceList:resources});
+            let channels = channelsContainer.find({owner:Meteor.userId()}).fetch();
+            this.setState({labelList: labels,serviceList: services,resourceList:resources,channelList:channels});
         })
     }
     handleCategoryChange(){

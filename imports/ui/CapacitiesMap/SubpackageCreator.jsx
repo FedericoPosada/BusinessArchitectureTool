@@ -51,7 +51,7 @@ export default class SubpackageCreator extends React.Component {
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                subpackagecustomid =this.state.packageSelected + lastnumber + ".";
+                subpackagecustomid =this.state.packageSelected +"."+ lastnumber + ".";
             }
             let subpackagename = this.refs.subpackagename.value;
             let subpackageop = {
