@@ -41,7 +41,7 @@ class ModalModeloDeNegocio extends Component {
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalModeloDeNegocio"
         >
-          Modelo de Negocio
+          Business Model
         </a>
 
         <div
@@ -57,7 +57,7 @@ class ModalModeloDeNegocio extends Component {
                         modal-fixed-footer to the "modal" div*/}
         <div className="row">
           <div className="modal-content">
-            <font color="black"><h4>Modelo de Negocio</h4></font>
+            <font color="black"><h4>Business Model</h4></font>
                     <div className="col m4">
 
                         <div class="card">
@@ -65,12 +65,12 @@ class ModalModeloDeNegocio extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/portafolioDeServicios.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Portafolio de Servicios</span>
-                              <p><a href="/BusinessServicesPortfolio">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Service Portfolio</span>
+                              <p><a href="/BusinessServicesPortfolio">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Portafolio de Servicios<i class="material-icons right">X</i></span>
-                              <p>Descubre los servicios de tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Service Portfolio<i class="material-icons right">X</i></span>
+                              <p>Discover your business' services</p>
                             </div>
                           </div>
                     </div>
@@ -80,12 +80,12 @@ class ModalModeloDeNegocio extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/modeloOntologico.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Modelo Ontologico</span>
-                              <p><a href="/OntologicModelCreator">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Ontologic Model</span>
+                              <p><a href="/OntologicModelCreator">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Modelo Ontologico<i class="material-icons right">X</i></span>
-                              <p>Observa gráficamente tu Modelo Ontologico</p>
+                              <span class="card-title grey-text text-darken-4">Ontologic Model<i class="material-icons right">X</i></span>
+                              <p>Observe graphically your business' ontologic model</p>
                             </div>
                           </div>
                     </div>
@@ -95,12 +95,12 @@ class ModalModeloDeNegocio extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/editorModeloDeNegocio.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Estructura de Negocio</span>
-                              <p><a href="http://172.24.101.248/editorModeloDeNegocio.html">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Business Structure</span>
+                              <p><a href="/businessModelEditor">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Estructura de Negocio<i class="material-icons right">X</i></span>
-                              <p>Define la estructura de tu Modelo de negocio</p>
+                              <span class="card-title grey-text text-darken-4">Business Structure<i class="material-icons right">X</i></span>
+                              <p>Define teh structure of your business model</p>
                             </div>
                           </div>
 
@@ -111,7 +111,7 @@ class ModalModeloDeNegocio extends Component {
           <div className="modal-footer">
             
             <a className="modal-close waves-effect waves-green btn-flat">
-              Volver
+              Go back
             </a>
           </div>
         </div>

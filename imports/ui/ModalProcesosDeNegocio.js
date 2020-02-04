@@ -39,7 +39,7 @@ class ModalProcesosDeNegocio extends Component {
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalProcesosDeNegocio"
         >
-          Procesos de Negocio
+          Business Processes
         </a>
 
         <div
@@ -55,7 +55,7 @@ class ModalProcesosDeNegocio extends Component {
                         modal-fixed-footer to the "modal" div*/}
         <div className="row">
           <div className="modal-content">
-            <font color="black"><h4>Procesos de Negocio</h4></font>
+            <font color="black"><h4>Business Processes</h4></font>
                     <div class="col m2">
                         
                     </div>
@@ -65,12 +65,12 @@ class ModalProcesosDeNegocio extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/catalogoDeProcesos.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Catalogo de Procesos</span>
-                              <p><a href="/ProcessCatalog">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Processes Catalog</span>
+                              <p><a href="/ProcessCatalog">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Catalogo de Procesos<i class="material-icons right">X</i></span>
-                              <p>Guarda y accede a los procesos de tu negocio facilmente en un solo lugar</p>
+                              <span class="card-title grey-text text-darken-4">Processes Catalog<i class="material-icons right">X</i></span>
+                              <p>Save and access to your business processes easily in a single place</p>
                             </div>
                           </div>
                     </div>
@@ -81,12 +81,12 @@ class ModalProcesosDeNegocio extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/cadenaDeValor.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Cadena de Valor</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Value Chain</span>
+                              <p><a href="#">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Cadena de Valor<i class="material-icons right">X</i></span>
-                              <p>Define la Cadena de valor del negocio</p>
+                              <span class="card-title grey-text text-darken-4">Value Chain<i class="material-icons right">X</i></span>
+                              <p>Define your business' value chain</p>
                             </div>
                           </div>
                     </div>
@@ -98,7 +98,7 @@ class ModalProcesosDeNegocio extends Component {
           <div className="modal-footer">
             
             <a className="modal-close waves-effect waves-green btn-flat">
-              Volver
+              Go back
             </a>
           </div>
         </div>

@@ -35,6 +35,32 @@ import BalanceSheet from "../ui/FinancialModel/BalanceSheet";
 import FinancialStatements from "../ui/FinancialModel/FinancialStatements";
 import FinancialIndicatorsList from "../ui/FinancialModel/FinancialIndicatorsList";
 import FinalDocument from "../ui/Document/FinalDocument";
+import BusinessModelEditorTwo from "../ui/BusinessModelEditor/BusinessModelEditorTwo";
+import TestApp from "../ui/TestApp";
+import * as joint from 'jointjs';
+window.joint = joint;
+
+/*
+import jquery from "../ui/BusinessModelEditor/JS/jquery.js";
+import angularMin from "../ui/BusinessModelEditor/node_modules/angular/angular.min.js";
+import lodash from "../ui/BusinessModelEditor/JS/lodash.js";
+import backbone from "../ui/BusinessModelEditor/JS/backbone.js";
+import ports from "../ui/BusinessModelEditor/modules/ports.js";
+import joint from "jointjs";
+import FileSaver from "../ui/BusinessModelEditor/JS/FileSaver.js";
+import estilosSave from "../ui/BusinessModelEditor/JS/estilosSave.js";
+import svgPanZoom from "../ui/BusinessModelEditor/JS/svg-pan-zoom.js";
+import Require from "../ui/BusinessModelEditor/JS/require.js";
+
+
+import XMLWriter from "../ui/BusinessModelEditor/JS/XMLWriter.js";
+import vectorizer from "../ui/BusinessModelEditor/JS/vectorizer.js";
+import propsActive from "../ui/BusinessModelEditor/JS/propsActive.js";
+import editor from "../ui/BusinessModelEditor/JS/editor.js";
+import styles from "../ui/BusinessModelEditor/JS/styles.js";
+import paperProperties from "../ui/BusinessModelEditor/JS/paperProperties.js";
+import archivos from "../ui/BusinessModelEditor/JS/archivos.js";
+*/
 
 const history = createBrowserHistory();
 
@@ -88,6 +114,8 @@ export const routes = (
 			<Route path="/FinancialStatements" component={FinancialStatements}/>
 			<Route path="/FinancialIndicatorsList" component={FinancialIndicatorsList}/>
 			<Route path="/FinalDocument" component={FinalDocument}/>
+			<Route path="/businessModelEditor" component={BusinessModelEditorTwo}/>
+			<Route path="/testApp" component={TestApp}/>
 
 			<Route path="*" component={NotFound}/>
         </Switch>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html ng-app="modeler">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<head>
+    <title>Editor</title>
+</head>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/joint.css" />
+    <script src="JS/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <style type="text/css">
+
+
+#changeMeanLink:hover
+{
+
+background-color: #c67dc3;
+transition: background-color 0.8s;
+
+}
+
+      
+#textarea
+
+  {
+
+resize: none;
+outline: none;
+
+  }
+
+
+/* port styling */
+.available-magnet {
+    fill: yellow;
+}
+
+/* element styling */
+.available-cell rect {
+    stroke-dasharray: 5, 2;
+}
+
+ .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor:pointer;
+}
+
+.btn {
+  border: 2px solid #000000;
+  color: white;
+  background-color: #000000;
+  padding: 7.5px 10px;
+  
+  font-size: 14px;
+  border-radius: 15px;
+  cursor:pointer;
+  
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  border-radius: 15px
+
+
+
+}
+
+
+    </style>
+  <script src="node_modules/angular/angular.min.js"></script>
+    <script src="JS/lodash.js"></script>
+    <script src="JS/backbone.js"></script>
+    <script type="modules/ports.js"></script>
+
+    <script src="JS/joint.js"></script>
+    <script src="JS/FileSaver.js"></script>
+    <script src="JS/estilosSave.js"></script>
+    <script src="JS/svg-pan-zoom.js"></script>
+    <script src="JS/require.js"></script>
+    <link rel="stylesheet" type="text/css" href="CSS/botonc.css"/>
+
+<body>
+
+<!--Botones de la parte de arriba INICIO-->
+ <nav class="navbar navbar-inverse"  style="background:#283E49;">
+    <ul class="nav navbar-nav" style="background:#283E49;">
+      <li><a style="color:white; cursor: pointer; " id="json"><span class="glyphicon glyphicon-download" style="color:white; cursor:pointer; "></span> Descargar JSON</a>
+        </li>
+      <li><a style="color:white; cursor: pointer; " id="csv"><span class="glyphicon glyphicon-download" style="color:white; cursor:pointer; "></span> Descargar CSV</a></li>
+        <li>
+              <div class="upload-btn-wrapper" style="margin-top: 5px">
+              <span class="glyphicon glyphicon-upload" style="color: white; "></span>
+              <button class="btn" style="font-family: sans-serif; background-color: #283E49;">Subir Archivo JSON</button>
+               <input type="file" id="files1" name="files1" />
+              </div>
+      </li>
+            <li><a id='load_json' style="color:white;cursor: pointer;"><span class="glyphicon glyphicon-download" style="color:white;"></span> Cargar JSON</a></li>
+          
+
+
+      <li><a id='svg' style="color:white;cursor: pointer;"><span class="glyphicon glyphicon-download" style="color:white"></span> Guardar como SVG</a></li>
+
+     
+    </ul>
+  </div>
+</nav>
+
+<!--Botones de la parte de arriba FIN-->
+
+<!--Elementos y botones adicionales INICIO -->
+    <div style="width: 100%; text-align: center;"class="row justify-content-center" >
+    <div style=" float:left;" class="col-lg-2" id="panel"></div>
+    <div class="col-lg-10" id="myHolder"></div>
+ 
+  </div>
+
+  <div style="">
+  <script src="JS/XMLWriter.js"></script>
+  <script src="JS/vectorizer.js"></script>
+  <script src="JS/svg-pan-zoom.js"></script>
+  <button class="jajajaxd" id="saveButton" style=" background-color: #283E49;"><span class="glyphicon glyphicon-floppy-saved" style="color:white; cursor:pointer; "></span> Guardar</button>
+   <button class="jajajaxd" id="dltButton" style=" background-color: #283E49;">Eliminar Elemento</button>
+   <!-- <button class="jajajaxd" id="toFrontButton">Traer al frente</button>
+    <button class="jajajaxd" id="toBackButton">Llevar atrás</button>-->
+ 
+     <button id="changeNormalLink" style=" background-color: #283E49;">Canal</button>
+     <button id="changeDottedLink" style=" background-color: #283E49;">Canal No Propio</button>
+    
+<!--Elementos y botones adicionales FIN -->
+<div style="border-top: 50px">
+<script src="JS/propsActive.js"></script>
+<script src="JS/angularProps.js"></script>
+<script src="JS/editor.js"></script>
+<script src="JS/styles.js"></script>
+<script src="JS/paperProperties.js"></script>
+<script src="archivos.js"></script>
+<script type="text/javascript">
+
+  
+
+  document.getElementById('load_json').onclick = function() {
+  var files = document.getElementById('files1').files;
+  console.log(files);
+  if (files.length <= 0) {
+    return false;
+  }
+  
+  var fr = new FileReader();
+  
+
+
+  fr.onload = function(e) { 
+  console.log(e);
+    var result = JSON.parse(e.target.result);
+
+    var formatted = JSON.stringify(result, null, 2);
+    Swal.fire('¡Tu archivo ha sido cargado!')
+graph.fromJSON(JSON.parse(formatted));  
+
+}
+
+  
+  fr.readAsText(files.item(0));
+};
+
+
+
+
+
+</script>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ANGULAR STUFF INICIO-->
+    </div>
+ <section ng-controller="PropController as prop">
+    <ul class="nav nav-tabs nav-stacked col-sm-3">
+      <li ng-class="{active: prop.isSelected(1)}">
+        <a href ng-click="prop.selectTab(1)">Puertos</a>
+      </li>
+      <li ng-class="{active: prop.isSelected(2)}">
+        <a href ng-click="prop.selectTab(2)">Nombre</a>
+      </li>
+      <li ng-class="{active: prop.isSelected(3)}">
+        <a href ng-click="prop.selectTab(3)">Tamaño</a>
+     
+    </ul>
+    <div class="col-sm-9"ng-show="prop.isSelected(1)" id="tabPorts">
+      <table class="table table-hover" id="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Posición</th>
+            <th>Activo</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div id='addPort' style="overflow: hidden;width: 35px; max-width: 35px;height: 35px;max-height: 35px; border-top: 15px; border-bottom: 15px;"></div>
+    </div>
+    <div class="col-sm-9"ng-show="prop.isSelected(2)" id="tabAttributes">
+      <table class="table table-hover" id="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div id='addButton'></div>
+    </div>
+    <div class="col-sm-9"ng-show="prop.isSelected(3)" id="tabProperties">
+      <div class="form-inline" id="width">
+      </div>
+      <div class="form-inline" id="height">
+      </div></div>
+       <div class="col-sm-9"ng-show="prop.isSelected(4)" id="tabFlows">
+      <table class="table table-hover" id="table">
+        <thead>
+          <tr>
+           
+
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div id='addButton'></div>
+    </div>
+    <div class="col-sm-9"ng-show="prop.isSelected(5)" id="tabXML">
+<div id="wrap-xml">
+    <h2>Generated XML</h2>
+    <div> <table>
+<tr>
+      <button id="imprimirPropiedades">Agregar Procesador</button>
+
+</tr>
+<tr>
+      <button>Agregar Acumulador</button>
+
+</tr>
+<tr>
+      <button>Agregar Port</button>
+
+</tr>
+<tr>
+      <button>Agregar Flow</button>
+
+</tr>
+    </table>
+    </div>
+   
+
+
+  </div>
+  <script src= 'JS/filesave.js'></script>
+  <input id="inputFileNameToSaveAs"></input>
+  <button onclick="saveTextAsFile()">Save Text to File</button>
+
+
+
+<!-- ANGULAR STUFF FIN-->
+  
+    
+  </script>
+    </div>
+      </section>
+
+<div style="width: 50%;margin:0 auto; " id="textareadiv" style="text-decoration-color: red;">
+  <div style="margin-top: 200px">
+</div>
+      
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+
+  <!-- Initial Processors Configuration ! -->
+  <processors></textarea>
+</div>
+
+
+
+
+
+
+ 
+
+</body>
+</html>

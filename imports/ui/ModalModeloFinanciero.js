@@ -41,7 +41,7 @@ class ModalModeloFinanciero extends Component {
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalModeloFinanciero"
         >
-          Modelo Financiero
+          Financial Model
         </a>
 
         <div
@@ -57,7 +57,7 @@ class ModalModeloFinanciero extends Component {
                         modal-fixed-footer to the "modal" div*/}
         <div className="row">
           <div className="modal-content">
-            <font color="black"><h4>Modelo Financiero</h4></font>
+            <font color="black"><h4>Financial Model</h4></font>
                     <div class="col m2">
                         
                     </div>
@@ -68,12 +68,12 @@ class ModalModeloFinanciero extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/estadosFinancieros.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Estados Financieros</span>
-                              <p><a href="/FinancialStatements">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Financial states</span>
+                              <p><a href="/FinancialStatements">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Estados Financieros<i class="material-icons right">X</i></span>
-                              <p>Expon los estados financieros de tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Financial States<i class="material-icons right">X</i></span>
+                              <p>Make evident your buisness' financial states</p>
                             </div>
                           </div>
 
@@ -85,12 +85,12 @@ class ModalModeloFinanciero extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/indicadoresFinancieros.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Indicadores Financieros</span>
-                              <p><a href="/FinancialIndicatorsList">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Financial Indicators</span>
+                              <p><a href="/FinancialIndicatorsList">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">>Indicadores Financieros<i class="material-icons right">X</i></span>
-                              <p>Identifica los indicadores financieros que mueven a tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Financial Indicators<i class="material-icons right">X</i></span>
+                              <p>Identify the financial indicators that move your business</p>
                             </div>
                           </div>
 
@@ -104,7 +104,7 @@ class ModalModeloFinanciero extends Component {
           <div className="modal-footer">
             
             <a className="modal-close waves-effect waves-green btn-flat">
-              Volver
+              Go back
             </a>
           </div>
         </div>

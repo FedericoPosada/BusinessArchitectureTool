@@ -45,7 +45,7 @@ render() {
 			          <div className="center-align">
 			          	<div className="card-content black-text">
 			          	 <div className="row">	            
-			              <span className="card-title black-text">Modelo de Intención</span>
+			              <span className="card-title black-text">Intention Model</span>
 			              <div className="divider"></div>
 			              </div>
 			              <div className="row">
@@ -69,7 +69,7 @@ render() {
 		          	<div className="center-align">
 			            <div className="card-content black-text">
 				            <div className="row">	            
-				              <span className="card-title black-text">Mapa de Capacidades</span>
+				              <span className="card-title black-text">Capacity Map</span>
 				              <div className="divider"></div>
 				            </div>
 				            <div className="row">
@@ -86,7 +86,7 @@ render() {
 		          	<div className="center-align">
 			            <div className="card-content black-text">
 			            <div className="row">	
-			              <span className="card-title black-text">Modelo Operativo</span>
+			              <span className="card-title black-text">Operative Model</span>
 			              <div className="divider"></div>
 				        </div>
 			            <div className="row">
@@ -112,7 +112,7 @@ render() {
 				        <div className="center-align">
 				        	<div className="card-content black-text">
 				        	<div className="row">	
-				              <span className="card-title black-text">Modelo de Informacion</span>
+				              <span className="card-title black-text">Information Model</span>
 				              <div className="divider"></div>
 			              	</div>
 			              	<div className="row">
@@ -130,16 +130,16 @@ render() {
 			            <div className="col m12">
 			            <div className="row">
 			              <div className="col m3">
-			              	<a href="/FinalDocument" className="waves-effect waves-light btn-small light-blue darken-3">Descargar PDF</a>
+			              	<a href="/FinalDocument" className="waves-effect waves-light btn-small light-blue darken-3">Download PDF</a>
 			              </div>
 			              <div className="col m3">
-			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 2</a>
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Functionality 2</a>
 			              </div>
 			              <div className="col m3">
-			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 3</a>
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Functionality 3</a>
 			              </div>
 			              <div className="col m3">
-			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Funcionalidad 4</a>
+			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Functionality 4</a>
 			              </div>
 			            </div>
 			            </div>

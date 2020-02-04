@@ -1,0 +1,62 @@
+#changeMeanLink:hover
+{
+
+background-color: #c67dc3;
+transition: background-color 0.8s;
+
+}
+
+      
+#textarea
+
+  {
+
+resize: none;
+outline: none;
+
+  }
+
+
+/* port styling */
+.available-magnet {
+    fill: yellow;
+}
+
+/* element styling */
+.available-cell rect {
+    stroke-dasharray: 5, 2;
+}
+
+ .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor:pointer;
+}
+
+/*
+.btn {
+  border: 2px solid #000000;
+  color: white;
+  background-color: #000000;
+  padding: 7.5px 10px;
+  
+  font-size: 14px;
+  border-radius: 15px;
+  cursor:pointer;
+  
+}
+*/
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  border-radius: 15px
+
+
+
+}

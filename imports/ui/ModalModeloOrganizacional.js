@@ -40,7 +40,7 @@ class ModalModeloOrganizacional extends Component {
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalModeloOrganizacional"
         >
-          Modelo Organizacional
+          Organizational Model
         </a>
 
         <div
@@ -56,7 +56,7 @@ class ModalModeloOrganizacional extends Component {
                         modal-fixed-footer to the "modal" div*/}
           <div className="row">
           <div className="modal-content">
-            <font color="black"><h4>Modelo Organizacional</h4></font>
+            <font color="black"><h4>Organizational Model</h4></font>
                      <div class="col m2">
                         
                     </div>
@@ -67,12 +67,12 @@ class ModalModeloOrganizacional extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/editorDeCargos.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Editor de Cargos</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Role editor</span>
+                              <p><a href="#">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Editor de Cargos<i class="material-icons right">X</i></span>
-                              <p>Estructura los cargos de tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Role editor<i class="material-icons right">X</i></span>
+                              <p>Structure your business' roles</p>
                             </div>
                           </div>
                     </div>
@@ -84,12 +84,12 @@ class ModalModeloOrganizacional extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/organigrama.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Organigrama</span>
-                              <p><a href="/OrgChartCreator">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Organigram</span>
+                              <p><a href="/OrgChartCreator">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4"><br></br>Organigrama<i class="material-icons right">X</i></span>
-                              <p>Evidencia gráficamente la estructura de tu negocio</p>
+                              <span class="card-title grey-text text-darken-4"><br></br>Organigram<i class="material-icons right">X</i></span>
+                              <p>Graphically show your business' structure</p>
                             </div>
                           </div>
                     </div>
@@ -101,7 +101,7 @@ class ModalModeloOrganizacional extends Component {
           <div className="modal-footer">
           
             <a className="modal-close waves-effect waves-green btn-flat">
-              Volver
+              Go back
             </a>
           </div>
         </div>

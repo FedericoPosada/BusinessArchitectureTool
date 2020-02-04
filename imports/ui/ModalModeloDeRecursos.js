@@ -39,7 +39,7 @@ class ModalModeloDeRecursos extends Component {
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalModeloDeRecursos"
         >
-          Modelo de Recursos
+          Resources Model
         </a>
 
         <div
@@ -66,12 +66,12 @@ class ModalModeloDeRecursos extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/modeloDeRecursos.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Modelo de Recursos</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Resources Model</span>
+                              <p><a href="#">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Modelo de Recursos<i class="material-icons right">X</i></span>
-                              <p>Gerencia los recursos que usa tu negocio</p>
+                              <span class="card-title grey-text text-darken-4">Resources Model<i class="material-icons right">X</i></span>
+                              <p>Manage tour business' resources</p>
                             </div>
                           </div>
                     </div>
@@ -82,12 +82,12 @@ class ModalModeloDeRecursos extends Component {
                               <img class="activator" height="125" src="http://172.24.101.248/images/modeloOperativo.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4">Modelo Operativo</span>
-                              <p><a href="#">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4">Operative Model</span>
+                              <p><a href="#">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Modelo Operativo<i class="material-icons right">X</i></span>
-                              <p>Identifica las operaciones de tu negocio</p>
+                              <p>Identify your business' operations</p>
                             </div>
                           </div>
                     </div>
@@ -99,7 +99,7 @@ class ModalModeloDeRecursos extends Component {
           <div className="modal-footer">
             
             <a className="modal-close waves-effect waves-green btn-flat">
-              Volver
+              Go back
             </a>
           </div>
         </div>

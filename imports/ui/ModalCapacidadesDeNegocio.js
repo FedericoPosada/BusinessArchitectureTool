@@ -38,7 +38,7 @@ class ModalCapacidadesDeNegocio extends Component {
           className="waves-effect waves-light btn light-blue darken-4 modal-trigger"
           data-target="modalCapacidadesDeNegocio"
         >
-          Capacidades de Negocio
+          Business Capacities
         </a>
 
         <div
@@ -54,22 +54,22 @@ class ModalCapacidadesDeNegocio extends Component {
                         modal-fixed-footer to the "modal" div*/}
         <div className="row">
           <div className="modal-content col m12">
-            <font color="black"><h4>Capacidades de Negocio</h4></font>
+            <font color="black"><h4>Business Capacities</h4></font>
                     <div class="col m4">
                         
                     </div>
                      <div className="col m4">
                          <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="./images/mapaDeCapacidades.PNG"></img>
+                              <img class="activator" height="125" src="http://172.24.101.248/images/mapaDeCapacidades.PNG"></img>
                             </div>
                             <div class="card-content">
-                              <span class="card-title activator grey-text text-darken-4" >Mapa de Capacidades</span>
-                              <p><a href="/CapacitiesMap">Llevame allí!</a></p>
+                              <span class="card-title activator grey-text text-darken-4" >Capacities Map</span>
+                              <p><a href="/CapacitiesMap">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
-                              <span class="card-title grey-text text-darken-4">Mapa de Capacidades<i class="material-icons right">X</i></span>
-                              <p>Identifica las capacidades de tu negocio.</p>
+                              <span class="card-title grey-text text-darken-4">Capacities Map<i class="material-icons right">X</i></span>
+                              <p>Identify your business' capacities</p>
                             </div>
                           </div>
                     <div class="col m4">
@@ -80,7 +80,7 @@ class ModalCapacidadesDeNegocio extends Component {
           <div className="modal-footer col m12">
             
             <a className="modal-close waves-effect waves-green btn-flat">
-              Volver
+              Go back
             </a>
           </div>
         </div>

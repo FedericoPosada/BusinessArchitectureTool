@@ -1,0 +1,13 @@
+Type,Component Name,Link Name,Link Source,Link Target,Embed 1,Embed 2,Embed 3
+basic.Rect,Proveedor,,,
+basic.Rect,Cliente,,,
+basic.Rect,Empresa-Procesos,,,,Bodega Productos,Puntos de venta,Bodega Insumos
+devs.Link,,D1,Bodega Productos,Puntos de venta,
+devs.Link,,T,Bodega Insumos,Bodega Productos,
+basic.Rect,Bodega Productos,,,
+basic.Rect,Puntos de venta,,,
+basic.Rect,Bodega Insumos,,,
+devs.Link,,A,Proveedor,Empresa-Procesos,
+devs.Link,,R,Empresa-Procesos,Cliente,
+devs.Link,,M,Empresa-Procesos,Cliente,
+devs.Link,,D2,Empresa-Procesos,Cliente,
