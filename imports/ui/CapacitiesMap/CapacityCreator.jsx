@@ -18,7 +18,7 @@ export default class CapacityCreator extends React.Component {
         Tracker.autorun(()=>{
             Meteor.subscribe('packages');
             Meteor.subscribe('subpackages');
-            let packageslist = packagesContainer.find({}).fetch();
+            let packageslist = packagesContainer.find({owner:Meteor.userId()}).fetch();
             this.setState({packageslist: packageslist});
         })
     }

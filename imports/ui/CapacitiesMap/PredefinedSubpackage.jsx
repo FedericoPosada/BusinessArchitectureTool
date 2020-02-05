@@ -42,8 +42,8 @@ export default class PredefinedSubpackage extends React.Component {
                 if(err)
                     Materialize.toast("Hubo un error",3000);
             });
+            this.deleteSubpackage();
         }
-        this.deleteSubpackage();
     }
     deleteSubpackage(){
         var id = this.props.id;
@@ -52,7 +52,7 @@ export default class PredefinedSubpackage extends React.Component {
     checkFields(){
         if(this.state.packageSelected.length === 0)
         {
-            Materialize.toast("No se ha escogido un subpaquete.",3000);
+            Materialize.toast("No se ha escogido un paquete.",3000);
             return false;
         }
         return true;

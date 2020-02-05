@@ -3,6 +3,7 @@ import {stIndicatorsContainer} from "../../api/stindicators";
 import {labelsContainer} from "../../api/labels";
 import {bServicesContainer} from "../../api/bservices";
 import {resourcesContainer} from "../../api/resources";
+import {channelsContainer} from "../../api/channels";
 
 
 export default class StrategicIndicatorCreator extends React.Component{
@@ -27,10 +28,12 @@ export default class StrategicIndicatorCreator extends React.Component{
             Meteor.subscribe('bservices');
             Meteor.subscribe('resources');
             Meteor.subscribe('stindicators');
+            Meteor.subscribe('channels');
             let labels = labelsContainer.find({owner:Meteor.userId()}).fetch();
             let services = bServicesContainer.find({owner:Meteor.userId()}).fetch();
             let resources = resourcesContainer.find({owner:Meteor.userId()}).fetch();
-            this.setState({labelList: labels,serviceList: services,resourceList:resources});
+            let channels = channelsContainer.find({owner:Meteor.userId()}).fetch();
+            this.setState({labelList: labels,serviceList: services,resourceList:resources,channelList:channels});
         })
     }
     handleCategoryChange(){
@@ -54,17 +57,19 @@ export default class StrategicIndicatorCreator extends React.Component{
             let indicatorcustomid;
             let labelSelected = this.refs.labelCreate.value;
             if (stIndicatorsContainer.find({"customid": new RegExp(labelSelected)}).count() === 0) {
-                indicatorcustomid = labelSelected + ".1.";
+                indicatorcustomid = labelSelected + "1";
             } else {
                 let customIdLastNumber = '';
                 let lastIndicators = stIndicatorsContainer.find({"customid": new RegExp(labelSelected)}).fetch();
+                console.log(lastIndicators);
                 let customIdLast = lastIndicators[lastIndicators.length - 1].customid;
-                for (let i = labelSelected.length+1; i < customIdLast.length-1; i++) {
+                console.log(customIdLast);
+                for (let i = labelSelected.length; i < customIdLast.length; i++) {
                     customIdLastNumber += customIdLast.charAt(i);
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                indicatorcustomid = labelSelected + "." +lastnumber+".";
+                indicatorcustomid = labelSelected +lastnumber;
             }
             let associatedIdValue="";
             if(typeof this.refs.associatedIdCreate !== "undefined") {
@@ -94,6 +99,7 @@ export default class StrategicIndicatorCreator extends React.Component{
             this.refs.dimensionsCreate.value = "";
             this.refs.labelCreate.value = "";
             this.refs.typeCreate.value = "";
+            if(typeof this.refs.associatedIdCreate !== "undefined" )
             this.refs.associatedIdCreate.value = "";
         }
     }

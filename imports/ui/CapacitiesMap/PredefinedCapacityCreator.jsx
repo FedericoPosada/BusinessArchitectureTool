@@ -18,7 +18,7 @@ export default class PredefinedCapacityCreator extends React.Component {
         Tracker.autorun(()=>{
             Meteor.subscribe('packages');
             Meteor.subscribe('subpackages');
-            let packageslist = packagesContainer.find({}).fetch();
+            let packageslist = packagesContainer.find({owner:Meteor.userId()}).fetch();
             this.setState({packageslist: packageslist});
         })
     }
@@ -61,6 +61,9 @@ export default class PredefinedCapacityCreator extends React.Component {
                 <h5 style={{"marginLeft":"20px"}}>Capacidades disponibles:</h5>
             </div>
             <div className="row">
+                <div className="input-field col s1">
+                    <h5>Agregar a:</h5>
+                </div>
                 <div className="input-field col s2">
                     <select className="browser-default" ref="pcapacitypackage" onChange={this.handlePackageChange.bind(this)} style={{width:"100%"}}>
                         <option></option>

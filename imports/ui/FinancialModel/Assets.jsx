@@ -76,8 +76,13 @@ export default class Assets extends React.Component{
             console.log(currentassets[i]);
             if(currentassets[i].length===0)
                 totalcurrent+=0;
-            else
-                totalcurrent+=parseInt(currentassets[i]);
+            else {
+                try{
+                totalcurrent += parseInt(currentassets[i]);}
+                catch (e) {
+                    totalcurrent+=0;
+                }
+            }
         }
         let totalnoncurrent=0;
         let noncurrent=[];
@@ -89,8 +94,13 @@ export default class Assets extends React.Component{
         {
             if(noncurrent[i].length===0)
                 totalnoncurrent+=0;
-            else
-                totalnoncurrent+=parseInt(noncurrent[i]);
+            else {
+                try{
+                totalnoncurrent += parseInt(noncurrent[i]);}
+                catch (e) {
+                    totalnoncurrent +=0;
+                }
+            }
         }
         this.setState({
             totalcurrent:totalcurrent,
@@ -285,7 +295,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Caja y equivalentes de caja:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.cash}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.cash).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -293,7 +306,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Valores negociables:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.marketablesecurities}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.marketablesecurities).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -301,7 +317,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Inventarios:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.inventories}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.inventories).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -309,7 +328,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Cuentas por cobrar:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.accountsreceivable}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.accountsreceivable).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -318,7 +340,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total activos corrientes:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalcurrent}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalcurrent).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -332,7 +357,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Propiedades y equipos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.property}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.property).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -340,7 +368,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Activos intangibles:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.intangible}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.intangible).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -348,7 +379,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Inversiones:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.investment}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.investment).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <div className="row">
@@ -356,7 +390,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Otros activos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.otherassets}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.otherassets).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -365,7 +402,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total activos fijos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalnoncurrent}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalnoncurrent).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                         <hr />
@@ -374,7 +414,10 @@ export default class Assets extends React.Component{
                                 <label style={{"marginLeft":"10px"}}>Total activos:</label>
                             </div>
                             <div className="input-field col s6">
-                                <p style={{"font-size":"90%","marginTop":"8px"}}>{this.state.totalassets}</p>
+                                <p style={{"font-size":"90%","marginTop":"8px"}}>{Number(this.state.totalassets).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })}</p>
                             </div>
                         </div>
                     </form>

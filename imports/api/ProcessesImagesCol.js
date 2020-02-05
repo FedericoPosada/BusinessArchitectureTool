@@ -2,7 +2,7 @@ import { FilesCollection } from 'meteor/ostrio:files';
 import {Meteor} from "meteor/meteor";
 
 const ProcessesImages = new FilesCollection({
-    storagePath: 'C:\\testimages',
+    storagePath: 'C:\\processesimages',
     downloadRoute: '/files/processesimages',
     collectionName: 'processesimages',
     permissions: 0o755,

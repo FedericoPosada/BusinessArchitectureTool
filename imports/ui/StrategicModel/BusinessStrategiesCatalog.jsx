@@ -3,6 +3,7 @@ import {bServicesContainer} from '../../api/bservices';
 import {resourcesContainer} from "../../api/resources";
 import {bStrategiesContainer} from "../../api/bstrategies";
 import BusinessStrategiesList from "./BusinessStrategiesList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class BusinessStrategiesCatalog extends React.Component {
     constructor(props){
@@ -115,6 +116,7 @@ export default class BusinessStrategiesCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s2">
                         <input name="name" placeholder="Nombre" type="text" ref="strategyname"
@@ -163,7 +165,11 @@ export default class BusinessStrategiesCatalog extends React.Component {
                     <a onClick={this.handleClick} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Crear</a>
                     </div>
                 </div>
-                <BusinessStrategiesList/>
+                <div className="row">
+                    <div className="input-field col s11">
+                <BusinessStrategiesList style={{marginLeft:5}}/>
+                    </div>
+                </div>
              </div>
     )
     }

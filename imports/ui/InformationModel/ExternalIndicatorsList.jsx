@@ -2,6 +2,7 @@ import React from 'react';
 import {exIndicatorsContainer} from "../../api/exindicators";
 import ExternalIndicator from "./ExternalIndicator";
 import ExternalIndicatorCreator from "./ExternalIndicatorCreator";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ExternalIndicatorsList extends React.Component {
     constructor(props){
@@ -33,15 +34,16 @@ export default class ExternalIndicatorsList extends React.Component {
     render(){
         return (
             <div>
-                <h3>Indicadores externos</h3>
+                <PrivateLoggedHeader/>
+                <h3 style={{"marginLeft":"20px"}}>Indicadores externos</h3>
                 <form className="col s12">
                     <div className="row">
                         <div className="input-field col s4">
-                            {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{marginBottom:20}}
+                            {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{marginBottom:20,"marginLeft":"20px"}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons">cancel</i></a>}
-                            {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20}}
+                            {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20,"marginLeft":"20px"}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons right">add</i>Nuevo indicador</a>}
-                        <table className="striped" >
+                        <table className="striped" style={{"marginLeft":"20px"}}>
                     <tbody>
                     <tr>
                         <th>ID</th>
@@ -73,7 +75,9 @@ export default class ExternalIndicatorsList extends React.Component {
                     </tbody>
                 </table>
                         </div>
-                        <div className="input-field col s8">
+                        <div className="input-field col s1">
+                        </div>
+                        <div className="input-field col s7">
                             {
                                 this.state.isInCreateMode && <ExternalIndicatorCreator />
                             }

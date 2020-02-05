@@ -2,6 +2,7 @@ import React from 'react';
 import CurrentRatio from "./CurrentRatio";
 import AcidTest from "./AcidTest";
 import CashRatio from "./CashRatio";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class FinancialIndicatorsList extends React.Component {
     constructor(props){
@@ -36,6 +37,7 @@ export default class FinancialIndicatorsList extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h4 style={{"marginLeft":"20px"}}>Indicadores financieros</h4>
                 <form className="col s12">
                     <div className="row">
@@ -48,19 +50,19 @@ export default class FinancialIndicatorsList extends React.Component {
                         <th></th>
                     </tr>
                     <tr>
-                        <th>IF1.1.</th>
-                        <th>Razón corriente</th>
-                        <th><a className="waves-effect waves-light btn" onClick={this.handleCurrentRatio.bind(this)}><i className="material-icons">keyboard_arrow_right</i></a></th>
+                        <td>IF1.1.</td>
+                        <td>Razón corriente</td>
+                        <td><a className="waves-effect waves-light btn" onClick={this.handleCurrentRatio.bind(this)}><i className="material-icons">keyboard_arrow_right</i></a></td>
                     </tr>
                     <tr>
-                        <th>IF1.2.</th>
-                        <th>Prueba ácida</th>
-                        <th><a className="waves-effect waves-light btn" onClick={this.handleAcid.bind(this)}><i className="material-icons">keyboard_arrow_right</i></a></th>
+                        <td>IF1.2.</td>
+                        <td>Prueba ácida</td>
+                        <td><a className="waves-effect waves-light btn" onClick={this.handleAcid.bind(this)}><i className="material-icons">keyboard_arrow_right</i></a></td>
                     </tr>
                     <tr>
-                        <th>IF1.3.</th>
-                        <th>Razón de efectivo</th>
-                        <th><a className="waves-effect waves-light btn" onClick={this.handleCashRatio.bind(this)}><i className="material-icons">keyboard_arrow_right</i></a></th>
+                        <td>IF1.3.</td>
+                        <td>Razón de efectivo</td>
+                        <td><a className="waves-effect waves-light btn" onClick={this.handleCashRatio.bind(this)}><i className="material-icons">keyboard_arrow_right</i></a></td>
                     </tr>
                     </tbody>
                 </table>

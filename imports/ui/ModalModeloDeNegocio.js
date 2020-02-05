@@ -61,12 +61,13 @@ class ModalModeloDeNegocio extends Component {
                     <div className="col m4">
 
                         <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/portafolioDeServicios.PNG"></img>
-                            </div>
                             <div class="card-content">
+<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Service Portfolio</span>
                               <p><a href="/BusinessServicesPortfolio">Take me there!</a></p>
+=======
+                              <p><a href="/BusinessServicesPortfolio">Portafolio de Servicios</a></p>
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Service Portfolio<i class="material-icons right">X</i></span>
@@ -76,12 +77,13 @@ class ModalModeloDeNegocio extends Component {
                     </div>
                     <div className="col m4">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/modeloOntologico.PNG"></img>
-                            </div>
                             <div class="card-content">
+<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Ontologic Model</span>
                               <p><a href="/OntologicModelCreator">Take me there!</a></p>
+=======
+                              <p><a href="/OntologicModelCreator">Modelo Ontologico</a></p>
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Ontologic Model<i class="material-icons right">X</i></span>
@@ -91,12 +93,13 @@ class ModalModeloDeNegocio extends Component {
                     </div>
                       <div className="col m4">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/editorModeloDeNegocio.PNG"></img>
-                            </div>
                             <div class="card-content">
+<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Business Structure</span>
                               <p><a href="/businessModelEditor">Take me there!</a></p>
+=======
+                              <p><a href="/BusinessStructure">Estructura de Negocio</a></p>
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Business Structure<i class="material-icons right">X</i></span>

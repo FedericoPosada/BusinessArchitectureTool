@@ -1,6 +1,7 @@
 import React from 'react';
 import {resourcesContainer} from "../../api/resources";
 import ResourcesList from "./ResourcesList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ResourcesModel extends React.Component {
     checkFields(){
@@ -49,6 +50,7 @@ export default class ResourcesModel extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input id="resourcename" ref="resourcename" type="text" className="validate"/>
@@ -66,7 +68,11 @@ export default class ResourcesModel extends React.Component {
                         <a onClick={this.handleClick.bind(this)} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Agregar</a>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="input-field col s11">
                 <ResourcesList/>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -55,44 +55,65 @@ class ModalModeloDeInformacion extends Component {
                         modal-fixed-footer to the "modal" div*/}
         <div className="row">
           <div className="modal-content">
+<<<<<<< HEAD
            <font color="black"><h4>Information Model</h4></font>
                     <div className="col m2">
                          
                     </div>
                      <div className="col m4">
+=======
+           <font color="black"><h4>Modelo de Informacion</h4></font>
+
+                     <div className="col m3">
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                            <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/modeloOntologico.PNG"></img>
-                            </div>
                             <div class="card-content">
+<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Ontologic Model</span>
                               <p><a href="#">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Ontologic Model<i class="material-icons right">X</i></span>
                               <p>Define the structure of your ontologic model</p>
+=======
+                              <p><a href="/LabelsCreator">Creador de etiquetas</a></p>
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                           </div>
                     </div>
                      
-                     <div className="col m4">
+                     <div className="col m3">
                           <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                              <img class="activator" height="125" src="http://172.24.101.248/images/indicadoresEstrategicos.PNG"></img>
-                            </div>
                             <div class="card-content">
+<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Strategic Indicators</span>
                               <p><a href="#">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Strategic Indicators<i class="material-icons right">X</i></span>
                               <p>Identify indicators to suppport your business' strategy</p>
+=======
+                              <p><a href="/OperativeIndicatorsList">Indicadores Operativos</a></p>
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                           </div>
                     </div>
-                    <div className="col m2">
-                         
-                    </div>
+
+
+              <div className="col m3">
+                  <div className="card">
+                      <div className="card-content">
+                          <p><a href="/StrategicIndicatorsList">Indicadores Estratégicos</a></p>
+                      </div>
+                  </div>
+              </div>
+              <div className="col m3">
+                  <div className="card">
+                      <div className="card-content">
+                          <p><a href="/ExternalIndicatorsList">Indicadores Externos</a></p>
+                      </div>
+                  </div>
+              </div>
           </div>
         </div>
           <div className="modal-footer">

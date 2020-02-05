@@ -2,6 +2,7 @@ import React from 'react';
 import Process from "./Process";
 import ProcessCreator from "./ProcessCreator";
 import {processesContainer} from "../../api/processes";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ProcessCatalog extends React.Component {
     constructor(props){
@@ -33,15 +34,16 @@ export default class ProcessCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <h3 style={{"marginLeft":"20px"}}>Catálogo de procesos</h3>
                 <form className="col s12">
                     <div className="row">
-                        <div className="input-field col s4">
+                        <div className="input-field col s3" style={{"marginRight":"14px"}}>
                             {this.state.isInCreateMode && <a className="waves-effect waves-light btn red" style={{"marginLeft":"20px",marginBottom:20}}
                             onClick={this.changeCreateMode.bind(this)}><i className="material-icons">cancel</i></a>}
                             {!this.state.isInCreateMode && <a className="waves-effect waves-light btn green" style={{marginBottom:20}}
                             onClick={this.changeCreateMode.bind(this)} style={{"marginLeft":"20px","marginBottom":"14px"}}><i className="material-icons right" >add</i>Nuevo proceso</a>}
-                        <table className="striped" style={{"marginLeft":"14px"}} >
+                        <table className="striped" style={{"marginLeft":"20px"}} >
                     <tbody>
                     <tr>
                         <th>ID</th>

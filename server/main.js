@@ -39,7 +39,12 @@ import {bSheetsContainer} from "../imports/api/bsheets";
 import {incomeStatementsContainer} from "../imports/api/istatements";
 import {cashFlowsContainer} from "../imports/api/cashflows";
 import {financialContainer} from "../imports/api/finindicators";
+<<<<<<< HEAD
 import {businessModels} from "../imports/api/businessModels";
+=======
+import {channelActivitiesContainer} from "../imports/api/chanactivities";
+import {channelsContainer} from "../imports/api/channels";
+>>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
 import '../imports/api/finaldocuments';
 import '../imports/api/pimages';
 import '../imports/api/ontologicmodels';
@@ -48,20 +53,50 @@ import {Document, Packer, Paragraph, TextRun} from "docx";
 import * as fs from "fs";
 import OntologicModels from "../imports/api/OntologicModelsCol";
 import OrgCharts from "../imports/api/OrgChartCol";
+import ProcessesImages from "../imports/api/ProcessesImagesCol";
+import BusinessStructures from "../imports/api/BusinessStructureCol";
+import '../imports/api/bstructures';
+
+
 
 Meteor.startup(() => {
   // code to run on server at startup
 	Meteor.methods({
-		'getOntologicalModel'() {
+		'getImagesDoc'() {
 			let result=[];
-			let route="";
-			let routeorg="";
+			let querySt=BusinessStructures.collection.findOne({userId:Meteor.userId()});
 			let query=OntologicModels.collection.findOne({userId:Meteor.userId()});
 			let queryorg=OrgCharts.collection.findOne({userId:Meteor.userId()});
-			if(typeof queryorg !== "undefined")
-				result[0]=fs.readFileSync(queryorg.path);
-			if(typeof query !== "undefined")
-				result[1]=fs.readFileSync(query.path);
+			if(typeof queryorg !== "undefined" ) {
+				if(typeof query !== "undefined") {
+					if( typeof querySt !== "undefined") {
+						result[0] = fs.readFileSync(queryorg.path);
+						result[1] = fs.readFileSync(query.path);
+						result[2] = fs.readFileSync(querySt.path);
+						return result;
+					}
+					else
+						return "No se ha subido la estructura de negocio.";
+				}
+				else
+					return "No se ha subido el modelo ontológico.";
+			}
+			else
+				return "No se ha subido el organigrama";
+		},
+		'getProcsImages'(){
+			let result=[];
+			let queryprocs=ProcessesImages.collection.find({userId:Meteor.userId()}).fetch();
+			if(typeof queryprocs !== "undefined"){
+				queryprocs.map((val, index)=> {
+					try {
+						result.push(fs.readFileSync(val.path));
+					}
+					catch (e) {
+						
+					}
+				});
+			}
 			return result;
 		}
 	});

@@ -2,6 +2,7 @@ import React from "react";
 import MapEditor from "./MapEditor";
 import PredefinedCapacityCreator from "./PredefinedCapacityCreator";
 import MapCatalog from "./MapCatalog";
+import PrivateHeader from "../PrivateHeader";
 
 export default class CapacitiesMap extends React.Component {
     constructor(props) {
@@ -29,6 +30,7 @@ export default class CapacitiesMap extends React.Component {
     render() {
         return (
             <div>
+                <PrivateHeader/>
                 <div className="col s12">
                     <ul className="tabs">
                         <li className="tab col s4"><a onClick={this.changeEditorMode.bind(this)}>Editor</a></li>

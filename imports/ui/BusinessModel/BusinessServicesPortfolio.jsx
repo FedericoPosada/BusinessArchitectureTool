@@ -2,6 +2,7 @@ import React from 'react';
 import {bServicesContainer} from '../../api/bservices';
 import BusinessServicesList from './BusinessServicesList';
 import {clientsContainer} from "../../api/clients";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class BusinessServicesPortfolio extends React.Component {
     constructor(props){
@@ -15,7 +16,7 @@ export default class BusinessServicesPortfolio extends React.Component {
     componentWillMount() {
         Tracker.autorun(()=>{
             Meteor.subscribe('clients')
-            let clients = clientsContainer.find({}).fetch();
+            let clients = clientsContainer.find({owner:Meteor.userId()}).fetch();
             this.setState({clients: clients});
         })
     }
@@ -64,6 +65,7 @@ export default class BusinessServicesPortfolio extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input id="servicename" ref="servicename" type="text" className="validate"/>
@@ -86,7 +88,11 @@ export default class BusinessServicesPortfolio extends React.Component {
                     <a onClick={this.handleClick} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Agregar</a>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="input-field col s11" style={{marginLeft:5}}>
                 <BusinessServicesList/>
+                </div>
+                </div>
              </div>
     )
     }

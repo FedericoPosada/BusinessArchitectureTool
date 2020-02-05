@@ -1,6 +1,7 @@
 import React from 'react';
 import {labelsContainer} from "../../api/labels";
 import LabelsList from "./LabelsList";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class ComponentsCatalog extends React.Component {
     checkFields(){
@@ -27,6 +28,7 @@ export default class ComponentsCatalog extends React.Component {
     render(){
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="row">
                     <div className="input-field col s3">
                         <input ref="idEdit" type="text" className="validate"/>
@@ -40,7 +42,11 @@ export default class ComponentsCatalog extends React.Component {
                         <a onClick={this.handleClick.bind(this)} className="waves-effect waves-light btn light-green" style={{marginTop:5}}><i className="material-icons left">add</i>Agregar</a>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="input-field col s8">
                 <LabelsList/>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -82,7 +82,10 @@ export default class Resource extends React.Component {
                 <td>{this.props.customid}</td>
                 <td>{this.props.name}</td>
                 <td>{this.props.description}</td>
-                <td>{this.props.cost}</td>
+                <td>{Number(this.props.cost).toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                })}</td>
                 <td style={{width:"5%"}}><a onClick={this.changeEditMode.bind(this)} className="waves-effect waves-light btn" style={{marginRight:5, marginBottom:5}}><i
                     className="material-icons">edit</i></a>
                     { this.state.serMode && <a onClick={this.changeSerMode.bind(this)} className="waves-effect waves-light btn" ><i

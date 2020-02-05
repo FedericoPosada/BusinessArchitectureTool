@@ -37,11 +37,10 @@ export default class ProcessActivityManager extends React.Component {
         if (this.checkFields()) {
             let activitycustomid;
             let tempid = this.props.processcustomid.replace("P", "A")
-            let proc = processesContainer.findOne({_id: this.props.processid,owner: Meteor.userId()})
-            console.log(proc);
+            let proc = processesContainer.findOne({_id: this.props.processid,owner: Meteor.userId()});
             let currentActivities=proc.activities;
             if (currentActivities.length === 0) {
-                activitycustomid = tempid + "1.";
+                activitycustomid = tempid + ".1.";
             } else {
                 let customIdLastNumber = '';
                 let lastActivity = currentActivities[currentActivities.length - 1];
@@ -52,7 +51,7 @@ export default class ProcessActivityManager extends React.Component {
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                activitycustomid = tempid + lastnumber + ".";
+                activitycustomid = tempid + "."+lastnumber + ".";
             }
             let arrayRes = this.refs.activitycapselect.value.split("-");
             let actItem = {

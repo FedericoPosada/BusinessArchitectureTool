@@ -26,17 +26,18 @@ export default class ExternalIndicatorCreator extends React.Component{
             let indicatorcustomid;
             let labelSelected = this.refs.labelCreate.value;
             if (exIndicatorsContainer.find({ owner:Meteor.userId(),"customid": new RegExp(labelSelected)}).count() === 0) {
-                indicatorcustomid = labelSelected + ".1.";
+                indicatorcustomid = labelSelected + "1";
             } else {
                 let customIdLastNumber = '';
                 let lastIndicators = exIndicatorsContainer.find({ owner:Meteor.userId(),"customid": new RegExp(labelSelected)}).fetch();
+                console.log(lastIndicators);
                 let customIdLast = lastIndicators[lastIndicators.length - 1].customid;
-                for (let i = labelSelected.length+1; i < customIdLast.length-1; i++) {
+                for (let i = labelSelected.length; i < customIdLast.length; i++) {
                     customIdLastNumber += customIdLast.charAt(i);
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                indicatorcustomid = labelSelected +"."+lastnumber+".";
+                indicatorcustomid = labelSelected +lastnumber;
             }
             let createObj = {
                 customid: indicatorcustomid,

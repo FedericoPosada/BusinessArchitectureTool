@@ -2,6 +2,7 @@ import React from 'react';
 import Means from "./Means";
 import AchievementIndicatorCreator from "./AchievementIndicatorCreator";
 import Purposes from "./Purposes";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 export default class StrategicPlan extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ export default class StrategicPlan extends React.Component {
     render() {
         return (
             <div>
+                <PrivateLoggedHeader/>
                 <div className="col s12">
                     <ul className="tabs">
                         <li className="tab col s4"><a onClick={this.changePurposeMode.bind(this)}>Fines</a></li>
@@ -46,7 +48,7 @@ export default class StrategicPlan extends React.Component {
                 <div className="row">
                     {this.state.purposeMode && <Purposes/>}
                     {this.state.meansMode && <Means/>}
-                    {this.state.indMode && <AchievementIndicatorCreator/>}
+                    {this.state.indMode && <AchievementIndicatorCreator style={{"marginLeft":14}}/>}
                 </div>
             </div>
         )

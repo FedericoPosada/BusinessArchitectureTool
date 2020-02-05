@@ -75,14 +75,12 @@ export default class OperativeIndicator extends React.Component{
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s2">
-                                <a className="waves-effect waves-light btn green" onClick={this.changeEditMode.bind(this)}><i className="material-icons">check</i></a>
-                            </div>
-                            <div className="input-field col s2">
+                                <a className="waves-effect waves-light btn green" onClick={this.changeEditMode.bind(this)} style={{marginRight:5}}><i className="material-icons">check</i></a>
                                 <a className="waves-effect waves-light btn red" onClick={this.deleteIndicator.bind(this)}><i className="material-icons">delete</i></a>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Descripción:</label>
                             </div>
                             <div className="input-field col s8">
@@ -90,7 +88,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Forma de cálculo:</label>
                             </div>
                             <div className="input-field col s8">
@@ -98,7 +96,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Frecuencia de cálculo:</label>
                             </div>
                             <div className="input-field col s8">
@@ -113,7 +111,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Dimensiones:</label>
                             </div>
                             <div className="input-field col s8">
@@ -121,7 +119,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Cargos responsables:</label>
                             </div>
                             <div className="input-field col s8">
@@ -129,7 +127,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Procesos asociados:</label>
                             </div>
                             <div className="input-field col s8">
@@ -149,14 +147,12 @@ export default class OperativeIndicator extends React.Component{
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s2">
-                                <a className="waves-effect waves-light btn" onClick={this.changeEditMode.bind(this)}><i className="material-icons">edit</i></a>
-                            </div>
-                            <div className="input-field col s2">
+                                <a className="waves-effect waves-light btn" onClick={this.changeEditMode.bind(this)} style={{marginRight:5}}><i className="material-icons">edit</i></a>
                                 <a className="waves-effect waves-light btn red" onClick={this.deleteIndicator.bind(this)}><i className="material-icons">delete</i></a>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>ID:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -166,7 +162,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Descripción:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -176,7 +172,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Forma de cálculo:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -186,7 +182,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Frecuencia de cálculo:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -196,7 +192,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Dimensiones:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -206,7 +202,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Cargos responsables:</label>
                             </div>
                             <div className="input-field col s8">
@@ -214,7 +210,7 @@ export default class OperativeIndicator extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Procesos asociados:</label>
                             </div>
                             <div className="input-field col s8">

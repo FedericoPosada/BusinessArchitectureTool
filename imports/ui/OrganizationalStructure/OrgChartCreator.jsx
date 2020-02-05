@@ -1,6 +1,7 @@
 import React from 'react';
 import {Meteor} from "meteor/meteor";
 import OrgCharts from "../../api/OrgChartCol";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 
 export default class OrgChartCreator extends React.Component{
@@ -78,6 +79,8 @@ export default class OrgChartCreator extends React.Component{
             cursor="";
         return(
             <div>
+                <PrivateLoggedHeader/>
+                <div>
                 <h4 style={{"marginLeft":"20px"}}>Organigrama</h4>
                 <div className="row">
                     <form className="col s12">
@@ -105,6 +108,7 @@ export default class OrgChartCreator extends React.Component{
                         </div>
                     </form>
                 </div>
+            </div>
             </div>
     )
     }

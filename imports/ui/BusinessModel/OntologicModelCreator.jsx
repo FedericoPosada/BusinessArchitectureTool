@@ -3,6 +3,7 @@ import {processesContainer} from "../../api/processes";
 import {Meteor} from "meteor/meteor";
 import OntologicModels from "../../api/OntologicModelsCol";
 import ProcessesImages from "../../api/ProcessesImagesCol";
+import PrivateLoggedHeader from "../PrivateLoggedHeader";
 
 
 export default class OntologicModelCreator extends React.Component{
@@ -80,6 +81,8 @@ export default class OntologicModelCreator extends React.Component{
             cursor="";
         return(
             <div>
+                <PrivateLoggedHeader/>
+
                 <h4 style={{"marginLeft":"20px"}}>Modelo ontológico</h4>
                 <div className="row">
                     <form className="col s12">

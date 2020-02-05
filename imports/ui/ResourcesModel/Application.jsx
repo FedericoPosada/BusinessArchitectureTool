@@ -80,7 +80,7 @@ export default class Application extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Nombre:</label>
                             </div>
                             <div className="input-field col s8">
@@ -88,7 +88,7 @@ export default class Application extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Costo mensual:</label>
                             </div>
                             <div className="input-field col s8">
@@ -123,7 +123,7 @@ export default class Application extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>ID:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -133,7 +133,7 @@ export default class Application extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                             <label>Nombre:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -143,7 +143,7 @@ export default class Application extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s2">
                                 <label>Costo:</label>
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
@@ -153,7 +153,7 @@ export default class Application extends React.Component{
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s3">
+                            <div className="input-field col s4">
                                 <label>Capacidades implementadas::</label>
                             </div>
                         <table className="bordered">

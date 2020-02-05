@@ -15,7 +15,7 @@ export default class SubpackageCreator extends React.Component {
     componentWillMount() {
         Tracker.autorun(()=>{
             Meteor.subscribe('packages');
-            let packageslist = packagesContainer.find({}).fetch();
+            let packageslist = packagesContainer.find({owner:Meteor.userId()}).fetch();
             this.setState({packageslist: packageslist});
         })
     }
@@ -51,7 +51,7 @@ export default class SubpackageCreator extends React.Component {
                 }
                 let lastnumber = parseInt(customIdLastNumber);
                 lastnumber++;
-                subpackagecustomid =this.state.packageSelected + lastnumber + ".";
+                subpackagecustomid =this.state.packageSelected +"."+ lastnumber + ".";
             }
             let subpackagename = this.refs.subpackagename.value;
             let subpackageop = {

@@ -159,7 +159,10 @@ export default class Position extends React.Component{
                             </div>
                             <div className="input-field col s8" style={{"marginTop":25}}>
                                 {
-                                    this.props.salary
+                                    Number(this.props.salary).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                })
                                 }
                             </div>
                         </div>
@@ -196,7 +199,7 @@ export default class Position extends React.Component{
                         </div>
                         <div className="row">
                             <div className="input-field col s4">
-                                <label>Componentes tecnológicos relacionados:</label>
+                                <label>Cargos dependientes:</label>
                             </div>
                         <table className="bordered">
                             <tbody>
