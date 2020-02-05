@@ -35,7 +35,7 @@ import BalanceSheet from "../ui/FinancialModel/BalanceSheet";
 import FinancialStatements from "../ui/FinancialModel/FinancialStatements";
 import FinancialIndicatorsList from "../ui/FinancialModel/FinancialIndicatorsList";
 import FinalDocument from "../ui/Document/FinalDocument";
-<<<<<<< HEAD
+
 import BusinessModelEditorTwo from "../ui/BusinessModelEditor/BusinessModelEditorTwo";
 import TestApp from "../ui/TestApp";
 import * as joint from 'jointjs';
@@ -62,11 +62,11 @@ import styles from "../ui/BusinessModelEditor/JS/styles.js";
 import paperProperties from "../ui/BusinessModelEditor/JS/paperProperties.js";
 import archivos from "../ui/BusinessModelEditor/JS/archivos.js";
 */
-=======
+
 import BusinessStructureCreator from "../ui/BusinessModel/BusinessStructureCreator";
 import ChannelsModel from "../ui/BusinessModel/ChannelsModel";
 import BusinessStructure from "../ui/BusinessModel/BusinessStructure";
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
+
 
 const history = createBrowserHistory();
 
@@ -120,12 +120,12 @@ export const routes = (
 			<Route path="/FinancialStatements" component={FinancialStatements}/>
 			<Route path="/FinancialIndicatorsList" component={FinancialIndicatorsList}/>
 			<Route path="/FinalDocument" component={FinalDocument}/>
-<<<<<<< HEAD
+
 			<Route path="/businessModelEditor" component={BusinessModelEditorTwo}/>
 			<Route path="/testApp" component={TestApp}/>
-=======
+
 			<Route path="/BusinessStructure" component={BusinessStructure}/>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
+
 
 			<Route path="*" component={NotFound}/>
         </Switch>

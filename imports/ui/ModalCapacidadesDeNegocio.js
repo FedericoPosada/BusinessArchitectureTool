@@ -60,17 +60,12 @@ class ModalCapacidadesDeNegocio extends Component {
                     </div>
                      <div className="col m4">
                          <div class="card">
-<<<<<<< HEAD
                             <div class="card-image waves-effect waves-block waves-light">
                               <img class="activator" height="125" src="http://172.24.101.248/images/mapaDeCapacidades.PNG"></img>
                             </div>
                             <div class="card-content">
                               <span class="card-title activator grey-text text-darken-4" >Capacities Map</span>
                               <p><a href="/CapacitiesMap">Take me there!</a></p>
-=======
-                            <div class="card-content">
-                              <p><a href="/CapacitiesMap">Mapa de Capacidades</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Capacities Map<i class="material-icons right">X</i></span>

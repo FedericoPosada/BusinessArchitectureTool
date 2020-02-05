@@ -61,14 +61,14 @@ class ModalModeloOrganizacional extends Component {
                         
                     </div>
                      <div className="col m4">
+
                       <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/editorDeCargos.PNG"></img>
+                            </div>
                             <div class="card-content">
-<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Role editor</span>
-                              <p><a href="#">Take me there!</a></p>
-=======
-                              <p><a href="/PositionCatalog">Editor de Cargos</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
+                              <p><a href="/PositionCatalog">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Role editor<i class="material-icons right">X</i></span>
@@ -80,13 +80,12 @@ class ModalModeloOrganizacional extends Component {
                      <div className="col m4">
 
                           <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/organigrama.PNG"></img>
+                            </div>
                             <div class="card-content">
-<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Organigram</span>
                               <p><a href="/OrgChartCreator">Take me there!</a></p>
-=======
-                              <p><a href="/OrgChartCreator">Organigrama</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4"><br></br>Organigram<i class="material-icons right">X</i></span>

@@ -129,7 +129,7 @@ render() {
 			            <div className="card-content black-text">
 			            <div className="col m12">
 			            <div className="row">
-<<<<<<< HEAD
+
 			              <div className="col m3">
 			              	<a href="/FinalDocument" className="waves-effect waves-light btn-small light-blue darken-3">Download PDF</a>
 			              </div>
@@ -141,12 +141,12 @@ render() {
 			              </div>
 			              <div className="col m3">
 			              	<a className="waves-effect waves-light btn-small light-blue darken-3">Functionality 4</a>
-=======
+
 							<div className="col m5">
 							</div>
 			              <div className="col m2">
 			              	<a href="/FinalDocument" className="waves-effect waves-light btn-small light-blue darken-3">Documento entregable</a>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
+
 			              </div>
 							<div className="col m5">
 							</div>
@@ -156,6 +156,7 @@ render() {
 		        </div>
 		      </div>		     
 			</div>
+			</div>			
 			</div>
 		);
 	};

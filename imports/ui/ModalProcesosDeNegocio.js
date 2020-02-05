@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
-import ValueChain from "./ProcessesModel/ValueChain";
 
 class ModalProcesosDeNegocio extends Component {
   componentDidMount() {
@@ -62,13 +61,12 @@ class ModalProcesosDeNegocio extends Component {
                     </div>
                      <div className="col m4">
                           <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/catalogoDeProcesos.PNG"></img>
+                            </div>
                             <div class="card-content">
-<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Processes Catalog</span>
                               <p><a href="/ProcessCatalog">Take me there!</a></p>
-=======
-                              <p><a href="/ProcessCatalog">Catálogo de Procesos</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Processes Catalog<i class="material-icons right">X</i></span>
@@ -79,13 +77,12 @@ class ModalProcesosDeNegocio extends Component {
                     
                      <div className="col m4">
                           <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/cadenaDeValor.PNG"></img>
+                            </div>
                             <div class="card-content">
-<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Value Chain</span>
-                              <p><a href="#">Take me there!</a></p>
-=======
-                              <p><a href="/ValueChain">Cadena de Valor</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
+                              <p><a href="/ValueChain">Take me there!</a></p>
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Value Chain<i class="material-icons right">X</i></span>

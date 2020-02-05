@@ -39,12 +39,12 @@ import {bSheetsContainer} from "../imports/api/bsheets";
 import {incomeStatementsContainer} from "../imports/api/istatements";
 import {cashFlowsContainer} from "../imports/api/cashflows";
 import {financialContainer} from "../imports/api/finindicators";
-<<<<<<< HEAD
+
 import {businessModels} from "../imports/api/businessModels";
-=======
+
 import {channelActivitiesContainer} from "../imports/api/chanactivities";
 import {channelsContainer} from "../imports/api/channels";
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
+
 import '../imports/api/finaldocuments';
 import '../imports/api/pimages';
 import '../imports/api/ontologicmodels';

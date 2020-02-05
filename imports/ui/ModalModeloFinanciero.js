@@ -64,13 +64,12 @@ class ModalModeloFinanciero extends Component {
                      <div className="col m4">
 
                          <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/estadosFinancieros.PNG"></img>
+                            </div>
                             <div class="card-content">
-<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Financial states</span>
                               <p><a href="/FinancialStatements">Take me there!</a></p>
-=======
-                              <p><a href="/FinancialStatements">Estados Financieros</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Financial States<i class="material-icons right">X</i></span>
@@ -82,13 +81,12 @@ class ModalModeloFinanciero extends Component {
                     
                      <div className="col m4">
                          <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                              <img class="activator" height="125" src="http://172.24.101.248/images/indicadoresFinancieros.PNG"></img>
+                            </div>
                             <div class="card-content">
-<<<<<<< HEAD
                               <span class="card-title activator grey-text text-darken-4">Financial Indicators</span>
                               <p><a href="/FinancialIndicatorsList">Take me there!</a></p>
-=======
-                              <p><a href="/FinancialIndicatorsList">Indicadores Financieros</a></p>
->>>>>>> 42729aa774146bb9ddc5ba30dd3da74e72a5ef88
                             </div>
                             <div class="card-reveal">
                               <span class="card-title grey-text text-darken-4">Financial Indicators<i class="material-icons right">X</i></span>
